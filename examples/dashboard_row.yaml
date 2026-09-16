@@ -1,0 +1,56 @@
+# Example: one row per plant, built entirely from built-in Lovelace cards
+# (no extra HACS frontend cards required). Copy this section, then replace
+# every entity_id below with the ones from your plant's device page
+# (Settings -> Devices & services -> Devices -> your plant name).
+#
+# Uses a "sections" view - see https://www.home-assistant.io/dashboards/sections/
+type: grid
+cards:
+  - type: heading
+    heading: "\U0001F33F My Plant"
+    heading_style: subtitle
+  - type: grid
+    columns: 4
+    square: false
+    cards:
+      - type: picture
+        image: /local/plant_monitor/my_plant.jpg # put your own photo in www/plant_monitor/
+        tap_action:
+          action: none
+      - type: markdown
+        content: |
+          **Advice**
+
+          {{ states('sensor.my_plant_advice') }}
+      - type: tile
+        entity: sensor.YOUR_SOIL_MOISTURE_ENTITY
+        name: Moisture (24h trend)
+        features:
+          - type: trend-graph
+            hours_to_show: 24
+      - type: gauge
+        entity: sensor.YOUR_SOIL_MOISTURE_ENTITY
+        name: Moisture
+        min: 0
+        max: 100
+        needle: true
+        severity:
+          red: 0
+          yellow: 20
+          green: 40
+  - type: grid
+    columns: 4
+    square: false
+    cards:
+      - type: tile
+        entity: sensor.my_plant_health_score
+        name: Health score
+      - type: tile
+        entity: sensor.my_plant_drying_rate
+        name: Drying rate
+      - type: tile
+        entity: sensor.my_plant_water_prediction
+        name: Water prediction
+      - type: tile
+        entity: sensor.my_plant_last_watered
+        name: Last watered

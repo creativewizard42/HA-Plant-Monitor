@@ -1,0 +1,74 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add a plant",
+        "description": "Point Plant Monitor at your existing soil moisture sensor. Temperature, humidity and battery are optional but improve the advice and health score.",
+        "data": {
+          "name": "Plant name",
+          "species": "Plant species (used for sensible default thresholds)",
+          "soil_moisture_entity": "Soil moisture sensor",
+          "temperature_entity": "Temperature sensor (optional)",
+          "humidity_entity": "Air humidity sensor (optional)",
+          "battery_entity": "Battery sensor (optional)"
+        }
+      },
+      "thresholds": {
+        "title": "Thresholds",
+        "description": "Pre-filled from the selected species - adjust to taste. You can change these later from the plant's device page.",
+        "data": {
+          "dry_threshold": "Dry threshold (water below this %)",
+          "wet_threshold": "Overwatered threshold (warn above this %)",
+          "temp_cold_threshold": "Too cold below (\u00b0C)",
+          "temp_hot_threshold": "Too warm above (\u00b0C)",
+          "humidity_low_threshold": "Air too dry below (%)",
+          "battery_low_threshold": "Battery low below (%)",
+          "water_jump_threshold": "Moisture jump that counts as \"watered\" (%)"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "This plant (same name and sensor) is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Adjust thresholds",
+        "data": {
+          "dry_threshold": "Dry threshold (water below this %)",
+          "wet_threshold": "Overwatered threshold (warn above this %)",
+          "temp_cold_threshold": "Too cold below (\u00b0C)",
+          "temp_hot_threshold": "Too warm above (\u00b0C)",
+          "humidity_low_threshold": "Air too dry below (%)",
+          "battery_low_threshold": "Battery low below (%)",
+          "water_jump_threshold": "Moisture jump that counts as \"watered\" (%)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "advice": { "name": "Advice" },
+      "health_score": { "name": "Health score" },
+      "drying_rate": { "name": "Drying rate" },
+      "water_prediction": { "name": "Water prediction" },
+      "last_watered": { "name": "Last watered" },
+      "waterings_this_week": { "name": "Waterings this week" }
+    },
+    "binary_sensor": {
+      "dry": { "name": "Dry" },
+      "overwatered": { "name": "Overwatered" }
+    },
+    "number": {
+      "dry_threshold": { "name": "Dry threshold" },
+      "wet_threshold": { "name": "Overwatered threshold" }
+    }
+  },
+  "services": {
+    "log_watering": {
+      "name": "Log watering",
+      "description": "Manually record that a plant was watered right now."
+    }
+  }
+}

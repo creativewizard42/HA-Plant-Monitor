@@ -1,0 +1,71 @@
+blueprint:
+  name: "Plant Monitor: water / overwater notification"
+  description: >-
+    Notifies you when a Plant Monitor plant needs water, and separately
+    (after a configurable delay) when it has been overwatered - the delay
+    gives water time to soak into the soil before you're warned.
+  domain: automation
+  source_url: https://github.com/YOUR_GITHUB_USERNAME/ha-plant-monitor/blob/main/blueprints/automation/plant_monitor/plant_needs_attention.yaml
+  input:
+    dry_sensor:
+      name: '"Dry" sensor'
+      description: The plant's "Dry" binary sensor, created by Plant Monitor.
+      selector:
+        entity:
+          filter:
+            integration: plant_monitor
+            domain: binary_sensor
+    overwatered_sensor:
+      name: '"Overwatered" sensor'
+      description: The plant's "Overwatered" binary sensor, created by Plant Monitor.
+      selector:
+        entity:
+          filter:
+            integration: plant_monitor
+            domain: binary_sensor
+    overwatered_delay:
+      name: Overwatered delay
+      description: How long the plant must stay overwatered before you're notified.
+      default:
+        hours: 1
+      selector:
+        duration: {}
+    notify_action:
+      name: Notification
+      description: The notification action to run (pick your phone/device under Devices, or a notify group).
+      selector:
+        action: {}
+
+mode: queued
+max: 10
+
+triggers:
+  - trigger: state
+    entity_id: !input dry_sensor
+    to: "on"
+    id: dry
+  - trigger: state
+    entity_id: !input overwatered_sensor
+    to: "on"
+    for: !input overwatered_delay
+    id: overwatered
+
+actions:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: dry
+        sequence:
+          - action: !input notify_action
+            data:
+              message: >-
+                {{ state_attr(trigger.entity_id, 'friendly_name') }} needs water.
+      - conditions:
+          - condition: trigger
+            id: overwatered
+        sequence:
+          - action: !input notify_action
+            data:
+              message: >-
+                {{ state_attr(trigger.entity_id, 'friendly_name') }} has been
+                overwatered for a while - let it dry out before watering again.

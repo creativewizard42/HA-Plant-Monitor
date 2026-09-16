@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Logic tests (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Syntax check
+        run: python -m py_compile custom_components/plant_monitor/*.py
+      - name: Install Home Assistant (for helpers used by the integration)
+        run: pip install homeassistant
+      - name: Run calculation-engine tests
+        run: python tests/test_plant_data.py
+      - name: Validate JSON files
+        run: |
+          python -c "
+          import json, pathlib
+          for p in pathlib.Path('.').rglob('*.json'):
+              json.loads(p.read_text())
+              print('OK:', p)
+          "

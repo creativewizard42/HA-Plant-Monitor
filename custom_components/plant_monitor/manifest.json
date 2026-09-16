@@ -1,0 +1,14 @@
+{
+  "codeowners": [
+    "@YOUR_GITHUB_USERNAME"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/YOUR_GITHUB_USERNAME/ha-plant-monitor",
+  "domain": "plant_monitor",
+  "integration_type": "helper",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/YOUR_GITHUB_USERNAME/ha-plant-monitor/issues",
+  "name": "Plant Monitor",
+  "requirements": [],
+  "version": "0.1.0"
+}
