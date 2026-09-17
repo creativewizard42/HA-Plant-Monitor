@@ -10,6 +10,13 @@ at the entities (or a whole device) you already have in Home Assistant.
 
 ## Features
 
+- **A dashboard card ships with the integration** - `plant-monitor-card`
+  shows one plant's photo, advice, care tip and key stats. No separate
+  HACS "plugin" install: the integration serves its own JavaScript and
+  (on storage-mode Lovelace, the default) registers itself as a dashboard
+  resource automatically the first time it loads. On YAML-mode dashboards,
+  or if anything about that fails, a repair notice gives the one manual
+  step instead of failing silently.
 - **Works with any soil moisture sensor** - Zigbee2MQTT, ESPHome, Xiaomi Mi
   Flora, Tuya, whatever exposes a plain `sensor.*` percentage.
 - **Type any plant name.** It's matched (case-insensitively, by common name,
@@ -111,12 +118,26 @@ and `Overwatered` sensors and your notification target.
 
 ## Dashboard
 
-There's no bundled custom card (that would be a second HACS "plugin"
-project) - instead, `examples/dashboard_row.yaml` shows a "photo + advice +
-trend + gauge" row built entirely from Home Assistant's built-in cards
-(including the `image.<plant>_photo` entity for the photo), so it works
-with no extra dependencies. Copy it and swap in your own entity IDs from
-the plant's device page.
+**Easiest: the bundled card.** Edit a dashboard -> **Add card** -> search
+for **"Plant Monitor Card"**. Configure it with the plant's device:
+
+```yaml
+type: custom:plant-monitor-card
+device_id: <the plant's device ID>
+```
+
+The device ID is the long string in the URL when you open the plant's
+device page (Settings -> Devices & services -> Devices -> your plant), or
+just add the card via the UI picker, which offers a device selector. The
+card auto-discovers all of that plant's entities from the device - no
+entity IDs to copy by hand. If your dashboard is in YAML mode, or the card
+doesn't appear in the picker, check **Settings -> Repairs** for a one-step
+"Add the Plant Monitor card as a dashboard resource" notice.
+
+Prefer full manual control, or don't want a custom card at all?
+`examples/dashboard_row.yaml` shows the same "photo + advice + trend +
+gauge" layout built entirely from Home Assistant's built-in cards. Copy it
+and swap in your own entity IDs from the plant's device page.
 
 ## Testing
 
@@ -152,6 +173,23 @@ pip install pytest pytest-asyncio pytest-homeassistant-custom-component
 pytest tests/test_config_flow.py -v
 ```
 
+**Frontend card serving** (`tests/test_frontend.py`) - confirms the card's
+JS is actually served over HTTP with the right content, and that setup
+never raises even without Lovelace/http available:
+
+```bash
+pytest tests/test_frontend.py -v
+```
+
+**The card itself** (`tests/card/test_card.js`) - a jsdom-based functional
+test: auto-discovery via `translation_key` (deliberately not entity_id,
+which changes per language), photo rendering, status badges, the manual
+`entities:` override, and HTML-escaping of sensor values:
+
+```bash
+cd tests/card && npm install && npm test
+```
+
 Both run automatically in CI on every push (see `.github/workflows/`).
 
 ## Known limitations (v0.2.0)
@@ -172,6 +210,14 @@ Both run automatically in CI on every push (see `.github/workflows/`).
 - Uploaded photos are stored under `config/www/plant_monitor/` and served
   as `/local/plant_monitor/...` - back them up along with the rest of your
   Home Assistant config.
+- The bundled `plant-monitor-card` has been verified with real DOM/render
+  logic tests (jsdom) covering auto-discovery, photo rendering, status
+  badges and HTML-escaping - but **not yet visually confirmed in an actual
+  browser against a live dashboard**. Please check it looks right after
+  adding it, and open an issue with a screenshot if something's off.
+- Automatic Lovelace-resource registration only works for storage-mode
+  dashboards (the default). YAML-mode dashboards get a one-step manual
+  instruction via Settings -> Repairs instead.
 - The config flow, entity creation, and photo upload have been verified
   end-to-end against a real (test) Home Assistant core instance (see
   Testing above), but the integration has **not yet been used in a live,

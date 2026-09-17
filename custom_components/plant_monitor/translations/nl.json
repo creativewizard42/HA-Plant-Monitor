@@ -126,5 +126,11 @@
       "name": "Water gegeven loggen",
       "description": "Registreer handmatig dat een plant nu water heeft gekregen."
     }
+  },
+  "issues": {
+    "add_lovelace_resource_manually": {
+      "title": "Voeg de Plant Monitor-kaart toe als dashboard-resource",
+      "description": "Plant Monitor kon de dashboardkaart niet automatisch toevoegen (dit gebeurt bij YAML-dashboards). Voeg 'm eenmalig zelf toe: **Instellingen -> Dashboards -> \u22ee -> Resources -> Resource toevoegen**, URL `{url}`, resource-type **JavaScript-module**. Daarna is de kaart `plant-monitor-card` op elk dashboard te gebruiken."
+    }
   }
 }

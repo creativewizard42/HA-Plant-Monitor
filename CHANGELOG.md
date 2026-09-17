@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.4.0
+
+- **Bundled Lovelace card** (`plant-monitor-card`): shows one plant's
+  photo, advice, care tip and key stats. Ships inside the integration -
+  no separate HACS "plugin" install needed.
+  - Served via a new `frontend.py` (static path registration).
+  - Auto-registers itself as a dashboard resource on storage-mode
+    Lovelace; falls back to a Settings -> Repairs notice with the one
+    manual step otherwise (or if anything about that ever fails - this
+    can never break the rest of the integration).
+  - Auto-discovers a plant's entities from its device via
+    `translation_key` (not `entity_id`, which is language-dependent -
+    e.g. "advies" vs "advice" - and therefore unsafe to pattern-match).
+    An explicit `entities:` map in the card config always overrides
+    auto-discovery.
+- New `http` manifest dependency (guarantees `hass.http` is available).
+- New tests: `tests/test_frontend.py` (the file is actually served, byte
+  for byte, over real HTTP; setup never raises even without Lovelace) and
+  `tests/card/test_card.js` (jsdom - auto-discovery, photo rendering,
+  status badges, manual override, HTML-escaping).
+- New CI job running the card's jsdom tests via Node.
+
 ## 0.3.0
 
 - Species database grown from 192 to **202 plants**, reviewed against Dutch

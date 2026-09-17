@@ -34,7 +34,7 @@ jobs:
           "
 
   end-to-end-tests:
-    name: Config flow end-to-end tests (pytest)
+    name: Config flow & frontend end-to-end tests (pytest)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,3 +45,22 @@ jobs:
         run: pip install pytest pytest-asyncio pytest-homeassistant-custom-component
       - name: Run end-to-end config flow tests
         run: pytest tests/test_config_flow.py -v
+      - name: Run frontend (card-serving) tests
+        run: pytest tests/test_frontend.py -v
+
+  card-tests:
+    name: Lovelace card tests (jsdom)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Syntax check
+        run: node --check custom_components/plant_monitor/www/plant-monitor-card.js
+      - name: Install test deps
+        working-directory: tests/card
+        run: npm install
+      - name: Run card tests
+        working-directory: tests/card
+        run: npm test

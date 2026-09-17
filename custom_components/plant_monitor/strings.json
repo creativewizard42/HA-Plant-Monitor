@@ -126,5 +126,11 @@
       "name": "Log watering",
       "description": "Manually record that a plant was watered right now."
     }
+  },
+  "issues": {
+    "add_lovelace_resource_manually": {
+      "title": "Add the Plant Monitor card as a dashboard resource",
+      "description": "Plant Monitor couldn't add its dashboard card automatically (this happens on YAML-mode dashboards). Add it once yourself: **Settings -> Dashboards -> \u22ee -> Resources -> Add resource**, URL `{url}`, resource type **JavaScript module**. You can then use the `plant-monitor-card` card on any dashboard."
+    }
   }
 }

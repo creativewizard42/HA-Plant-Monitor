@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers import config_validation as cv, device_registry as dr
 
 from .const import CONF_PHOTO_PATH, DOMAIN, PLATFORMS, SERVICE_LOG_WATERING
+from .frontend import async_register_frontend
 from .photo import async_delete_photo
 from .plant_data import PlantData
 
@@ -17,7 +18,9 @@ LOG_WATERING_SCHEMA = vol.Schema(
 
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
-    """Register services once, regardless of how many plants get added."""
+    """Register services and the bundled Lovelace card once, regardless of
+    how many plants get added."""
+    await async_register_frontend(hass)
 
     async def _handle_log_watering(call: ServiceCall) -> None:
         device_registry = dr.async_get(hass)
