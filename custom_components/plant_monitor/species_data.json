@@ -1,0 +1,2497 @@
+[
+  {
+    "id": "jade-plant-crassula-ovata",
+    "display_name": "Jade Plant",
+    "scientific_name": "Crassula ovata",
+    "aliases": [
+      "Crassula ovata",
+      "Jade Plant"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Woody stems; propagates easily from leaf cuttings."
+  },
+  {
+    "id": "string-of-pearls-senecio-rowleyanus",
+    "display_name": "String of Pearls",
+    "scientific_name": "Senecio rowleyanus",
+    "aliases": [
+      "Senecio rowleyanus",
+      "String of Pearls"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Trailing; best in a hanging pot."
+  },
+  {
+    "id": "string-of-bananas-senecio-radicans",
+    "display_name": "String of Bananas",
+    "scientific_name": "Senecio radicans",
+    "aliases": [
+      "Senecio radicans",
+      "String of Bananas"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Trailing; similar care to String of Pearls."
+  },
+  {
+    "id": "string-of-dolphins-senecio-peregrinus",
+    "display_name": "String of Dolphins",
+    "scientific_name": "Senecio peregrinus",
+    "aliases": [
+      "Senecio peregrinus",
+      "String of Dolphins"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Trailing; distinctive dolphin-shaped leaves."
+  },
+  {
+    "id": "string-of-hearts-ceropegia-woodii",
+    "display_name": "String of Hearts",
+    "scientific_name": "Ceropegia woodii",
+    "aliases": [
+      "Ceropegia woodii",
+      "String of Hearts"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Trailing; tolerates neglect well."
+  },
+  {
+    "id": "string-of-turtles-peperomia-prostrata",
+    "display_name": "String of Turtles",
+    "scientific_name": "Peperomia prostrata",
+    "aliases": [
+      "Peperomia prostrata",
+      "String of Turtles"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Trailing; small patterned leaves."
+  },
+  {
+    "id": "burro-s-tail-sedum-morganianum",
+    "display_name": "Burro's Tail",
+    "scientific_name": "Sedum morganianum",
+    "aliases": [
+      "Burro's Tail",
+      "Sedum morganianum"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Trailing; leaves drop easily when handled."
+  },
+  {
+    "id": "panda-plant-kalanchoe-tomentosa",
+    "display_name": "Panda Plant",
+    "scientific_name": "Kalanchoe tomentosa",
+    "aliases": [
+      "Kalanchoe tomentosa",
+      "Panda Plant"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Fuzzy, silver-green leaves."
+  },
+  {
+    "id": "flaming-katy-kalanchoe-blossfeldiana",
+    "display_name": "Flaming Katy",
+    "scientific_name": "Kalanchoe blossfeldiana",
+    "aliases": [
+      "Flaming Katy",
+      "Kalanchoe blossfeldiana"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Flowering succulent; needs a dark-rest period to rebloom."
+  },
+  {
+    "id": "elephant-bush-portulacaria-afra",
+    "display_name": "Elephant Bush",
+    "scientific_name": "Portulacaria afra",
+    "aliases": [
+      "Elephant Bush",
+      "Portulacaria afra"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Bonsai-friendly; sometimes confused with jade plant."
+  },
+  {
+    "id": "pencil-cactus-euphorbia-tirucalli",
+    "display_name": "Pencil Cactus",
+    "scientific_name": "Euphorbia tirucalli",
+    "aliases": [
+      "Euphorbia tirucalli",
+      "Pencil Cactus"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Sap is irritating to skin/eyes - handle with care."
+  },
+  {
+    "id": "african-milk-tree-euphorbia-trigona",
+    "display_name": "African Milk Tree",
+    "scientific_name": "Euphorbia trigona",
+    "aliases": [
+      "African Milk Tree",
+      "Euphorbia trigona"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Sap is irritating - handle with care."
+  },
+  {
+    "id": "string-of-buttons-crassula-perforata",
+    "display_name": "String of Buttons",
+    "scientific_name": "Crassula perforata",
+    "aliases": [
+      "Crassula perforata",
+      "String of Buttons"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Stacked triangular leaves."
+  },
+  {
+    "id": "donkey-s-tail-sedum-morganianum",
+    "display_name": "Donkey's Tail",
+    "scientific_name": "Sedum morganianum",
+    "aliases": [
+      "Donkey's Tail",
+      "Sedum morganianum"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Same plant as Burro's Tail (regional name)."
+  },
+  {
+    "id": "ghost-plant-graptopetalum-paraguayense",
+    "display_name": "Ghost Plant",
+    "scientific_name": "Graptopetalum paraguayense",
+    "aliases": [
+      "Ghost Plant",
+      "Graptopetalum paraguayense"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Pale, dusty-pink rosettes."
+  },
+  {
+    "id": "moonstones-pachyphytum-oviferum",
+    "display_name": "Moonstones",
+    "scientific_name": "Pachyphytum oviferum",
+    "aliases": [
+      "Moonstones",
+      "Pachyphytum oviferum"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Plump, egg-shaped leaves."
+  },
+  {
+    "id": "hens-and-chicks-sempervivum-tectorum",
+    "display_name": "Hens and Chicks",
+    "scientific_name": "Sempervivum tectorum",
+    "aliases": [
+      "Hens and Chicks",
+      "Sempervivum tectorum"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Cold-hardy; produces small offset 'chicks'."
+  },
+  {
+    "id": "zebra-haworthia-haworthia-fasciata",
+    "display_name": "Zebra Haworthia",
+    "scientific_name": "Haworthia fasciata",
+    "aliases": [
+      "Haworthia fasciata",
+      "Zebra Haworthia"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Tolerates lower light better than most succulents."
+  },
+  {
+    "id": "haworthia-pearl-plant-haworthia-attenuata",
+    "display_name": "Haworthia (Pearl Plant)",
+    "scientific_name": "Haworthia attenuata",
+    "aliases": [
+      "Haworthia (Pearl Plant)",
+      "Haworthia attenuata"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Small, easy, slow-growing."
+  },
+  {
+    "id": "ox-tongue-plant-gasteria-bicolor",
+    "display_name": "Ox Tongue Plant",
+    "scientific_name": "Gasteria bicolor",
+    "aliases": [
+      "Gasteria bicolor",
+      "Ox Tongue Plant"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Tolerates lower light; slow-growing."
+  },
+  {
+    "id": "desert-rose-adenium-obesum",
+    "display_name": "Desert Rose",
+    "scientific_name": "Adenium obesum",
+    "aliases": [
+      "Adenium obesum",
+      "Desert Rose"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Swollen caudex; needs bright light and warmth to flower."
+  },
+  {
+    "id": "golden-barrel-cactus-echinocactus-grusonii",
+    "display_name": "Golden Barrel Cactus",
+    "scientific_name": "Echinocactus grusonii",
+    "aliases": [
+      "Echinocactus grusonii",
+      "Golden Barrel Cactus"
+    ],
+    "profile": "desert_cactus",
+    "dry_threshold": 5,
+    "wet_threshold": 30,
+    "care_tip": "True desert cactus: water rarely and deeply, then let it dry out completely. Bright, direct sun. Slow-growing; needs excellent drainage."
+  },
+  {
+    "id": "prickly-pear-cactus-opuntia-microdasys",
+    "display_name": "Prickly Pear Cactus",
+    "scientific_name": "Opuntia microdasys",
+    "aliases": [
+      "Opuntia microdasys",
+      "Prickly Pear Cactus"
+    ],
+    "profile": "desert_cactus",
+    "dry_threshold": 5,
+    "wet_threshold": 30,
+    "care_tip": "True desert cactus: water rarely and deeply, then let it dry out completely. Bright, direct sun. Fine spines (glochids) irritate skin - handle carefully."
+  },
+  {
+    "id": "pincushion-cactus-mammillaria-spp",
+    "display_name": "Pincushion Cactus",
+    "scientific_name": "Mammillaria spp.",
+    "aliases": [
+      "Mammillaria spp.",
+      "Pincushion Cactus"
+    ],
+    "profile": "desert_cactus",
+    "dry_threshold": 5,
+    "wet_threshold": 30,
+    "care_tip": "True desert cactus: water rarely and deeply, then let it dry out completely. Bright, direct sun. Compact; flowers in a ring around the top."
+  },
+  {
+    "id": "old-lady-cactus-mammillaria-hahniana",
+    "display_name": "Old Lady Cactus",
+    "scientific_name": "Mammillaria hahniana",
+    "aliases": [
+      "Mammillaria hahniana",
+      "Old Lady Cactus"
+    ],
+    "profile": "desert_cactus",
+    "dry_threshold": 5,
+    "wet_threshold": 30,
+    "care_tip": "True desert cactus: water rarely and deeply, then let it dry out completely. Bright, direct sun. Covered in fine white hairs."
+  },
+  {
+    "id": "star-cactus-astrophytum-ornatum",
+    "display_name": "Star Cactus",
+    "scientific_name": "Astrophytum ornatum",
+    "aliases": [
+      "Astrophytum ornatum",
+      "Star Cactus"
+    ],
+    "profile": "desert_cactus",
+    "dry_threshold": 5,
+    "wet_threshold": 30,
+    "care_tip": "True desert cactus: water rarely and deeply, then let it dry out completely. Bright, direct sun. Slow-growing, star-shaped ribs."
+  },
+  {
+    "id": "goat-s-horn-cactus-astrophytum-capricorne",
+    "display_name": "Goat's Horn Cactus",
+    "scientific_name": "Astrophytum capricorne",
+    "aliases": [
+      "Astrophytum capricorne",
+      "Goat's Horn Cactus"
+    ],
+    "profile": "desert_cactus",
+    "dry_threshold": 5,
+    "wet_threshold": 30,
+    "care_tip": "True desert cactus: water rarely and deeply, then let it dry out completely. Bright, direct sun. Curved spines resembling horns."
+  },
+  {
+    "id": "peanut-cactus-echinopsis-chamaecereus",
+    "display_name": "Peanut Cactus",
+    "scientific_name": "Echinopsis chamaecereus",
+    "aliases": [
+      "Echinopsis chamaecereus",
+      "Peanut Cactus"
+    ],
+    "profile": "desert_cactus",
+    "dry_threshold": 5,
+    "wet_threshold": 30,
+    "care_tip": "True desert cactus: water rarely and deeply, then let it dry out completely. Bright, direct sun. Clumping; easy bloomer."
+  },
+  {
+    "id": "torch-cactus-echinopsis-spachiana",
+    "display_name": "Torch Cactus",
+    "scientific_name": "Echinopsis spachiana",
+    "aliases": [
+      "Echinopsis spachiana",
+      "Torch Cactus"
+    ],
+    "profile": "desert_cactus",
+    "dry_threshold": 5,
+    "wet_threshold": 30,
+    "care_tip": "True desert cactus: water rarely and deeply, then let it dry out completely. Bright, direct sun. Fast-growing columnar cactus."
+  },
+  {
+    "id": "fishhook-barrel-cactus-ferocactus-wislizeni",
+    "display_name": "Fishhook Barrel Cactus",
+    "scientific_name": "Ferocactus wislizeni",
+    "aliases": [
+      "Ferocactus wislizeni",
+      "Fishhook Barrel Cactus"
+    ],
+    "profile": "desert_cactus",
+    "dry_threshold": 5,
+    "wet_threshold": 30,
+    "care_tip": "True desert cactus: water rarely and deeply, then let it dry out completely. Bright, direct sun. Hooked spines - handle with care."
+  },
+  {
+    "id": "snake-plant-dracaena-trifasciata",
+    "display_name": "Snake Plant",
+    "scientific_name": "Dracaena trifasciata",
+    "aliases": [
+      "Dracaena trifasciata",
+      "Snake Plant"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Very forgiving; tolerates low light. Also known as Sansevieria."
+  },
+  {
+    "id": "cylindrical-snake-plant-dracaena-cylindrica",
+    "display_name": "Cylindrical Snake Plant",
+    "scientific_name": "Dracaena cylindrica",
+    "aliases": [
+      "Cylindrical Snake Plant",
+      "Dracaena cylindrica"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Rounded, spear-like leaves."
+  },
+  {
+    "id": "zz-plant-zamioculcas-zamiifolia",
+    "display_name": "ZZ Plant",
+    "scientific_name": "Zamioculcas zamiifolia",
+    "aliases": [
+      "ZZ Plant",
+      "Zamioculcas zamiifolia"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Glossy leaves; thrives on neglect and low light."
+  },
+  {
+    "id": "ponytail-palm-beaucarnea-recurvata",
+    "display_name": "Ponytail Palm",
+    "scientific_name": "Beaucarnea recurvata",
+    "aliases": [
+      "Beaucarnea recurvata",
+      "Ponytail Palm"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Not a true palm; swollen base stores water."
+  },
+  {
+    "id": "yucca-cane-yucca-elephantipes",
+    "display_name": "Yucca Cane",
+    "scientific_name": "Yucca elephantipes",
+    "aliases": [
+      "Yucca Cane",
+      "Yucca elephantipes"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Sword-like leaves; sharp tips - place away from foot traffic."
+  },
+  {
+    "id": "sago-palm-cycas-revoluta",
+    "display_name": "Sago Palm",
+    "scientific_name": "Cycas revoluta",
+    "aliases": [
+      "Cycas revoluta",
+      "Sago Palm"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Very slow-growing; toxic to pets if ingested."
+  },
+  {
+    "id": "cast-iron-plant-aspidistra-elatior",
+    "display_name": "Cast Iron Plant",
+    "scientific_name": "Aspidistra elatior",
+    "aliases": [
+      "Aspidistra elatior",
+      "Cast Iron Plant"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Extremely tolerant of low light and neglect."
+  },
+  {
+    "id": "aloe-vera-aloe-vera",
+    "display_name": "Aloe Vera",
+    "scientific_name": "Aloe vera",
+    "aliases": [
+      "Aloe Vera",
+      "Aloe vera"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Gel from leaves is used for minor skin soothing; needs bright light."
+  },
+  {
+    "id": "lace-aloe-aristaloe-aristata",
+    "display_name": "Lace Aloe",
+    "scientific_name": "Aristaloe aristata",
+    "aliases": [
+      "Aristaloe aristata",
+      "Lace Aloe"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Compact rosette; tolerates some shade."
+  },
+  {
+    "id": "agave-agave-americana",
+    "display_name": "Agave",
+    "scientific_name": "Agave americana",
+    "aliases": [
+      "Agave",
+      "Agave americana"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Sharp leaf tips; best in a bright spot, e.g. near a sunny window."
+  },
+  {
+    "id": "monstera-monstera-deliciosa",
+    "display_name": "Monstera",
+    "scientific_name": "Monstera deliciosa",
+    "aliases": [
+      "Monstera",
+      "Monstera deliciosa"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15.0,
+    "wet_threshold": 55.0,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Split leaves develop with age and more light."
+  },
+  {
+    "id": "swiss-cheese-vine-monstera-adansonii",
+    "display_name": "Swiss Cheese Vine",
+    "scientific_name": "Monstera adansonii",
+    "aliases": [
+      "Monstera adansonii",
+      "Swiss Cheese Vine"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Smaller, more vining relative of Monstera deliciosa."
+  },
+  {
+    "id": "mini-monstera-rhaphidophora-tetrasperma",
+    "display_name": "Mini Monstera",
+    "scientific_name": "Rhaphidophora tetrasperma",
+    "aliases": [
+      "Mini Monstera",
+      "Rhaphidophora tetrasperma"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Not a true Monstera; climbs well on a pole."
+  },
+  {
+    "id": "golden-pothos-epipremnum-aureum",
+    "display_name": "Golden Pothos",
+    "scientific_name": "Epipremnum aureum",
+    "aliases": [
+      "Epipremnum aureum",
+      "Golden Pothos"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Very forgiving; trails or climbs."
+  },
+  {
+    "id": "marble-queen-pothos-epipremnum-aureum-marble-queen",
+    "display_name": "Marble Queen Pothos",
+    "scientific_name": "Epipremnum aureum 'Marble Queen'",
+    "aliases": [
+      "Epipremnum aureum 'Marble Queen'",
+      "Marble Queen Pothos"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Needs bright light to keep its white variegation."
+  },
+  {
+    "id": "satin-pothos-scindapsus-pictus",
+    "display_name": "Satin Pothos",
+    "scientific_name": "Scindapsus pictus",
+    "aliases": [
+      "Satin Pothos",
+      "Scindapsus pictus"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Silvery, quilted leaf texture."
+  },
+  {
+    "id": "heartleaf-philodendron-philodendron-hederaceum",
+    "display_name": "Heartleaf Philodendron",
+    "scientific_name": "Philodendron hederaceum",
+    "aliases": [
+      "Heartleaf Philodendron",
+      "Philodendron hederaceum"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Fast-growing trailing vine, very forgiving."
+  },
+  {
+    "id": "split-leaf-philodendron-philodendron-bipinnatifidum",
+    "display_name": "Split-Leaf Philodendron",
+    "scientific_name": "Philodendron bipinnatifidum",
+    "aliases": [
+      "Philodendron bipinnatifidum",
+      "Split-Leaf Philodendron"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Large, deeply lobed leaves; needs space."
+  },
+  {
+    "id": "philodendron-birkin-philodendron-birkin",
+    "display_name": "Philodendron Birkin",
+    "scientific_name": "Philodendron 'Birkin'",
+    "aliases": [
+      "Philodendron 'Birkin'",
+      "Philodendron Birkin"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Cream pinstripes on dark green leaves."
+  },
+  {
+    "id": "pink-princess-philodendron-philodendron-erubescens-pink-princess",
+    "display_name": "Pink Princess Philodendron",
+    "scientific_name": "Philodendron erubescens 'Pink Princess'",
+    "aliases": [
+      "Philodendron erubescens 'Pink Princess'",
+      "Pink Princess Philodendron"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Needs bright light for pink variegation to develop."
+  },
+  {
+    "id": "philodendron-xanadu-thaumatophyllum-xanadu",
+    "display_name": "Philodendron Xanadu",
+    "scientific_name": "Thaumatophyllum xanadu",
+    "aliases": [
+      "Philodendron Xanadu",
+      "Thaumatophyllum xanadu"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Compact, non-climbing, deeply lobed leaves."
+  },
+  {
+    "id": "arrowhead-plant-syngonium-podophyllum",
+    "display_name": "Arrowhead Plant",
+    "scientific_name": "Syngonium podophyllum",
+    "aliases": [
+      "Arrowhead Plant",
+      "Syngonium podophyllum"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Leaf shape changes as the plant matures."
+  },
+  {
+    "id": "dragon-tree-dracaena-marginata",
+    "display_name": "Dragon Tree",
+    "scientific_name": "Dracaena marginata",
+    "aliases": [
+      "Dracaena marginata",
+      "Dragon Tree"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Thin, arching leaves; tolerates some neglect."
+  },
+  {
+    "id": "corn-plant-dracaena-fragrans",
+    "display_name": "Corn Plant",
+    "scientific_name": "Dracaena fragrans",
+    "aliases": [
+      "Corn Plant",
+      "Dracaena fragrans"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Named for its corn-stalk-like leaves."
+  },
+  {
+    "id": "song-of-india-dracaena-reflexa",
+    "display_name": "Song of India",
+    "scientific_name": "Dracaena reflexa",
+    "aliases": [
+      "Dracaena reflexa",
+      "Song of India"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Yellow-and-green striped leaves."
+  },
+  {
+    "id": "rubber-plant-ficus-elastica",
+    "display_name": "Rubber Plant",
+    "scientific_name": "Ficus elastica",
+    "aliases": [
+      "Ficus elastica",
+      "Rubber Plant"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Glossy, thick leaves; wipe dust off occasionally."
+  },
+  {
+    "id": "fiddle-leaf-fig-ficus-lyrata",
+    "display_name": "Fiddle Leaf Fig",
+    "scientific_name": "Ficus lyrata",
+    "aliases": [
+      "Ficus lyrata",
+      "Fiddle Leaf Fig"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Dislikes being moved; sensitive to sudden light/water changes."
+  },
+  {
+    "id": "weeping-fig-ficus-benjamina",
+    "display_name": "Weeping Fig",
+    "scientific_name": "Ficus benjamina",
+    "aliases": [
+      "Ficus benjamina",
+      "Weeping Fig"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Drops leaves after big changes in light or location."
+  },
+  {
+    "id": "audrey-ficus-ficus-benghalensis",
+    "display_name": "Audrey Ficus",
+    "scientific_name": "Ficus benghalensis",
+    "aliases": [
+      "Audrey Ficus",
+      "Ficus benghalensis"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Broad, fuzzy-edged leaves."
+  },
+  {
+    "id": "umbrella-tree-schefflera-arboricola",
+    "display_name": "Umbrella Tree",
+    "scientific_name": "Schefflera arboricola",
+    "aliases": [
+      "Schefflera arboricola",
+      "Umbrella Tree"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Glossy, hand-shaped leaflets."
+  },
+  {
+    "id": "baby-rubber-plant-peperomia-obtusifolia",
+    "display_name": "Baby Rubber Plant",
+    "scientific_name": "Peperomia obtusifolia",
+    "aliases": [
+      "Baby Rubber Plant",
+      "Peperomia obtusifolia"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Thick, succulent-like leaves; compact grower."
+  },
+  {
+    "id": "emerald-ripple-peperomia-peperomia-caperata",
+    "display_name": "Emerald Ripple Peperomia",
+    "scientific_name": "Peperomia caperata",
+    "aliases": [
+      "Emerald Ripple Peperomia",
+      "Peperomia caperata"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Deeply textured, heart-shaped leaves."
+  },
+  {
+    "id": "watermelon-peperomia-peperomia-argyreia",
+    "display_name": "Watermelon Peperomia",
+    "scientific_name": "Peperomia argyreia",
+    "aliases": [
+      "Peperomia argyreia",
+      "Watermelon Peperomia"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Striped leaves resemble a watermelon rind."
+  },
+  {
+    "id": "wax-plant-hoya-carnosa",
+    "display_name": "Wax Plant",
+    "scientific_name": "Hoya carnosa",
+    "aliases": [
+      "Hoya carnosa",
+      "Wax Plant"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Waxy leaves, fragrant flower clusters; likes to be slightly pot-bound."
+  },
+  {
+    "id": "sweetheart-hoya-hoya-kerrii",
+    "display_name": "Sweetheart Hoya",
+    "scientific_name": "Hoya kerrii",
+    "aliases": [
+      "Hoya kerrii",
+      "Sweetheart Hoya"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Heart-shaped leaves; extremely slow growing."
+  },
+  {
+    "id": "spider-plant-chlorophytum-comosum",
+    "display_name": "Spider Plant",
+    "scientific_name": "Chlorophytum comosum",
+    "aliases": [
+      "Chlorophytum comosum",
+      "Spider Plant"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Produces baby plantlets on long runners."
+  },
+  {
+    "id": "wandering-jew-tradescantia-zebrina",
+    "display_name": "Wandering Jew",
+    "scientific_name": "Tradescantia zebrina",
+    "aliases": [
+      "Tradescantia zebrina",
+      "Wandering Jew"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Striped purple-and-silver leaves; trails well."
+  },
+  {
+    "id": "inch-plant-tradescantia-fluminensis",
+    "display_name": "Inch Plant",
+    "scientific_name": "Tradescantia fluminensis",
+    "aliases": [
+      "Inch Plant",
+      "Tradescantia fluminensis"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Fast-growing, easy to propagate from cuttings."
+  },
+  {
+    "id": "chinese-money-plant-pilea-peperomioides",
+    "display_name": "Chinese Money Plant",
+    "scientific_name": "Pilea peperomioides",
+    "aliases": [
+      "Chinese Money Plant",
+      "Pilea peperomioides"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Round, coin-shaped leaves; produces easy-to-share pups."
+  },
+  {
+    "id": "aluminum-plant-pilea-cadierei",
+    "display_name": "Aluminum Plant",
+    "scientific_name": "Pilea cadierei",
+    "aliases": [
+      "Aluminum Plant",
+      "Pilea cadierei"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Silver-splashed leaf pattern."
+  },
+  {
+    "id": "chinese-evergreen-aglaonema-commutatum",
+    "display_name": "Chinese Evergreen",
+    "scientific_name": "Aglaonema commutatum",
+    "aliases": [
+      "Aglaonema commutatum",
+      "Chinese Evergreen"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Very tolerant of lower light."
+  },
+  {
+    "id": "croton-codiaeum-variegatum",
+    "display_name": "Croton",
+    "scientific_name": "Codiaeum variegatum",
+    "aliases": [
+      "Codiaeum variegatum",
+      "Croton"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Needs bright light to keep its bold leaf colours."
+  },
+  {
+    "id": "ti-plant-cordyline-fruticosa",
+    "display_name": "Ti Plant",
+    "scientific_name": "Cordyline fruticosa",
+    "aliases": [
+      "Cordyline fruticosa",
+      "Ti Plant"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Colourful, sword-shaped leaves."
+  },
+  {
+    "id": "english-ivy-hedera-helix",
+    "display_name": "English Ivy",
+    "scientific_name": "Hedera helix",
+    "aliases": [
+      "English Ivy",
+      "Hedera helix"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Trailing vine; prefers cooler rooms."
+  },
+  {
+    "id": "swedish-ivy-plectranthus-verticillatus",
+    "display_name": "Swedish Ivy",
+    "scientific_name": "Plectranthus verticillatus",
+    "aliases": [
+      "Plectranthus verticillatus",
+      "Swedish Ivy"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Trailing; not a true ivy."
+  },
+  {
+    "id": "fatsia-fatsia-japonica",
+    "display_name": "Fatsia",
+    "scientific_name": "Fatsia japonica",
+    "aliases": [
+      "Fatsia",
+      "Fatsia japonica"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Large, glossy, hand-shaped leaves."
+  },
+  {
+    "id": "kentia-palm-howea-forsteriana",
+    "display_name": "Kentia Palm",
+    "scientific_name": "Howea forsteriana",
+    "aliases": [
+      "Howea forsteriana",
+      "Kentia Palm"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Elegant, low-maintenance palm; tolerates lower light."
+  },
+  {
+    "id": "parlor-palm-chamaedorea-elegans",
+    "display_name": "Parlor Palm",
+    "scientific_name": "Chamaedorea elegans",
+    "aliases": [
+      "Chamaedorea elegans",
+      "Parlor Palm"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Compact palm, good for smaller rooms."
+  },
+  {
+    "id": "areca-palm-dypsis-lutescens",
+    "display_name": "Areca Palm",
+    "scientific_name": "Dypsis lutescens",
+    "aliases": [
+      "Areca Palm",
+      "Dypsis lutescens"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Feathery fronds; likes higher humidity."
+  },
+  {
+    "id": "lady-palm-rhapis-excelsa",
+    "display_name": "Lady Palm",
+    "scientific_name": "Rhapis excelsa",
+    "aliases": [
+      "Lady Palm",
+      "Rhapis excelsa"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Slow-growing, tolerant of lower light."
+  },
+  {
+    "id": "bamboo-palm-chamaedorea-seifrizii",
+    "display_name": "Bamboo Palm",
+    "scientific_name": "Chamaedorea seifrizii",
+    "aliases": [
+      "Bamboo Palm",
+      "Chamaedorea seifrizii"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Clumping palm; tolerates lower light."
+  },
+  {
+    "id": "poinsettia-euphorbia-pulcherrima",
+    "display_name": "Poinsettia",
+    "scientific_name": "Euphorbia pulcherrima",
+    "aliases": [
+      "Euphorbia pulcherrima",
+      "Poinsettia"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Holiday plant; sap can irritate skin."
+  },
+  {
+    "id": "christmas-cactus-schlumbergera-truncata",
+    "display_name": "Christmas Cactus",
+    "scientific_name": "Schlumbergera truncata",
+    "aliases": [
+      "Christmas Cactus",
+      "Schlumbergera truncata"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. A rainforest cactus, not a desert one - wants more moisture than typical cacti."
+  },
+  {
+    "id": "thanksgiving-cactus-schlumbergera-truncata",
+    "display_name": "Thanksgiving Cactus",
+    "scientific_name": "Schlumbergera truncata",
+    "aliases": [
+      "Schlumbergera truncata",
+      "Thanksgiving Cactus"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Very similar care to Christmas Cactus."
+  },
+  {
+    "id": "norfolk-island-pine-araucaria-heterophylla",
+    "display_name": "Norfolk Island Pine",
+    "scientific_name": "Araucaria heterophylla",
+    "aliases": [
+      "Araucaria heterophylla",
+      "Norfolk Island Pine"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Soft, conifer-like foliage; likes bright light and humidity."
+  },
+  {
+    "id": "money-tree-pachira-aquatica",
+    "display_name": "Money Tree",
+    "scientific_name": "Pachira aquatica",
+    "aliases": [
+      "Money Tree",
+      "Pachira aquatica"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Often sold with braided trunks; tolerates a range of light."
+  },
+  {
+    "id": "ficus-ginseng-bonsai-ficus-microcarpa",
+    "display_name": "Ficus Ginseng (Bonsai)",
+    "scientific_name": "Ficus microcarpa",
+    "aliases": [
+      "Ficus Ginseng (Bonsai)",
+      "Ficus microcarpa"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Popular indoor bonsai; thick, exposed roots."
+  },
+  {
+    "id": "polka-dot-begonia-begonia-maculata",
+    "display_name": "Polka Dot Begonia",
+    "scientific_name": "Begonia maculata",
+    "aliases": [
+      "Begonia maculata",
+      "Polka Dot Begonia"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Silver-spotted leaves; avoid wetting the foliage."
+  },
+  {
+    "id": "rex-begonia-vine-cissus-discolor",
+    "display_name": "Rex Begonia Vine",
+    "scientific_name": "Cissus discolor",
+    "aliases": [
+      "Cissus discolor",
+      "Rex Begonia Vine"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Not a true Begonia; velvety, patterned leaves."
+  },
+  {
+    "id": "angel-wing-begonia-begonia-coccinea",
+    "display_name": "Angel Wing Begonia",
+    "scientific_name": "Begonia coccinea",
+    "aliases": [
+      "Angel Wing Begonia",
+      "Begonia coccinea"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Cane-like stems, clusters of flowers."
+  },
+  {
+    "id": "dumb-cane-dieffenbachia-seguine",
+    "display_name": "Dumb Cane",
+    "scientific_name": "Dieffenbachia seguine",
+    "aliases": [
+      "Dieffenbachia seguine",
+      "Dumb Cane"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Sap is toxic if ingested - keep away from pets/children."
+  },
+  {
+    "id": "silver-squill-ledebouria-socialis",
+    "display_name": "Silver Squill",
+    "scientific_name": "Ledebouria socialis",
+    "aliases": [
+      "Ledebouria socialis",
+      "Silver Squill"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Small bulbous plant with silver-mottled leaves."
+  },
+  {
+    "id": "coffee-plant-coffea-arabica",
+    "display_name": "Coffee Plant",
+    "scientific_name": "Coffea arabica",
+    "aliases": [
+      "Coffea arabica",
+      "Coffee Plant"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Glossy leaves; may eventually flower and fruit indoors."
+  },
+  {
+    "id": "bird-s-nest-sansevieria-dracaena-hahnii",
+    "display_name": "Bird's Nest Sansevieria",
+    "scientific_name": "Dracaena hahnii",
+    "aliases": [
+      "Bird's Nest Sansevieria",
+      "Dracaena hahnii"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Compact rosette form of snake plant."
+  },
+  {
+    "id": "rattlesnake-plant-vine-nepenthes-alata-tropical-pitcher",
+    "display_name": "Rattlesnake Plant Vine",
+    "scientific_name": "Nepenthes alata (tropical pitcher)",
+    "aliases": [
+      "Nepenthes alata (tropical pitcher)",
+      "Rattlesnake Plant Vine"
+    ],
+    "profile": "high_moisture",
+    "dry_threshold": 40,
+    "wet_threshold": 80,
+    "care_tip": "Keep the soil consistently wet. Likes high humidity and, for several of these, distilled/rain water. Carnivorous - keep the soil constantly damp, ideally with distilled/rain water."
+  },
+  {
+    "id": "moth-orchid-phalaenopsis-spp",
+    "display_name": "Moth Orchid",
+    "scientific_name": "Phalaenopsis spp.",
+    "aliases": [
+      "Moth Orchid",
+      "Phalaenopsis spp."
+    ],
+    "profile": "epiphytic",
+    "dry_threshold": 15,
+    "wet_threshold": 45,
+    "care_tip": "Grown in bark/orchid mix, which holds little water: water thoroughly, then let it dry out. Never let roots sit in water. Grown in bark mix; water by soaking, then drain fully."
+  },
+  {
+    "id": "dendrobium-orchid-dendrobium-spp",
+    "display_name": "Dendrobium Orchid",
+    "scientific_name": "Dendrobium spp.",
+    "aliases": [
+      "Dendrobium Orchid",
+      "Dendrobium spp."
+    ],
+    "profile": "epiphytic",
+    "dry_threshold": 15,
+    "wet_threshold": 45,
+    "care_tip": "Grown in bark/orchid mix, which holds little water: water thoroughly, then let it dry out. Never let roots sit in water. Needs a distinct drier rest period after flowering."
+  },
+  {
+    "id": "cattleya-orchid-cattleya-spp",
+    "display_name": "Cattleya Orchid",
+    "scientific_name": "Cattleya spp.",
+    "aliases": [
+      "Cattleya Orchid",
+      "Cattleya spp."
+    ],
+    "profile": "epiphytic",
+    "dry_threshold": 15,
+    "wet_threshold": 45,
+    "care_tip": "Grown in bark/orchid mix, which holds little water: water thoroughly, then let it dry out. Never let roots sit in water. Needs bright light to reflower."
+  },
+  {
+    "id": "oncidium-orchid-oncidium-spp",
+    "display_name": "Oncidium Orchid",
+    "scientific_name": "Oncidium spp.",
+    "aliases": [
+      "Oncidium Orchid",
+      "Oncidium spp."
+    ],
+    "profile": "epiphytic",
+    "dry_threshold": 15,
+    "wet_threshold": 45,
+    "care_tip": "Grown in bark/orchid mix, which holds little water: water thoroughly, then let it dry out. Never let roots sit in water. Dancing-lady flower sprays; likes bright, indirect light."
+  },
+  {
+    "id": "staghorn-fern-platycerium-bifurcatum",
+    "display_name": "Staghorn Fern",
+    "scientific_name": "Platycerium bifurcatum",
+    "aliases": [
+      "Platycerium bifurcatum",
+      "Staghorn Fern"
+    ],
+    "profile": "epiphytic",
+    "dry_threshold": 15,
+    "wet_threshold": 45,
+    "care_tip": "Grown in bark/orchid mix, which holds little water: water thoroughly, then let it dry out. Never let roots sit in water. Often mounted rather than potted; mist or soak the mount."
+  },
+  {
+    "id": "peace-lily-spathiphyllum-wallisii",
+    "display_name": "Peace Lily",
+    "scientific_name": "Spathiphyllum wallisii",
+    "aliases": [
+      "Peace Lily",
+      "Spathiphyllum wallisii"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Droops visibly when thirsty, recovers quickly after watering."
+  },
+  {
+    "id": "prayer-plant-maranta-leuconeura",
+    "display_name": "Prayer Plant",
+    "scientific_name": "Maranta leuconeura",
+    "aliases": [
+      "Maranta leuconeura",
+      "Prayer Plant"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Leaves fold up at night."
+  },
+  {
+    "id": "rattlesnake-plant-calathea-lancifolia",
+    "display_name": "Rattlesnake Plant",
+    "scientific_name": "Calathea lancifolia",
+    "aliases": [
+      "Calathea lancifolia",
+      "Rattlesnake Plant"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Wavy-edged leaves with dark markings."
+  },
+  {
+    "id": "peacock-plant-calathea-makoyana",
+    "display_name": "Peacock Plant",
+    "scientific_name": "Calathea makoyana",
+    "aliases": [
+      "Calathea makoyana",
+      "Peacock Plant"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Strikingly patterned leaves; sensitive to tap-water minerals."
+  },
+  {
+    "id": "calathea-medallion-calathea-roseopicta",
+    "display_name": "Calathea Medallion",
+    "scientific_name": "Calathea roseopicta",
+    "aliases": [
+      "Calathea Medallion",
+      "Calathea roseopicta"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Round, patterned leaves with purple undersides."
+  },
+  {
+    "id": "calathea-orbifolia-calathea-orbifolia",
+    "display_name": "Calathea Orbifolia",
+    "scientific_name": "Calathea orbifolia",
+    "aliases": [
+      "Calathea Orbifolia",
+      "Calathea orbifolia"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Large, silvery-striped round leaves."
+  },
+  {
+    "id": "fishbone-prayer-plant-ctenanthe-burle-marxii",
+    "display_name": "Fishbone Prayer Plant",
+    "scientific_name": "Ctenanthe burle-marxii",
+    "aliases": [
+      "Ctenanthe burle-marxii",
+      "Fishbone Prayer Plant"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Herringbone leaf pattern."
+  },
+  {
+    "id": "never-never-plant-ctenanthe-oppenheimiana",
+    "display_name": "Never-Never Plant",
+    "scientific_name": "Ctenanthe oppenheimiana",
+    "aliases": [
+      "Ctenanthe oppenheimiana",
+      "Never-Never Plant"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Variegated leaves with purple undersides."
+  },
+  {
+    "id": "nerve-plant-fittonia-albivenis",
+    "display_name": "Nerve Plant",
+    "scientific_name": "Fittonia albivenis",
+    "aliases": [
+      "Fittonia albivenis",
+      "Nerve Plant"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Wilts dramatically when dry, but usually recovers after watering - best kept evenly moist to avoid the stress."
+  },
+  {
+    "id": "african-mask-plant-alocasia-amazonica",
+    "display_name": "African Mask Plant",
+    "scientific_name": "Alocasia amazonica",
+    "aliases": [
+      "African Mask Plant",
+      "Alocasia amazonica"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Dramatic arrow-shaped leaves; sensitive to both over- and under-watering."
+  },
+  {
+    "id": "elephant-ear-colocasia-esculenta",
+    "display_name": "Elephant Ear",
+    "scientific_name": "Colocasia esculenta",
+    "aliases": [
+      "Colocasia esculenta",
+      "Elephant Ear"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Very large leaves; a heavy drinker in the growing season."
+  },
+  {
+    "id": "flamingo-flower-anthurium-andraeanum",
+    "display_name": "Flamingo Flower",
+    "scientific_name": "Anthurium andraeanum",
+    "aliases": [
+      "Anthurium andraeanum",
+      "Flamingo Flower"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Glossy, waxy flower spathes; likes chunky, well-aerated mix."
+  },
+  {
+    "id": "rex-begonia-begonia-rex",
+    "display_name": "Rex Begonia",
+    "scientific_name": "Begonia rex",
+    "aliases": [
+      "Begonia rex",
+      "Rex Begonia"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Striking leaf patterns; avoid wetting the foliage."
+  },
+  {
+    "id": "boston-fern-nephrolepis-exaltata",
+    "display_name": "Boston Fern",
+    "scientific_name": "Nephrolepis exaltata",
+    "aliases": [
+      "Boston Fern",
+      "Nephrolepis exaltata"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Likes high humidity; browns at the tips if the air is too dry."
+  },
+  {
+    "id": "maidenhair-fern-adiantum-raddianum",
+    "display_name": "Maidenhair Fern",
+    "scientific_name": "Adiantum raddianum",
+    "aliases": [
+      "Adiantum raddianum",
+      "Maidenhair Fern"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Delicate fronds; wilts quickly if allowed to dry out."
+  },
+  {
+    "id": "bird-s-nest-fern-asplenium-nidus",
+    "display_name": "Bird's Nest Fern",
+    "scientific_name": "Asplenium nidus",
+    "aliases": [
+      "Asplenium nidus",
+      "Bird's Nest Fern"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Rosette of broad, undivided fronds."
+  },
+  {
+    "id": "wijze-varen-bird-s-nest-fern-asplenium-antiquum",
+    "display_name": "Wijze Varen (Bird's Nest Fern)",
+    "scientific_name": "Asplenium antiquum",
+    "aliases": [
+      "Asplenium antiquum",
+      "Wijze Varen (Bird's Nest Fern)"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30.0,
+    "wet_threshold": 75.0,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Rosette of broad, undivided fronds - a common cultivar sold under this Dutch name."
+  },
+  {
+    "id": "table-fern-pteris-cretica",
+    "display_name": "Table Fern",
+    "scientific_name": "Pteris cretica",
+    "aliases": [
+      "Pteris cretica",
+      "Table Fern"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Compact fern, good for terrariums or humid bathrooms."
+  },
+  {
+    "id": "baby-s-tears-soleirolia-soleirolii",
+    "display_name": "Baby's Tears",
+    "scientific_name": "Soleirolia soleirolii",
+    "aliases": [
+      "Baby's Tears",
+      "Soleirolia soleirolii"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Tiny leaves, spreads into a moss-like mat."
+  },
+  {
+    "id": "spikemoss-selaginella-kraussiana",
+    "display_name": "Spikemoss",
+    "scientific_name": "Selaginella kraussiana",
+    "aliases": [
+      "Selaginella kraussiana",
+      "Spikemoss"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Likes a humid, terrarium-like environment."
+  },
+  {
+    "id": "african-violet-saintpaulia-ionantha",
+    "display_name": "African Violet",
+    "scientific_name": "Saintpaulia ionantha",
+    "aliases": [
+      "African Violet",
+      "Saintpaulia ionantha"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Water from below to avoid wetting the fuzzy leaves."
+  },
+  {
+    "id": "cape-primrose-streptocarpus-spp",
+    "display_name": "Cape Primrose",
+    "scientific_name": "Streptocarpus spp.",
+    "aliases": [
+      "Cape Primrose",
+      "Streptocarpus spp."
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Similar care to African Violet."
+  },
+  {
+    "id": "cyclamen-cyclamen-persicum",
+    "display_name": "Cyclamen",
+    "scientific_name": "Cyclamen persicum",
+    "aliases": [
+      "Cyclamen",
+      "Cyclamen persicum"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Goes dormant in summer - reduce watering then."
+  },
+  {
+    "id": "primrose-primula-vulgaris",
+    "display_name": "Primrose",
+    "scientific_name": "Primula vulgaris",
+    "aliases": [
+      "Primrose",
+      "Primula vulgaris"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Often grown as a temporary flowering pot plant."
+  },
+  {
+    "id": "caladium-caladium-bicolor",
+    "display_name": "Caladium",
+    "scientific_name": "Caladium bicolor",
+    "aliases": [
+      "Caladium",
+      "Caladium bicolor"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Grown from a tuber; goes dormant in winter."
+  },
+  {
+    "id": "guzmania-bromeliad-guzmania-lingulata",
+    "display_name": "Guzmania Bromeliad",
+    "scientific_name": "Guzmania lingulata",
+    "aliases": [
+      "Guzmania Bromeliad",
+      "Guzmania lingulata"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Keep the central rosette 'cup' topped up with water too."
+  },
+  {
+    "id": "vriesea-bromeliad-vriesea-splendens",
+    "display_name": "Vriesea Bromeliad",
+    "scientific_name": "Vriesea splendens",
+    "aliases": [
+      "Vriesea Bromeliad",
+      "Vriesea splendens"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Keep the central rosette 'cup' topped up with water too."
+  },
+  {
+    "id": "aechmea-bromeliad-aechmea-fasciata",
+    "display_name": "Aechmea Bromeliad",
+    "scientific_name": "Aechmea fasciata",
+    "aliases": [
+      "Aechmea Bromeliad",
+      "Aechmea fasciata"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Keep the central rosette 'cup' topped up with water too."
+  },
+  {
+    "id": "azalea-potted-rhododendron-simsii",
+    "display_name": "Azalea (potted)",
+    "scientific_name": "Rhododendron simsii",
+    "aliases": [
+      "Azalea (potted)",
+      "Rhododendron simsii"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Prefers slightly acidic soil; avoid letting it dry out."
+  },
+  {
+    "id": "hydrangea-potted-hydrangea-macrophylla",
+    "display_name": "Hydrangea (potted)",
+    "scientific_name": "Hydrangea macrophylla",
+    "aliases": [
+      "Hydrangea (potted)",
+      "Hydrangea macrophylla"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Wilts fast when thirsty; a heavy drinker."
+  },
+  {
+    "id": "paradijsvogel-wijze-varen-bundle-name-strelitzia-reginae",
+    "display_name": "Paradijsvogel (Wijze Varen bundle name)",
+    "scientific_name": "Strelitzia reginae",
+    "aliases": [
+      "Paradijsvogel (Wijze Varen bundle name)",
+      "Strelitzia reginae"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 15.0,
+    "wet_threshold": 65.0,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Bird of Paradise - loves bright light; let the soil dry noticeably between waterings."
+  },
+  {
+    "id": "bird-of-paradise-strelitzia-reginae",
+    "display_name": "Bird of Paradise",
+    "scientific_name": "Strelitzia reginae",
+    "aliases": [
+      "Bird of Paradise",
+      "Strelitzia reginae"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 15.0,
+    "wet_threshold": 65.0,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Loves bright light; let the soil dry noticeably between waterings."
+  },
+  {
+    "id": "umbrella-papyrus-cyperus-alternifolius",
+    "display_name": "Umbrella Papyrus",
+    "scientific_name": "Cyperus alternifolius",
+    "aliases": [
+      "Cyperus alternifolius",
+      "Umbrella Papyrus"
+    ],
+    "profile": "high_moisture",
+    "dry_threshold": 40,
+    "wet_threshold": 80,
+    "care_tip": "Keep the soil consistently wet. Likes high humidity and, for several of these, distilled/rain water. A bog plant - happy sitting in a shallow saucer of water."
+  },
+  {
+    "id": "venus-flytrap-dionaea-muscipula",
+    "display_name": "Venus Flytrap",
+    "scientific_name": "Dionaea muscipula",
+    "aliases": [
+      "Dionaea muscipula",
+      "Venus Flytrap"
+    ],
+    "profile": "high_moisture",
+    "dry_threshold": 40,
+    "wet_threshold": 80,
+    "care_tip": "Keep the soil consistently wet. Likes high humidity and, for several of these, distilled/rain water. Use distilled or rainwater only; never fertilise the soil."
+  },
+  {
+    "id": "pitcher-plant-sarracenia-spp",
+    "display_name": "Pitcher Plant",
+    "scientific_name": "Sarracenia spp.",
+    "aliases": [
+      "Pitcher Plant",
+      "Sarracenia spp."
+    ],
+    "profile": "high_moisture",
+    "dry_threshold": 40,
+    "wet_threshold": 80,
+    "care_tip": "Keep the soil consistently wet. Likes high humidity and, for several of these, distilled/rain water. Use distilled or rainwater only; needs lots of bright light."
+  },
+  {
+    "id": "sundew-drosera-capensis",
+    "display_name": "Sundew",
+    "scientific_name": "Drosera capensis",
+    "aliases": [
+      "Drosera capensis",
+      "Sundew"
+    ],
+    "profile": "high_moisture",
+    "dry_threshold": 40,
+    "wet_threshold": 80,
+    "care_tip": "Keep the soil consistently wet. Likes high humidity and, for several of these, distilled/rain water. Use distilled or rainwater only; keep the tray topped up."
+  },
+  {
+    "id": "calla-lily-potted-zantedeschia-aethiopica",
+    "display_name": "Calla Lily (potted)",
+    "scientific_name": "Zantedeschia aethiopica",
+    "aliases": [
+      "Calla Lily (potted)",
+      "Zantedeschia aethiopica"
+    ],
+    "profile": "high_moisture",
+    "dry_threshold": 40,
+    "wet_threshold": 80,
+    "care_tip": "Keep the soil consistently wet. Likes high humidity and, for several of these, distilled/rain water. Likes consistently moist, almost boggy soil."
+  },
+  {
+    "id": "sensitive-plant-mimosa-pudica",
+    "display_name": "Sensitive Plant",
+    "scientific_name": "Mimosa pudica",
+    "aliases": [
+      "Mimosa pudica",
+      "Sensitive Plant"
+    ],
+    "profile": "high_moisture",
+    "dry_threshold": 40,
+    "wet_threshold": 80,
+    "care_tip": "Keep the soil consistently wet. Likes high humidity and, for several of these, distilled/rain water. Leaves fold up when touched; keep the soil consistently moist."
+  },
+  {
+    "id": "mexican-snowball-echeveria-elegans",
+    "display_name": "Mexican Snowball",
+    "scientific_name": "Echeveria elegans",
+    "aliases": [
+      "Echeveria elegans",
+      "Mexican Snowball"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Rosette-forming; offsets easily."
+  },
+  {
+    "id": "echeveria-perle-von-nurnberg-echeveria-perle-von-nurnberg",
+    "display_name": "Echeveria 'Perle von Nurnberg'",
+    "scientific_name": "Echeveria 'Perle von Nurnberg'",
+    "aliases": [
+      "Echeveria 'Perle von Nurnberg'"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Dusty purple-pink rosette."
+  },
+  {
+    "id": "tree-houseleek-aeonium-arboreum",
+    "display_name": "Tree Houseleek",
+    "scientific_name": "Aeonium arboreum",
+    "aliases": [
+      "Aeonium arboreum",
+      "Tree Houseleek"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Rosettes on woody stems; sheds lower leaves naturally."
+  },
+  {
+    "id": "mother-of-thousands-kalanchoe-daigremontiana",
+    "display_name": "Mother of Thousands",
+    "scientific_name": "Kalanchoe daigremontiana",
+    "aliases": [
+      "Kalanchoe daigremontiana",
+      "Mother of Thousands"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Produces tiny plantlets along leaf edges - can self-seed prolifically."
+  },
+  {
+    "id": "watch-chain-plant-crassula-muscosa",
+    "display_name": "Watch Chain Plant",
+    "scientific_name": "Crassula muscosa",
+    "aliases": [
+      "Crassula muscosa",
+      "Watch Chain Plant"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Tightly stacked, chain-like foliage."
+  },
+  {
+    "id": "fairy-washboard-haworthiopsis-limifolia",
+    "display_name": "Fairy Washboard",
+    "scientific_name": "Haworthiopsis limifolia",
+    "aliases": [
+      "Fairy Washboard",
+      "Haworthiopsis limifolia"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Ridged, dark green leaves."
+  },
+  {
+    "id": "baseball-plant-euphorbia-obesa",
+    "display_name": "Baseball Plant",
+    "scientific_name": "Euphorbia obesa",
+    "aliases": [
+      "Baseball Plant",
+      "Euphorbia obesa"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Round, spineless; sap can irritate skin."
+  },
+  {
+    "id": "living-stones-lithops-spp",
+    "display_name": "Living Stones",
+    "scientific_name": "Lithops spp.",
+    "aliases": [
+      "Lithops spp.",
+      "Living Stones"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Water only when the old leaf pair has fully shrivelled - very easy to overwater."
+  },
+  {
+    "id": "jelly-bean-plant-sedum-rubrotinctum",
+    "display_name": "Jelly Bean Plant",
+    "scientific_name": "Sedum rubrotinctum",
+    "aliases": [
+      "Jelly Bean Plant",
+      "Sedum rubrotinctum"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Leaves blush red in bright light."
+  },
+  {
+    "id": "starfish-flower-stapelia-grandiflora",
+    "display_name": "Starfish Flower",
+    "scientific_name": "Stapelia grandiflora",
+    "aliases": [
+      "Stapelia grandiflora",
+      "Starfish Flower"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Star-shaped flowers with an unpleasant smell (attracts flies as pollinators)."
+  },
+  {
+    "id": "hoya-bella-hoya-bella",
+    "display_name": "Hoya Bella",
+    "scientific_name": "Hoya bella",
+    "aliases": [
+      "Hoya Bella",
+      "Hoya bella"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Compact, trailing; fragrant flower clusters."
+  },
+  {
+    "id": "neon-pothos-epipremnum-aureum-neon",
+    "display_name": "Neon Pothos",
+    "scientific_name": "Epipremnum aureum 'Neon'",
+    "aliases": [
+      "Epipremnum aureum 'Neon'",
+      "Neon Pothos"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Bright chartreuse leaves; needs good light to keep the colour."
+  },
+  {
+    "id": "cebu-blue-pothos-epipremnum-pinnatum",
+    "display_name": "Cebu Blue Pothos",
+    "scientific_name": "Epipremnum pinnatum",
+    "aliases": [
+      "Cebu Blue Pothos",
+      "Epipremnum pinnatum"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Silvery-blue sheen on the leaves."
+  },
+  {
+    "id": "philodendron-prince-of-orange-philodendron-prince-of-orange",
+    "display_name": "Philodendron Prince of Orange",
+    "scientific_name": "Philodendron 'Prince of Orange'",
+    "aliases": [
+      "Philodendron 'Prince of Orange'",
+      "Philodendron Prince of Orange"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. New leaves emerge orange, maturing to green."
+  },
+  {
+    "id": "philodendron-congo-philodendron-congo",
+    "display_name": "Philodendron Congo",
+    "scientific_name": "Philodendron 'Congo'",
+    "aliases": [
+      "Philodendron 'Congo'",
+      "Philodendron Congo"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Large, upright, non-climbing leaves."
+  },
+  {
+    "id": "philodendron-brasil-philodendron-hederaceum-brasil",
+    "display_name": "Philodendron Brasil",
+    "scientific_name": "Philodendron hederaceum 'Brasil'",
+    "aliases": [
+      "Philodendron Brasil",
+      "Philodendron hederaceum 'Brasil'"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Yellow-green striped variant of Heartleaf Philodendron."
+  },
+  {
+    "id": "alocasia-polly-alocasia-amazonica-polly",
+    "display_name": "Alocasia Polly",
+    "scientific_name": "Alocasia 'Amazonica Polly'",
+    "aliases": [
+      "Alocasia 'Amazonica Polly'",
+      "Alocasia Polly"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Striking white-veined leaves; sensitive to both over- and under-watering."
+  },
+  {
+    "id": "alocasia-black-velvet-alocasia-reginula",
+    "display_name": "Alocasia Black Velvet",
+    "scientific_name": "Alocasia reginula",
+    "aliases": [
+      "Alocasia Black Velvet",
+      "Alocasia reginula"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Dark, velvety leaves; keep humidity high."
+  },
+  {
+    "id": "alocasia-zebrina-alocasia-zebrina",
+    "display_name": "Alocasia Zebrina",
+    "scientific_name": "Alocasia zebrina",
+    "aliases": [
+      "Alocasia Zebrina",
+      "Alocasia zebrina"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Distinctive striped leaf stems."
+  },
+  {
+    "id": "anthurium-clarinervium-anthurium-clarinervium",
+    "display_name": "Anthurium Clarinervium",
+    "scientific_name": "Anthurium clarinervium",
+    "aliases": [
+      "Anthurium Clarinervium",
+      "Anthurium clarinervium"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Bold white venation on velvety leaves."
+  },
+  {
+    "id": "anthurium-crystallinum-anthurium-crystallinum",
+    "display_name": "Anthurium Crystallinum",
+    "scientific_name": "Anthurium crystallinum",
+    "aliases": [
+      "Anthurium Crystallinum",
+      "Anthurium crystallinum"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Large velvety leaves with silvery veins."
+  },
+  {
+    "id": "calathea-white-fusion-calathea-lietzei-white-fusion",
+    "display_name": "Calathea White Fusion",
+    "scientific_name": "Calathea lietzei 'White Fusion'",
+    "aliases": [
+      "Calathea White Fusion",
+      "Calathea lietzei 'White Fusion'"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. White-and-green marbled leaves; sensitive to tap-water minerals."
+  },
+  {
+    "id": "raindrop-peperomia-peperomia-polybotrya",
+    "display_name": "Raindrop Peperomia",
+    "scientific_name": "Peperomia polybotrya",
+    "aliases": [
+      "Peperomia polybotrya",
+      "Raindrop Peperomia"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Round, glossy, raindrop-shaped leaves."
+  },
+  {
+    "id": "cupid-peperomia-peperomia-scandens",
+    "display_name": "Cupid Peperomia",
+    "scientific_name": "Peperomia scandens",
+    "aliases": [
+      "Cupid Peperomia",
+      "Peperomia scandens"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Trailing, heart-shaped variegated leaves."
+  },
+  {
+    "id": "red-log-peperomia-peperomia-verticillata",
+    "display_name": "Red Log Peperomia",
+    "scientific_name": "Peperomia verticillata",
+    "aliases": [
+      "Peperomia verticillata",
+      "Red Log Peperomia"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Small whorled leaves on reddish stems."
+  },
+  {
+    "id": "trailing-jade-peperomia-rotundifolia",
+    "display_name": "Trailing Jade",
+    "scientific_name": "Peperomia rotundifolia",
+    "aliases": [
+      "Peperomia rotundifolia",
+      "Trailing Jade"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Small round leaves on trailing stems."
+  },
+  {
+    "id": "zebra-plant-aphelandra-squarrosa",
+    "display_name": "Zebra Plant",
+    "scientific_name": "Aphelandra squarrosa",
+    "aliases": [
+      "Aphelandra squarrosa",
+      "Zebra Plant"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Bold white-veined leaves; can be fussy about consistent moisture."
+  },
+  {
+    "id": "polka-dot-plant-hypoestes-phyllostachya",
+    "display_name": "Polka Dot Plant",
+    "scientific_name": "Hypoestes phyllostachya",
+    "aliases": [
+      "Hypoestes phyllostachya",
+      "Polka Dot Plant"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Spotted leaves; tends to get leggy and benefits from pinching back."
+  },
+  {
+    "id": "purple-heart-tradescantia-pallida",
+    "display_name": "Purple Heart",
+    "scientific_name": "Tradescantia pallida",
+    "aliases": [
+      "Purple Heart",
+      "Tradescantia pallida"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Vivid purple foliage; colours best in bright light."
+  },
+  {
+    "id": "turtle-vine-callisia-repens",
+    "display_name": "Turtle Vine",
+    "scientific_name": "Callisia repens",
+    "aliases": [
+      "Callisia repens",
+      "Turtle Vine"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Small, fast-trailing, easy to propagate."
+  },
+  {
+    "id": "red-aglaonema-aglaonema-red-valentine",
+    "display_name": "Red Aglaonema",
+    "scientific_name": "Aglaonema 'Red Valentine'",
+    "aliases": [
+      "Aglaonema 'Red Valentine'",
+      "Red Aglaonema"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Pink-and-green leaves; tolerant of average indoor light."
+  },
+  {
+    "id": "lemon-lime-dracaena-dracaena-lemon-lime",
+    "display_name": "Lemon Lime Dracaena",
+    "scientific_name": "Dracaena 'Lemon Lime'",
+    "aliases": [
+      "Dracaena 'Lemon Lime'",
+      "Lemon Lime Dracaena"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Bright yellow-green striped leaves."
+  },
+  {
+    "id": "asparagus-fern-asparagus-setaceus",
+    "display_name": "Asparagus Fern",
+    "scientific_name": "Asparagus setaceus",
+    "aliases": [
+      "Asparagus Fern",
+      "Asparagus setaceus"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Not a true fern; delicate, feathery foliage."
+  },
+  {
+    "id": "rabbit-s-foot-fern-davallia-fejeensis",
+    "display_name": "Rabbit's Foot Fern",
+    "scientific_name": "Davallia fejeensis",
+    "aliases": [
+      "Davallia fejeensis",
+      "Rabbit's Foot Fern"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Fuzzy rhizomes creep over the pot's edge."
+  },
+  {
+    "id": "purple-shamrock-oxalis-triangularis",
+    "display_name": "Purple Shamrock",
+    "scientific_name": "Oxalis triangularis",
+    "aliases": [
+      "Oxalis triangularis",
+      "Purple Shamrock"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Leaves fold up at night; may go dormant periodically - reduce watering then."
+  },
+  {
+    "id": "lucky-bamboo-dracaena-sanderiana",
+    "display_name": "Lucky Bamboo",
+    "scientific_name": "Dracaena sanderiana",
+    "aliases": [
+      "Dracaena sanderiana",
+      "Lucky Bamboo"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Often grown in water, but also does well in a moist, well-draining potting mix."
+  },
+  {
+    "id": "amaryllis-hippeastrum-spp",
+    "display_name": "Amaryllis",
+    "scientific_name": "Hippeastrum spp.",
+    "aliases": [
+      "Amaryllis",
+      "Hippeastrum spp."
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Grown from a bulb; reduce watering once it goes dormant after flowering."
+  },
+  {
+    "id": "clivia-clivia-miniata",
+    "display_name": "Clivia",
+    "scientific_name": "Clivia miniata",
+    "aliases": [
+      "Clivia",
+      "Clivia miniata"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Needs a cool, dry rest period in winter to flower well."
+  },
+  {
+    "id": "rain-lily-zephyranthes-spp",
+    "display_name": "Rain Lily",
+    "scientific_name": "Zephyranthes spp.",
+    "aliases": [
+      "Rain Lily",
+      "Zephyranthes spp."
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Small bulb; flowers a few days after a good watering."
+  },
+  {
+    "id": "jasmine-jasminum-polyanthum",
+    "display_name": "Jasmine",
+    "scientific_name": "Jasminum polyanthum",
+    "aliases": [
+      "Jasmine",
+      "Jasminum polyanthum"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Fragrant; likes cooler nights and consistent moisture to flower."
+  },
+  {
+    "id": "gardenia-gardenia-jasminoides",
+    "display_name": "Gardenia",
+    "scientific_name": "Gardenia jasminoides",
+    "aliases": [
+      "Gardenia",
+      "Gardenia jasminoides"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Fragrant flowers; prefers slightly acidic soil and consistent moisture."
+  },
+  {
+    "id": "chinese-hibiscus-hibiscus-rosa-sinensis",
+    "display_name": "Chinese Hibiscus",
+    "scientific_name": "Hibiscus rosa-sinensis",
+    "aliases": [
+      "Chinese Hibiscus",
+      "Hibiscus rosa-sinensis"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Heavy drinker, especially while flowering."
+  },
+  {
+    "id": "passion-flower-passiflora-caerulea",
+    "display_name": "Passion Flower",
+    "scientific_name": "Passiflora caerulea",
+    "aliases": [
+      "Passiflora caerulea",
+      "Passion Flower"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Vigorous climber; benefits from a trellis or support."
+  },
+  {
+    "id": "boat-lily-tradescantia-spathacea",
+    "display_name": "Boat Lily",
+    "scientific_name": "Tradescantia spathacea",
+    "aliases": [
+      "Boat Lily",
+      "Tradescantia spathacea"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Purple-and-green boat-shaped leaf bracts."
+  },
+  {
+    "id": "peperomia-hope-peperomia-tetraphylla-hope",
+    "display_name": "Peperomia Hope",
+    "scientific_name": "Peperomia tetraphylla 'Hope'",
+    "aliases": [
+      "Peperomia Hope",
+      "Peperomia tetraphylla 'Hope'"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Trailing, small round leaves; easy grower."
+  },
+  {
+    "id": "watermelon-begonia-peperomia-argyreia",
+    "display_name": "Watermelon Begonia",
+    "scientific_name": "Peperomia argyreia",
+    "aliases": [
+      "Peperomia argyreia",
+      "Watermelon Begonia"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Same plant as Watermelon Peperomia (alternate common name)."
+  },
+  {
+    "id": "silver-pothos-scindapsus-pictus-silvery-ann",
+    "display_name": "Silver Pothos",
+    "scientific_name": "Scindapsus pictus 'Silvery Ann'",
+    "aliases": [
+      "Scindapsus pictus 'Silvery Ann'",
+      "Silver Pothos"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Heavily silver-speckled leaves."
+  },
+  {
+    "id": "philodendron-micans-philodendron-hederaceum-micans",
+    "display_name": "Philodendron Micans",
+    "scientific_name": "Philodendron hederaceum 'Micans'",
+    "aliases": [
+      "Philodendron Micans",
+      "Philodendron hederaceum 'Micans'"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Velvety, iridescent bronze-green leaves."
+  },
+  {
+    "id": "peace-lily-domino-spathiphyllum-domino",
+    "display_name": "Peace Lily 'Domino'",
+    "scientific_name": "Spathiphyllum 'Domino'",
+    "aliases": [
+      "Peace Lily 'Domino'",
+      "Spathiphyllum 'Domino'"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Variegated white-splashed leaves; same care as regular Peace Lily."
+  },
+  {
+    "id": "dwarf-umbrella-tree-schefflera-arboricola-compacta",
+    "display_name": "Dwarf Umbrella Tree",
+    "scientific_name": "Schefflera arboricola 'Compacta'",
+    "aliases": [
+      "Dwarf Umbrella Tree",
+      "Schefflera arboricola 'Compacta'"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Compact cultivar of the Umbrella Tree."
+  },
+  {
+    "id": "ponytail-palm-dwarf-beaucarnea-recurvata-nolina",
+    "display_name": "Ponytail Palm (dwarf)",
+    "scientific_name": "Beaucarnea recurvata 'Nolina'",
+    "aliases": [
+      "Beaucarnea recurvata 'Nolina'",
+      "Ponytail Palm (dwarf)"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Compact form of the standard Ponytail Palm."
+  },
+  {
+    "id": "bunny-ear-cactus-opuntia-microdasys-albata",
+    "display_name": "Bunny Ear Cactus",
+    "scientific_name": "Opuntia microdasys 'Albata'",
+    "aliases": [
+      "Bunny Ear Cactus",
+      "Opuntia microdasys 'Albata'"
+    ],
+    "profile": "desert_cactus",
+    "dry_threshold": 5,
+    "wet_threshold": 30,
+    "care_tip": "True desert cactus: water rarely and deeply, then let it dry out completely. Bright, direct sun. White-spined form of the Bunny Ear (Prickly Pear) Cactus."
+  },
+  {
+    "id": "christmas-kalanchoe-kalanchoe-blossfeldiana-calandiva",
+    "display_name": "Christmas Kalanchoe",
+    "scientific_name": "Kalanchoe blossfeldiana 'Calandiva'",
+    "aliases": [
+      "Christmas Kalanchoe",
+      "Kalanchoe blossfeldiana 'Calandiva'"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Double-flowered form of Flaming Katy."
+  },
+  {
+    "id": "bunny-succulent-monilaria-obconica",
+    "display_name": "Bunny Succulent",
+    "scientific_name": "Monilaria obconica",
+    "aliases": [
+      "Bunny Succulent",
+      "Monilaria obconica"
+    ],
+    "profile": "succulent",
+    "dry_threshold": 10,
+    "wet_threshold": 40,
+    "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Seasonal succulent resembling tiny rabbit ears when young."
+  }
+]

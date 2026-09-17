@@ -3,22 +3,43 @@
     "step": {
       "user": {
         "title": "Add a plant",
-        "description": "Point Plant Monitor at your existing soil moisture sensor. Temperature, humidity and battery are optional but improve the advice and health score.",
+        "description": "Type any plant name - if it matches our built-in list, thresholds and a care tip are pre-filled on the next steps (still fully editable). Optionally pick the device your sensor belongs to (e.g. a Zigbee2MQTT plant sensor) and its entities will be auto-mapped.",
         "data": {
-          "name": "Plant name",
-          "species": "Plant species (used for sensible default thresholds)",
+          "name": "Plant name (your own label for it)",
+          "species": "Plant species",
+          "device_id": "Sensor device (optional - auto-maps its entities)"
+        }
+      },
+      "entities": {
+        "title": "Sensor entities",
+        "description": "Pre-filled from the device you picked, if any. Adjust anything that's wrong.",
+        "data": {
           "soil_moisture_entity": "Soil moisture sensor",
           "temperature_entity": "Temperature sensor (optional)",
           "humidity_entity": "Air humidity sensor (optional)",
           "battery_entity": "Battery sensor (optional)"
         }
       },
-      "thresholds": {
-        "title": "Thresholds",
-        "description": "Pre-filled from the selected species - adjust to taste. You can change these later from the plant's device page.",
+      "care": {
+        "title": "Thresholds & care tip",
+        "description": "Pre-filled if your plant matched our species list - edit anything you like.",
         "data": {
           "dry_threshold": "Dry threshold (water below this %)",
           "wet_threshold": "Overwatered threshold (warn above this %)",
+          "care_tip": "Care tip (shown on the dashboard)"
+        }
+      },
+      "photo": {
+        "title": "Photo (optional)",
+        "description": "Drag and drop a photo of your plant, or skip this - you can add one later from the plant's device page.",
+        "data": {
+          "photo_upload": "Upload a photo"
+        }
+      },
+      "advanced": {
+        "title": "Advanced thresholds",
+        "description": "Sensible defaults - only change these if you know you want to.",
+        "data": {
           "temp_cold_threshold": "Too cold below (\u00b0C)",
           "temp_hot_threshold": "Too warm above (\u00b0C)",
           "humidity_low_threshold": "Air too dry below (%)",
@@ -34,10 +55,41 @@
   "options": {
     "step": {
       "init": {
-        "title": "Adjust thresholds",
+        "title": "What do you want to change?",
+        "menu_options": {
+          "entities": "Sensor entities",
+          "care": "Thresholds & care tip",
+          "photo": "Photo",
+          "advanced": "Advanced thresholds"
+        }
+      },
+      "entities": {
+        "title": "Sensor entities",
+        "data": {
+          "soil_moisture_entity": "Soil moisture sensor",
+          "temperature_entity": "Temperature sensor (optional)",
+          "humidity_entity": "Air humidity sensor (optional)",
+          "battery_entity": "Battery sensor (optional)"
+        }
+      },
+      "care": {
+        "title": "Thresholds & care tip",
         "data": {
           "dry_threshold": "Dry threshold (water below this %)",
           "wet_threshold": "Overwatered threshold (warn above this %)",
+          "care_tip": "Care tip (shown on the dashboard)"
+        }
+      },
+      "photo": {
+        "title": "Photo",
+        "description": "Uploading a new photo replaces the current one.",
+        "data": {
+          "photo_upload": "Upload a photo"
+        }
+      },
+      "advanced": {
+        "title": "Advanced thresholds",
+        "data": {
           "temp_cold_threshold": "Too cold below (\u00b0C)",
           "temp_hot_threshold": "Too warm above (\u00b0C)",
           "humidity_low_threshold": "Air too dry below (%)",
@@ -50,6 +102,7 @@
   "entity": {
     "sensor": {
       "advice": { "name": "Advice" },
+      "care_tip": { "name": "Care tip" },
       "health_score": { "name": "Health score" },
       "drying_rate": { "name": "Drying rate" },
       "water_prediction": { "name": "Water prediction" },
@@ -63,6 +116,9 @@
     "number": {
       "dry_threshold": { "name": "Dry threshold" },
       "wet_threshold": { "name": "Overwatered threshold" }
+    },
+    "image": {
+      "photo": { "name": "Photo" }
     }
   },
   "services": {

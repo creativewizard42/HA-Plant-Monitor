@@ -22,9 +22,11 @@ from homeassistant.util import dt as dt_util
 from .const import (
     CONF_BATTERY_ENTITY,
     CONF_BATTERY_LOW,
+    CONF_CARE_TIP,
     CONF_DRY_THRESHOLD,
     CONF_HUMIDITY_ENTITY,
     CONF_HUMIDITY_LOW,
+    CONF_PHOTO_PATH,
     CONF_SOIL_MOISTURE_ENTITY,
     CONF_TEMP_COLD,
     CONF_TEMP_HOT,
@@ -32,6 +34,7 @@ from .const import (
     CONF_WATER_JUMP,
     CONF_WET_THRESHOLD,
     DEFAULT_BATTERY_LOW,
+    DEFAULT_CARE_TIP,
     DEFAULT_DRY_THRESHOLD,
     DEFAULT_HUMIDITY_LOW,
     DEFAULT_TEMP_COLD,
@@ -121,6 +124,15 @@ class PlantData:
     @property
     def water_jump(self) -> float:
         return self._conf(CONF_WATER_JUMP, DEFAULT_WATER_JUMP)
+
+    @property
+    def care_tip(self) -> str:
+        value = self.entry.options.get(CONF_CARE_TIP, self.entry.data.get(CONF_CARE_TIP))
+        return value if value else DEFAULT_CARE_TIP
+
+    @property
+    def photo_path(self) -> str | None:
+        return self.entry.options.get(CONF_PHOTO_PATH, self.entry.data.get(CONF_PHOTO_PATH))
 
     def _entity(self, key: str) -> str | None:
         return self.entry.data.get(key)

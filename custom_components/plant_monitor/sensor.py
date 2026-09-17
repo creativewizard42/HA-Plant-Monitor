@@ -12,8 +12,9 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity import DeviceInfo, EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .const import CONF_NAME, CONF_SPECIES, DOMAIN, SIGNAL_UPDATE, SPECIES_PRESETS
+from .const import CONF_NAME, CONF_SPECIES, DOMAIN, SIGNAL_UPDATE
 from .plant_data import PlantData
+from .species import find_species
 
 
 async def async_setup_entry(
@@ -23,6 +24,7 @@ async def async_setup_entry(
     async_add_entities(
         [
             PlantAdviceSensor(entry, plant),
+            PlantCareTipSensor(entry, plant),
             PlantHealthScoreSensor(entry, plant),
             PlantDryingRateSensor(entry, plant),
             PlantWaterPredictionSensor(entry, plant),
@@ -33,8 +35,9 @@ async def async_setup_entry(
 
 
 def _device_info(entry: ConfigEntry) -> DeviceInfo:
-    species_key = entry.data.get(CONF_SPECIES, "custom")
-    model = str(SPECIES_PRESETS.get(species_key, SPECIES_PRESETS["custom"])["label"])
+    species_name = entry.data.get(CONF_SPECIES, "")
+    match = find_species(species_name)
+    model = match["display_name"] if match else (species_name or "Custom")
     return DeviceInfo(
         identifiers={(DOMAIN, entry.entry_id)},
         name=entry.data[CONF_NAME],
@@ -77,6 +80,19 @@ class PlantAdviceSensor(_PlantSensorBase):
     @property
     def native_value(self) -> str:
         return self._plant.advice
+
+
+class PlantCareTipSensor(_PlantSensorBase):
+    _attr_translation_key = "care_tip"
+    _attr_icon = "mdi:book-open-variant"
+
+    def __init__(self, entry: ConfigEntry, plant: PlantData) -> None:
+        super().__init__(entry, plant)
+        self._attr_unique_id = f"{entry.entry_id}_care_tip"
+
+    @property
+    def native_value(self) -> str:
+        return self._plant.care_tip
 
 
 class PlantHealthScoreSensor(_PlantSensorBase):

@@ -3,22 +3,43 @@
     "step": {
       "user": {
         "title": "Plant toevoegen",
-        "description": "Wijs Plant Monitor naar je bestaande bodemvochtsensor. Temperatuur, luchtvochtigheid en batterij zijn optioneel maar verbeteren het advies en de gezondheidsscore.",
+        "description": "Typ een willekeurige plantnaam - komt die overeen met onze ingebouwde lijst, dan worden drempels en een verzorgingstip op de volgende stappen alvast ingevuld (nog steeds volledig aanpasbaar). Kies optioneel het apparaat waar je sensor bij hoort (bijv. een Zigbee2MQTT-plantsensor) en de entiteiten worden automatisch gekoppeld.",
         "data": {
-          "name": "Naam van de plant",
-          "species": "Plantsoort (voor verstandige standaarddrempels)",
+          "name": "Naam van de plant (jouw eigen label)",
+          "species": "Plantsoort",
+          "device_id": "Sensor-apparaat (optioneel - koppelt automatisch de entiteiten)"
+        }
+      },
+      "entities": {
+        "title": "Sensor-entiteiten",
+        "description": "Vooraf ingevuld op basis van het gekozen apparaat, indien van toepassing. Pas aan wat niet klopt.",
+        "data": {
           "soil_moisture_entity": "Bodemvochtsensor",
           "temperature_entity": "Temperatuursensor (optioneel)",
           "humidity_entity": "Luchtvochtigheidssensor (optioneel)",
           "battery_entity": "Batterijsensor (optioneel)"
         }
       },
-      "thresholds": {
-        "title": "Drempelwaarden",
-        "description": "Vooraf ingevuld op basis van de gekozen soort - pas naar wens aan. Je kunt dit later nog wijzigen via de apparaatpagina van de plant.",
+      "care": {
+        "title": "Drempels & verzorgingstip",
+        "description": "Vooraf ingevuld als je plant overeenkwam met onze soortenlijst - pas gerust aan.",
         "data": {
           "dry_threshold": "Droogte-drempel (geef water onder dit %)",
           "wet_threshold": "Overwater-drempel (waarschuw boven dit %)",
+          "care_tip": "Verzorgingstip (getoond op het dashboard)"
+        }
+      },
+      "photo": {
+        "title": "Foto (optioneel)",
+        "description": "Sleep een foto van je plant hierin, of sla dit over - je kunt er later nog een toevoegen via de apparaatpagina van de plant.",
+        "data": {
+          "photo_upload": "Upload een foto"
+        }
+      },
+      "advanced": {
+        "title": "Geavanceerde drempels",
+        "description": "Verstandige standaardwaarden - alleen aanpassen als je weet dat je dat wilt.",
+        "data": {
           "temp_cold_threshold": "Te koud onder (\u00b0C)",
           "temp_hot_threshold": "Te warm boven (\u00b0C)",
           "humidity_low_threshold": "Lucht te droog onder (%)",
@@ -34,10 +55,41 @@
   "options": {
     "step": {
       "init": {
-        "title": "Drempelwaarden aanpassen",
+        "title": "Wat wil je aanpassen?",
+        "menu_options": {
+          "entities": "Sensor-entiteiten",
+          "care": "Drempels & verzorgingstip",
+          "photo": "Foto",
+          "advanced": "Geavanceerde drempels"
+        }
+      },
+      "entities": {
+        "title": "Sensor-entiteiten",
+        "data": {
+          "soil_moisture_entity": "Bodemvochtsensor",
+          "temperature_entity": "Temperatuursensor (optioneel)",
+          "humidity_entity": "Luchtvochtigheidssensor (optioneel)",
+          "battery_entity": "Batterijsensor (optioneel)"
+        }
+      },
+      "care": {
+        "title": "Drempels & verzorgingstip",
         "data": {
           "dry_threshold": "Droogte-drempel (geef water onder dit %)",
           "wet_threshold": "Overwater-drempel (waarschuw boven dit %)",
+          "care_tip": "Verzorgingstip (getoond op het dashboard)"
+        }
+      },
+      "photo": {
+        "title": "Foto",
+        "description": "Een nieuwe foto uploaden vervangt de huidige.",
+        "data": {
+          "photo_upload": "Upload een foto"
+        }
+      },
+      "advanced": {
+        "title": "Geavanceerde drempels",
+        "data": {
           "temp_cold_threshold": "Te koud onder (\u00b0C)",
           "temp_hot_threshold": "Te warm boven (\u00b0C)",
           "humidity_low_threshold": "Lucht te droog onder (%)",
@@ -50,6 +102,7 @@
   "entity": {
     "sensor": {
       "advice": { "name": "Advies" },
+      "care_tip": { "name": "Verzorgingstip" },
       "health_score": { "name": "Gezondheidsscore" },
       "drying_rate": { "name": "Droogsnelheid" },
       "water_prediction": { "name": "Waterbehoefte" },
@@ -63,6 +116,9 @@
     "number": {
       "dry_threshold": { "name": "Droogte-drempel" },
       "wet_threshold": { "name": "Overwater-drempel" }
+    },
+    "image": {
+      "photo": { "name": "Foto" }
     }
   },
   "services": {

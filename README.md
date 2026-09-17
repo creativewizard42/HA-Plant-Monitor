@@ -2,24 +2,44 @@
 
 Turns a plain soil-moisture sensor (any brand, any integration) into a full
 plant-care dashboard: species-aware advice, a 0-100 health score, a drying
-rate, a "water needed in X hours" prediction, and an automatic watering log
-- with a companion notification blueprint.
+rate, a "water needed in X hours" prediction, an automatic watering log, and
+a photo - with a companion notification blueprint.
 
-This is **not** tied to any specific sensor brand. During setup you simply
-point it at the entities you already have in Home Assistant.
+This is **not** tied to any specific sensor brand. During setup you point it
+at the entities (or a whole device) you already have in Home Assistant.
 
 ## Features
 
 - **Works with any soil moisture sensor** - Zigbee2MQTT, ESPHome, Xiaomi Mi
   Flora, Tuya, whatever exposes a plain `sensor.*` percentage.
-- **Species presets** (Strelitzia, Monstera, Calathea, Asplenium, or Custom)
-  pre-fill sensible dry/overwater thresholds - fully editable, before and
-  after setup.
+- **Type any plant name.** It's matched (case-insensitively, by common or
+  scientific name) against a bundled database of **192 common houseplants**
+  (`custom_components/plant_monitor/species_data.json`) covering succulents,
+  cacti, ferns, aroids, orchids and more. A match pre-fills sensible
+  dry/overwatered thresholds *and* a care tip - both fully editable. No
+  match just means generic defaults and an empty tip field to fill in
+  yourself.
+  - Thresholds are **not lab-measured values** - no such universal standard
+    exists, since soil-moisture % readings depend on sensor type, soil mix
+    and pot size. They're a consistent translation of general watering
+    guidance ("let dry between waterings" vs. "keep evenly moist") into
+    approximate percentages, meant as a sensible starting point.
+  - Missing your plant, or disagree with a value? `species_data.json` is a
+    plain JSON list - PRs adding or correcting entries are welcome.
+- **Pick a device to auto-map its sensors.** Point the config flow at a
+  device (e.g. your Zigbee2MQTT plant sensor) and its soil moisture,
+  temperature, humidity and battery entities are guessed automatically by
+  name/device_class. Everything stays editable on the next screen either
+  way - device selection is optional, and you can always pick entities
+  individually instead.
+- **Add a photo** - drag and drop one during setup (or later from the
+  device's **Configure** menu), or skip it entirely.
 - **One config entry per plant**, so you can add as many as you like from
   *Settings -> Devices & services -> Add integration -> Plant Monitor*.
 - Entities created per plant:
   - `sensor.<plant>_advice` - a plain-language tip combining moisture,
     temperature, humidity and battery
+  - `sensor.<plant>_care_tip` - the static species-level care guidance
   - `sensor.<plant>_health_score` - weighted 0-100 score
   - `sensor.<plant>_drying_rate` - %/hour, calculated from a rolling window
     of recent readings (no recorder/history queries needed)
@@ -30,6 +50,7 @@ point it at the entities you already have in Home Assistant.
   - `binary_sensor.<plant>_dry` / `binary_sensor.<plant>_overwatered`
   - `number.<plant>_dry_threshold` / `number.<plant>_wet_threshold` - live
     sliders, usable straight from a dashboard tile
+  - `image.<plant>_photo` - the uploaded photo, if any
 - **`plant_monitor.log_watering` service** to log a watering manually (for
   slow drip-irrigation the jump-detection won't catch)
 - **Notification blueprint** for "needs water" / "overwatered" alerts with a
@@ -54,15 +75,24 @@ Copy `custom_components/plant_monitor` into your Home Assistant's
 ## Setup
 
 1. **Settings -> Devices & services -> Add integration -> Plant Monitor.**
-2. Give the plant a name, pick a species (or "Custom"), and select your
-   existing soil moisture sensor. Temperature/humidity/battery are optional.
-3. Review the pre-filled thresholds and adjust if you like.
-4. Repeat for each plant - each one is a separate config entry (and its own
+2. **Plant name & species**: give it a label, type any plant name (pick from
+   the list or type your own), and optionally pick the sensor's device to
+   auto-map its entities.
+3. **Sensor entities**: confirm or adjust the auto-mapped (or manually
+   picked) soil moisture / temperature / humidity / battery entities.
+4. **Thresholds & care tip**: pre-filled if the species matched - edit
+   anything you like.
+5. **Photo**: drag and drop one, or skip.
+6. **Advanced thresholds**: temperature/humidity/battery cutoffs and the
+   watering-jump sensitivity - sensible defaults, rarely need changing.
+7. Repeat for each plant - each one is a separate config entry (and its own
    device).
 
-You can revisit thresholds any time via the device's **Configure** button,
-or by dragging the `number.<plant>_dry_threshold` / `wet_threshold` sliders
-directly on a dashboard.
+Everything from steps 2-6 can be revisited later from the device's
+**Configure** button, which opens a menu (entities / care & tip / photo /
+advanced) instead of redoing the whole wizard. The dry/wet thresholds are
+also exposed as `number` entities you can drag straight from a dashboard
+tile, no menu needed.
 
 ## Notifications
 
@@ -76,38 +106,60 @@ and `Overwatered` sensors and your notification target.
 
 There's no bundled custom card (that would be a second HACS "plugin"
 project) - instead, `examples/dashboard_row.yaml` shows a "photo + advice +
-trend + gauge" row built entirely from Home Assistant's built-in cards, so
-it works with no extra dependencies. Copy it and swap in your own entity
-IDs from the plant's device page.
+trend + gauge" row built entirely from Home Assistant's built-in cards
+(including the `image.<plant>_photo` entity for the photo), so it works
+with no extra dependencies. Copy it and swap in your own entity IDs from
+the plant's device page.
 
 ## Testing
 
-`tests/test_plant_data.py` exercises the calculation engine (advice text,
-health score, drying rate, water prediction, watering detection, weekly
-counter, options-override-data precedence) against lightweight stubs, no
-running Home Assistant instance required:
+Two layers of tests, neither requiring a real Home Assistant server:
+
+**Calculation engine** (`tests/test_plant_data.py`) - advice text, health
+score, drying rate, water prediction, watering detection, weekly counter,
+options-override-data precedence, care tip / photo path resolution, tested
+against lightweight stubs:
 
 ```bash
-pip install homeassistant  # provides voluptuous, dt_util, etc.
+pip install homeassistant
 python tests/test_plant_data.py
 ```
 
-All modules have also been import-checked against a real installed
-`homeassistant` package (2025.1.4) to catch API mismatches.
+**End-to-end config flow** (`tests/test_config_flow.py`) - drives the
+actual multi-step config flow (species matching, device-based entity
+auto-mapping, generic-defaults fallback) through a real *test* Home
+Assistant core instance via `pytest-homeassistant-custom-component`:
 
-## Known limitations (v0.1.0)
+```bash
+pip install pytest pytest-asyncio pytest-homeassistant-custom-component
+pytest tests/test_config_flow.py -v
+```
 
+Both run automatically in CI on every push (see `.github/workflows/`).
+
+## Known limitations (v0.2.0)
+
+- The species database's thresholds are approximate guidance, not
+  lab-measured values (see Features above) - adjust to your own sensor and
+  potting mix.
+- The 192-plant list is broad but not exhaustive; true air plants
+  (Tillandsia grown without a potting medium) aren't included since they
+  don't suit a soil-moisture-sensor tool.
 - The drying-rate history is kept in memory, not in the recorder database:
-  it resets on a Home Assistant restart and briefly after a threshold
-  change (options reload), so the drying rate / prediction take a little
-  while to reappear afterwards.
+  it resets on a Home Assistant restart and briefly after an options change
+  (entry reload), so the drying rate / prediction take a little while to
+  reappear afterwards.
 - Watering detection is a simple "moisture jumped by more than X% between
   two readings" check. Very slow drip irrigation may not trigger it - use
   the `plant_monitor.log_watering` service for those.
-- This has been tested for correctness by code review, `py_compile` and
-  JSON validation, but **not yet against a running Home Assistant
-  instance**. Please try it in a test/dev instance before relying on it,
-  and open an issue if something doesn't load.
+- Uploaded photos are stored under `config/www/plant_monitor/` and served
+  as `/local/plant_monitor/...` - back them up along with the rest of your
+  Home Assistant config.
+- The config flow, entity creation, and photo upload have been verified
+  end-to-end against a real (test) Home Assistant core instance (see
+  Testing above), but the integration has **not yet been used in a live,
+  long-running production instance**. Please try it in a test/dev instance
+  first and open an issue if something's off.
 
 ## Publishing to creativewizard42/HA-Plant-Monitor
 
@@ -118,20 +170,15 @@ Push it there:
 ```bash
 cd plant_monitor_hacs
 git remote add origin https://github.com/creativewizard42/HA-Plant-Monitor.git
-git push -u origin main --tags
-```
-
-If the GitHub repo already has a commit (like an auto-generated README or
-license), pushing may be rejected as a non-fast-forward. Either start from
-an empty repo, or force the initial push if you're fine overwriting it:
-
-```bash
 git push -u origin main --tags --force
 ```
 
-Once pushed, add it in HACS: **HACS -> ⋮ -> Custom repositories ->**
-`https://github.com/creativewizard42/HA-Plant-Monitor`, category
-**Integration**.
+(`--force` is there because this rewrites history on top of what's already
+pushed - safe for a personal repo like this one.)
+
+Once pushed, refresh it in HACS: **HACS -> find Plant Monitor -> ⋮ ->
+Redownload** (or **Update information** first if it doesn't offer an
+update right away), then restart Home Assistant.
 
 ## License
 

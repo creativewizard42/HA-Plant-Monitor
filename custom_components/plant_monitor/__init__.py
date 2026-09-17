@@ -7,7 +7,8 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers import config_validation as cv, device_registry as dr
 
-from .const import DOMAIN, PLATFORMS, SERVICE_LOG_WATERING
+from .const import CONF_PHOTO_PATH, DOMAIN, PLATFORMS, SERVICE_LOG_WATERING
+from .photo import async_delete_photo
 from .plant_data import PlantData
 
 LOG_WATERING_SCHEMA = vol.Schema(
@@ -65,3 +66,10 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 async def _async_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None:
     """Reload the entry whenever its options change (threshold edits)."""
     await hass.config_entries.async_reload(entry.entry_id)
+
+
+async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    """Clean up a plant's saved photo file when it's removed entirely."""
+    photo_path = entry.options.get(CONF_PHOTO_PATH, entry.data.get(CONF_PHOTO_PATH))
+    if photo_path:
+        async_delete_photo(hass, photo_path)

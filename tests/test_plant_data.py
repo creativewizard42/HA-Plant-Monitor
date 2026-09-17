@@ -188,6 +188,30 @@ def test_options_override_data():
     print("test_options_override_data: OK")
 
 
+def test_care_tip_and_photo_path():
+    # No care_tip/photo set at all -> generic fallback text, no photo.
+    hass, plant = make_plant({"soil_moisture_entity": "sensor.soil"})
+    assert "No species matched" in plant.care_tip
+    assert plant.photo_path is None
+
+    # Set via data (as the initial config flow would).
+    hass, plant = make_plant(
+        {"soil_moisture_entity": "sensor.soil", "care_tip": "Bright light, water weekly.",
+         "photo_path": "/local/plant_monitor/abc123.jpg"}
+    )
+    assert plant.care_tip == "Bright light, water weekly."
+    assert plant.photo_path == "/local/plant_monitor/abc123.jpg"
+
+    # Options override data (as the options flow re-upload/edit would).
+    hass, plant = make_plant(
+        {"soil_moisture_entity": "sensor.soil", "care_tip": "Old tip", "photo_path": "/local/plant_monitor/old.jpg"},
+        options={"care_tip": "New tip", "photo_path": "/local/plant_monitor/new.jpg"},
+    )
+    assert plant.care_tip == "New tip"
+    assert plant.photo_path == "/local/plant_monitor/new.jpg"
+    print("test_care_tip_and_photo_path: OK")
+
+
 if __name__ == "__main__":
     tests = [
         test_advice_dry,
@@ -198,6 +222,7 @@ if __name__ == "__main__":
         test_watering_detection_and_weekly_counter,
         test_dry_binary_sensor_logic_via_thresholds,
         test_options_override_data,
+        test_care_tip_and_photo_path,
     ]
     failures = 0
     for t in tests:

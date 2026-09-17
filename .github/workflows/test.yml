@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  logic-tests:
     name: Logic tests (py${{ matrix.python-version }})
     runs-on: ubuntu-latest
     strategy:
@@ -30,3 +30,16 @@ jobs:
               json.loads(p.read_text())
               print('OK:', p)
           "
+
+  end-to-end-tests:
+    name: Config flow end-to-end tests (pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test harness
+        run: pip install pytest pytest-asyncio pytest-homeassistant-custom-component
+      - name: Run end-to-end config flow tests
+        run: pytest tests/test_config_flow.py -v
