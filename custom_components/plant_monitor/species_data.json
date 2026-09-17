@@ -3,8 +3,13 @@
     "id": "jade-plant-crassula-ovata",
     "display_name": "Jade Plant",
     "scientific_name": "Crassula ovata",
+    "dutch_names": [
+      "Geldboompje"
+    ],
+    "select_label": "Jade Plant / Geldboompje (Crassula ovata)",
     "aliases": [
       "Crassula ovata",
+      "Geldboompje",
       "Jade Plant"
     ],
     "profile": "succulent",
@@ -16,6 +21,8 @@
     "id": "string-of-pearls-senecio-rowleyanus",
     "display_name": "String of Pearls",
     "scientific_name": "Senecio rowleyanus",
+    "dutch_names": [],
+    "select_label": "String of Pearls (Senecio rowleyanus)",
     "aliases": [
       "Senecio rowleyanus",
       "String of Pearls"
@@ -29,6 +36,8 @@
     "id": "string-of-bananas-senecio-radicans",
     "display_name": "String of Bananas",
     "scientific_name": "Senecio radicans",
+    "dutch_names": [],
+    "select_label": "String of Bananas (Senecio radicans)",
     "aliases": [
       "Senecio radicans",
       "String of Bananas"
@@ -42,6 +51,8 @@
     "id": "string-of-dolphins-senecio-peregrinus",
     "display_name": "String of Dolphins",
     "scientific_name": "Senecio peregrinus",
+    "dutch_names": [],
+    "select_label": "String of Dolphins (Senecio peregrinus)",
     "aliases": [
       "Senecio peregrinus",
       "String of Dolphins"
@@ -55,6 +66,8 @@
     "id": "string-of-hearts-ceropegia-woodii",
     "display_name": "String of Hearts",
     "scientific_name": "Ceropegia woodii",
+    "dutch_names": [],
+    "select_label": "String of Hearts (Ceropegia woodii)",
     "aliases": [
       "Ceropegia woodii",
       "String of Hearts"
@@ -68,6 +81,8 @@
     "id": "string-of-turtles-peperomia-prostrata",
     "display_name": "String of Turtles",
     "scientific_name": "Peperomia prostrata",
+    "dutch_names": [],
+    "select_label": "String of Turtles (Peperomia prostrata)",
     "aliases": [
       "Peperomia prostrata",
       "String of Turtles"
@@ -81,6 +96,8 @@
     "id": "burro-s-tail-sedum-morganianum",
     "display_name": "Burro's Tail",
     "scientific_name": "Sedum morganianum",
+    "dutch_names": [],
+    "select_label": "Burro's Tail (Sedum morganianum)",
     "aliases": [
       "Burro's Tail",
       "Sedum morganianum"
@@ -94,6 +111,8 @@
     "id": "panda-plant-kalanchoe-tomentosa",
     "display_name": "Panda Plant",
     "scientific_name": "Kalanchoe tomentosa",
+    "dutch_names": [],
+    "select_label": "Panda Plant (Kalanchoe tomentosa)",
     "aliases": [
       "Kalanchoe tomentosa",
       "Panda Plant"
@@ -107,6 +126,8 @@
     "id": "flaming-katy-kalanchoe-blossfeldiana",
     "display_name": "Flaming Katy",
     "scientific_name": "Kalanchoe blossfeldiana",
+    "dutch_names": [],
+    "select_label": "Flaming Katy (Kalanchoe blossfeldiana)",
     "aliases": [
       "Flaming Katy",
       "Kalanchoe blossfeldiana"
@@ -120,6 +141,8 @@
     "id": "elephant-bush-portulacaria-afra",
     "display_name": "Elephant Bush",
     "scientific_name": "Portulacaria afra",
+    "dutch_names": [],
+    "select_label": "Elephant Bush (Portulacaria afra)",
     "aliases": [
       "Elephant Bush",
       "Portulacaria afra"
@@ -133,6 +156,8 @@
     "id": "pencil-cactus-euphorbia-tirucalli",
     "display_name": "Pencil Cactus",
     "scientific_name": "Euphorbia tirucalli",
+    "dutch_names": [],
+    "select_label": "Pencil Cactus (Euphorbia tirucalli)",
     "aliases": [
       "Euphorbia tirucalli",
       "Pencil Cactus"
@@ -146,6 +171,8 @@
     "id": "african-milk-tree-euphorbia-trigona",
     "display_name": "African Milk Tree",
     "scientific_name": "Euphorbia trigona",
+    "dutch_names": [],
+    "select_label": "African Milk Tree (Euphorbia trigona)",
     "aliases": [
       "African Milk Tree",
       "Euphorbia trigona"
@@ -159,6 +186,8 @@
     "id": "string-of-buttons-crassula-perforata",
     "display_name": "String of Buttons",
     "scientific_name": "Crassula perforata",
+    "dutch_names": [],
+    "select_label": "String of Buttons (Crassula perforata)",
     "aliases": [
       "Crassula perforata",
       "String of Buttons"
@@ -172,6 +201,8 @@
     "id": "donkey-s-tail-sedum-morganianum",
     "display_name": "Donkey's Tail",
     "scientific_name": "Sedum morganianum",
+    "dutch_names": [],
+    "select_label": "Donkey's Tail (Sedum morganianum)",
     "aliases": [
       "Donkey's Tail",
       "Sedum morganianum"
@@ -185,6 +216,8 @@
     "id": "ghost-plant-graptopetalum-paraguayense",
     "display_name": "Ghost Plant",
     "scientific_name": "Graptopetalum paraguayense",
+    "dutch_names": [],
+    "select_label": "Ghost Plant (Graptopetalum paraguayense)",
     "aliases": [
       "Ghost Plant",
       "Graptopetalum paraguayense"
@@ -198,6 +231,8 @@
     "id": "moonstones-pachyphytum-oviferum",
     "display_name": "Moonstones",
     "scientific_name": "Pachyphytum oviferum",
+    "dutch_names": [],
+    "select_label": "Moonstones (Pachyphytum oviferum)",
     "aliases": [
       "Moonstones",
       "Pachyphytum oviferum"
@@ -211,6 +246,8 @@
     "id": "hens-and-chicks-sempervivum-tectorum",
     "display_name": "Hens and Chicks",
     "scientific_name": "Sempervivum tectorum",
+    "dutch_names": [],
+    "select_label": "Hens and Chicks (Sempervivum tectorum)",
     "aliases": [
       "Hens and Chicks",
       "Sempervivum tectorum"
@@ -224,6 +261,8 @@
     "id": "zebra-haworthia-haworthia-fasciata",
     "display_name": "Zebra Haworthia",
     "scientific_name": "Haworthia fasciata",
+    "dutch_names": [],
+    "select_label": "Zebra Haworthia (Haworthia fasciata)",
     "aliases": [
       "Haworthia fasciata",
       "Zebra Haworthia"
@@ -237,6 +276,8 @@
     "id": "haworthia-pearl-plant-haworthia-attenuata",
     "display_name": "Haworthia (Pearl Plant)",
     "scientific_name": "Haworthia attenuata",
+    "dutch_names": [],
+    "select_label": "Haworthia (Pearl Plant) (Haworthia attenuata)",
     "aliases": [
       "Haworthia (Pearl Plant)",
       "Haworthia attenuata"
@@ -250,6 +291,8 @@
     "id": "ox-tongue-plant-gasteria-bicolor",
     "display_name": "Ox Tongue Plant",
     "scientific_name": "Gasteria bicolor",
+    "dutch_names": [],
+    "select_label": "Ox Tongue Plant (Gasteria bicolor)",
     "aliases": [
       "Gasteria bicolor",
       "Ox Tongue Plant"
@@ -263,6 +306,8 @@
     "id": "desert-rose-adenium-obesum",
     "display_name": "Desert Rose",
     "scientific_name": "Adenium obesum",
+    "dutch_names": [],
+    "select_label": "Desert Rose (Adenium obesum)",
     "aliases": [
       "Adenium obesum",
       "Desert Rose"
@@ -276,6 +321,8 @@
     "id": "golden-barrel-cactus-echinocactus-grusonii",
     "display_name": "Golden Barrel Cactus",
     "scientific_name": "Echinocactus grusonii",
+    "dutch_names": [],
+    "select_label": "Golden Barrel Cactus (Echinocactus grusonii)",
     "aliases": [
       "Echinocactus grusonii",
       "Golden Barrel Cactus"
@@ -289,6 +336,8 @@
     "id": "prickly-pear-cactus-opuntia-microdasys",
     "display_name": "Prickly Pear Cactus",
     "scientific_name": "Opuntia microdasys",
+    "dutch_names": [],
+    "select_label": "Prickly Pear Cactus (Opuntia microdasys)",
     "aliases": [
       "Opuntia microdasys",
       "Prickly Pear Cactus"
@@ -302,6 +351,8 @@
     "id": "pincushion-cactus-mammillaria-spp",
     "display_name": "Pincushion Cactus",
     "scientific_name": "Mammillaria spp.",
+    "dutch_names": [],
+    "select_label": "Pincushion Cactus (Mammillaria spp.)",
     "aliases": [
       "Mammillaria spp.",
       "Pincushion Cactus"
@@ -315,6 +366,8 @@
     "id": "old-lady-cactus-mammillaria-hahniana",
     "display_name": "Old Lady Cactus",
     "scientific_name": "Mammillaria hahniana",
+    "dutch_names": [],
+    "select_label": "Old Lady Cactus (Mammillaria hahniana)",
     "aliases": [
       "Mammillaria hahniana",
       "Old Lady Cactus"
@@ -328,6 +381,8 @@
     "id": "star-cactus-astrophytum-ornatum",
     "display_name": "Star Cactus",
     "scientific_name": "Astrophytum ornatum",
+    "dutch_names": [],
+    "select_label": "Star Cactus (Astrophytum ornatum)",
     "aliases": [
       "Astrophytum ornatum",
       "Star Cactus"
@@ -341,6 +396,8 @@
     "id": "goat-s-horn-cactus-astrophytum-capricorne",
     "display_name": "Goat's Horn Cactus",
     "scientific_name": "Astrophytum capricorne",
+    "dutch_names": [],
+    "select_label": "Goat's Horn Cactus (Astrophytum capricorne)",
     "aliases": [
       "Astrophytum capricorne",
       "Goat's Horn Cactus"
@@ -354,6 +411,8 @@
     "id": "peanut-cactus-echinopsis-chamaecereus",
     "display_name": "Peanut Cactus",
     "scientific_name": "Echinopsis chamaecereus",
+    "dutch_names": [],
+    "select_label": "Peanut Cactus (Echinopsis chamaecereus)",
     "aliases": [
       "Echinopsis chamaecereus",
       "Peanut Cactus"
@@ -367,6 +426,8 @@
     "id": "torch-cactus-echinopsis-spachiana",
     "display_name": "Torch Cactus",
     "scientific_name": "Echinopsis spachiana",
+    "dutch_names": [],
+    "select_label": "Torch Cactus (Echinopsis spachiana)",
     "aliases": [
       "Echinopsis spachiana",
       "Torch Cactus"
@@ -380,6 +441,8 @@
     "id": "fishhook-barrel-cactus-ferocactus-wislizeni",
     "display_name": "Fishhook Barrel Cactus",
     "scientific_name": "Ferocactus wislizeni",
+    "dutch_names": [],
+    "select_label": "Fishhook Barrel Cactus (Ferocactus wislizeni)",
     "aliases": [
       "Ferocactus wislizeni",
       "Fishhook Barrel Cactus"
@@ -393,9 +456,14 @@
     "id": "snake-plant-dracaena-trifasciata",
     "display_name": "Snake Plant",
     "scientific_name": "Dracaena trifasciata",
+    "dutch_names": [
+      "Vrouwentong"
+    ],
+    "select_label": "Snake Plant / Vrouwentong (Dracaena trifasciata)",
     "aliases": [
       "Dracaena trifasciata",
-      "Snake Plant"
+      "Snake Plant",
+      "Vrouwentong"
     ],
     "profile": "drought_tolerant",
     "dry_threshold": 12,
@@ -406,6 +474,8 @@
     "id": "cylindrical-snake-plant-dracaena-cylindrica",
     "display_name": "Cylindrical Snake Plant",
     "scientific_name": "Dracaena cylindrica",
+    "dutch_names": [],
+    "select_label": "Cylindrical Snake Plant (Dracaena cylindrica)",
     "aliases": [
       "Cylindrical Snake Plant",
       "Dracaena cylindrica"
@@ -419,7 +489,12 @@
     "id": "zz-plant-zamioculcas-zamiifolia",
     "display_name": "ZZ Plant",
     "scientific_name": "Zamioculcas zamiifolia",
+    "dutch_names": [
+      "Geluksplant"
+    ],
+    "select_label": "ZZ Plant / Geluksplant (Zamioculcas zamiifolia)",
     "aliases": [
+      "Geluksplant",
       "ZZ Plant",
       "Zamioculcas zamiifolia"
     ],
@@ -432,8 +507,15 @@
     "id": "ponytail-palm-beaucarnea-recurvata",
     "display_name": "Ponytail Palm",
     "scientific_name": "Beaucarnea recurvata",
+    "dutch_names": [
+      "Olifantspoot",
+      "Paardenstaart"
+    ],
+    "select_label": "Ponytail Palm / Olifantspoot (Beaucarnea recurvata)",
     "aliases": [
       "Beaucarnea recurvata",
+      "Olifantspoot",
+      "Paardenstaart",
       "Ponytail Palm"
     ],
     "profile": "drought_tolerant",
@@ -445,7 +527,12 @@
     "id": "yucca-cane-yucca-elephantipes",
     "display_name": "Yucca Cane",
     "scientific_name": "Yucca elephantipes",
+    "dutch_names": [
+      "Palmlelie"
+    ],
+    "select_label": "Yucca Cane / Palmlelie (Yucca elephantipes)",
     "aliases": [
+      "Palmlelie",
       "Yucca Cane",
       "Yucca elephantipes"
     ],
@@ -458,6 +545,8 @@
     "id": "sago-palm-cycas-revoluta",
     "display_name": "Sago Palm",
     "scientific_name": "Cycas revoluta",
+    "dutch_names": [],
+    "select_label": "Sago Palm (Cycas revoluta)",
     "aliases": [
       "Cycas revoluta",
       "Sago Palm"
@@ -471,9 +560,14 @@
     "id": "cast-iron-plant-aspidistra-elatior",
     "display_name": "Cast Iron Plant",
     "scientific_name": "Aspidistra elatior",
+    "dutch_names": [
+      "IJzeren Plant"
+    ],
+    "select_label": "Cast Iron Plant / IJzeren Plant (Aspidistra elatior)",
     "aliases": [
       "Aspidistra elatior",
-      "Cast Iron Plant"
+      "Cast Iron Plant",
+      "IJzeren Plant"
     ],
     "profile": "drought_tolerant",
     "dry_threshold": 12,
@@ -484,9 +578,14 @@
     "id": "aloe-vera-aloe-vera",
     "display_name": "Aloe Vera",
     "scientific_name": "Aloe vera",
+    "dutch_names": [
+      "Echte Aloë"
+    ],
+    "select_label": "Aloe Vera / Echte Aloë (Aloe vera)",
     "aliases": [
       "Aloe Vera",
-      "Aloe vera"
+      "Aloe vera",
+      "Echte Aloë"
     ],
     "profile": "drought_tolerant",
     "dry_threshold": 12,
@@ -497,6 +596,8 @@
     "id": "lace-aloe-aristaloe-aristata",
     "display_name": "Lace Aloe",
     "scientific_name": "Aristaloe aristata",
+    "dutch_names": [],
+    "select_label": "Lace Aloe (Aristaloe aristata)",
     "aliases": [
       "Aristaloe aristata",
       "Lace Aloe"
@@ -510,6 +611,8 @@
     "id": "agave-agave-americana",
     "display_name": "Agave",
     "scientific_name": "Agave americana",
+    "dutch_names": [],
+    "select_label": "Agave (Agave americana)",
     "aliases": [
       "Agave",
       "Agave americana"
@@ -523,7 +626,12 @@
     "id": "monstera-monstera-deliciosa",
     "display_name": "Monstera",
     "scientific_name": "Monstera deliciosa",
+    "dutch_names": [
+      "Gatenplant"
+    ],
+    "select_label": "Monstera / Gatenplant (Monstera deliciosa)",
     "aliases": [
+      "Gatenplant",
       "Monstera",
       "Monstera deliciosa"
     ],
@@ -536,7 +644,12 @@
     "id": "swiss-cheese-vine-monstera-adansonii",
     "display_name": "Swiss Cheese Vine",
     "scientific_name": "Monstera adansonii",
+    "dutch_names": [
+      "Klimmende Gatenplant"
+    ],
+    "select_label": "Swiss Cheese Vine / Klimmende Gatenplant (Monstera adansonii)",
     "aliases": [
+      "Klimmende Gatenplant",
       "Monstera adansonii",
       "Swiss Cheese Vine"
     ],
@@ -549,6 +662,8 @@
     "id": "mini-monstera-rhaphidophora-tetrasperma",
     "display_name": "Mini Monstera",
     "scientific_name": "Rhaphidophora tetrasperma",
+    "dutch_names": [],
+    "select_label": "Mini Monstera (Rhaphidophora tetrasperma)",
     "aliases": [
       "Mini Monstera",
       "Rhaphidophora tetrasperma"
@@ -562,6 +677,8 @@
     "id": "golden-pothos-epipremnum-aureum",
     "display_name": "Golden Pothos",
     "scientific_name": "Epipremnum aureum",
+    "dutch_names": [],
+    "select_label": "Golden Pothos (Epipremnum aureum)",
     "aliases": [
       "Epipremnum aureum",
       "Golden Pothos"
@@ -575,6 +692,8 @@
     "id": "marble-queen-pothos-epipremnum-aureum-marble-queen",
     "display_name": "Marble Queen Pothos",
     "scientific_name": "Epipremnum aureum 'Marble Queen'",
+    "dutch_names": [],
+    "select_label": "Marble Queen Pothos (Epipremnum aureum 'Marble Queen')",
     "aliases": [
       "Epipremnum aureum 'Marble Queen'",
       "Marble Queen Pothos"
@@ -588,6 +707,8 @@
     "id": "satin-pothos-scindapsus-pictus",
     "display_name": "Satin Pothos",
     "scientific_name": "Scindapsus pictus",
+    "dutch_names": [],
+    "select_label": "Satin Pothos (Scindapsus pictus)",
     "aliases": [
       "Satin Pothos",
       "Scindapsus pictus"
@@ -601,6 +722,8 @@
     "id": "heartleaf-philodendron-philodendron-hederaceum",
     "display_name": "Heartleaf Philodendron",
     "scientific_name": "Philodendron hederaceum",
+    "dutch_names": [],
+    "select_label": "Heartleaf Philodendron (Philodendron hederaceum)",
     "aliases": [
       "Heartleaf Philodendron",
       "Philodendron hederaceum"
@@ -614,6 +737,8 @@
     "id": "split-leaf-philodendron-philodendron-bipinnatifidum",
     "display_name": "Split-Leaf Philodendron",
     "scientific_name": "Philodendron bipinnatifidum",
+    "dutch_names": [],
+    "select_label": "Split-Leaf Philodendron (Philodendron bipinnatifidum)",
     "aliases": [
       "Philodendron bipinnatifidum",
       "Split-Leaf Philodendron"
@@ -627,6 +752,8 @@
     "id": "philodendron-birkin-philodendron-birkin",
     "display_name": "Philodendron Birkin",
     "scientific_name": "Philodendron 'Birkin'",
+    "dutch_names": [],
+    "select_label": "Philodendron Birkin (Philodendron 'Birkin')",
     "aliases": [
       "Philodendron 'Birkin'",
       "Philodendron Birkin"
@@ -640,6 +767,8 @@
     "id": "pink-princess-philodendron-philodendron-erubescens-pink-princess",
     "display_name": "Pink Princess Philodendron",
     "scientific_name": "Philodendron erubescens 'Pink Princess'",
+    "dutch_names": [],
+    "select_label": "Pink Princess Philodendron (Philodendron erubescens 'Pink Princess')",
     "aliases": [
       "Philodendron erubescens 'Pink Princess'",
       "Pink Princess Philodendron"
@@ -653,6 +782,8 @@
     "id": "philodendron-xanadu-thaumatophyllum-xanadu",
     "display_name": "Philodendron Xanadu",
     "scientific_name": "Thaumatophyllum xanadu",
+    "dutch_names": [],
+    "select_label": "Philodendron Xanadu (Thaumatophyllum xanadu)",
     "aliases": [
       "Philodendron Xanadu",
       "Thaumatophyllum xanadu"
@@ -666,6 +797,8 @@
     "id": "arrowhead-plant-syngonium-podophyllum",
     "display_name": "Arrowhead Plant",
     "scientific_name": "Syngonium podophyllum",
+    "dutch_names": [],
+    "select_label": "Arrowhead Plant (Syngonium podophyllum)",
     "aliases": [
       "Arrowhead Plant",
       "Syngonium podophyllum"
@@ -679,9 +812,14 @@
     "id": "dragon-tree-dracaena-marginata",
     "display_name": "Dragon Tree",
     "scientific_name": "Dracaena marginata",
+    "dutch_names": [
+      "Drakenbloedboom"
+    ],
+    "select_label": "Dragon Tree / Drakenbloedboom (Dracaena marginata)",
     "aliases": [
       "Dracaena marginata",
-      "Dragon Tree"
+      "Dragon Tree",
+      "Drakenbloedboom"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -692,9 +830,14 @@
     "id": "corn-plant-dracaena-fragrans",
     "display_name": "Corn Plant",
     "scientific_name": "Dracaena fragrans",
+    "dutch_names": [
+      "Drakenbloedboom"
+    ],
+    "select_label": "Corn Plant / Drakenbloedboom (Dracaena fragrans)",
     "aliases": [
       "Corn Plant",
-      "Dracaena fragrans"
+      "Dracaena fragrans",
+      "Drakenbloedboom"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -705,8 +848,13 @@
     "id": "song-of-india-dracaena-reflexa",
     "display_name": "Song of India",
     "scientific_name": "Dracaena reflexa",
+    "dutch_names": [
+      "Drakenbloedboom"
+    ],
+    "select_label": "Song of India / Drakenbloedboom (Dracaena reflexa)",
     "aliases": [
       "Dracaena reflexa",
+      "Drakenbloedboom",
       "Song of India"
     ],
     "profile": "standard",
@@ -718,9 +866,14 @@
     "id": "rubber-plant-ficus-elastica",
     "display_name": "Rubber Plant",
     "scientific_name": "Ficus elastica",
+    "dutch_names": [
+      "Rubberplant"
+    ],
+    "select_label": "Rubber Plant / Rubberplant (Ficus elastica)",
     "aliases": [
       "Ficus elastica",
-      "Rubber Plant"
+      "Rubber Plant",
+      "Rubberplant"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -731,9 +884,16 @@
     "id": "fiddle-leaf-fig-ficus-lyrata",
     "display_name": "Fiddle Leaf Fig",
     "scientific_name": "Ficus lyrata",
+    "dutch_names": [
+      "Vioolbladplant",
+      "Vioolplant"
+    ],
+    "select_label": "Fiddle Leaf Fig / Vioolbladplant (Ficus lyrata)",
     "aliases": [
       "Ficus lyrata",
-      "Fiddle Leaf Fig"
+      "Fiddle Leaf Fig",
+      "Vioolbladplant",
+      "Vioolplant"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -744,8 +904,13 @@
     "id": "weeping-fig-ficus-benjamina",
     "display_name": "Weeping Fig",
     "scientific_name": "Ficus benjamina",
+    "dutch_names": [
+      "Treurvijg"
+    ],
+    "select_label": "Weeping Fig / Treurvijg (Ficus benjamina)",
     "aliases": [
       "Ficus benjamina",
+      "Treurvijg",
       "Weeping Fig"
     ],
     "profile": "standard",
@@ -757,6 +922,8 @@
     "id": "audrey-ficus-ficus-benghalensis",
     "display_name": "Audrey Ficus",
     "scientific_name": "Ficus benghalensis",
+    "dutch_names": [],
+    "select_label": "Audrey Ficus (Ficus benghalensis)",
     "aliases": [
       "Audrey Ficus",
       "Ficus benghalensis"
@@ -770,9 +937,16 @@
     "id": "umbrella-tree-schefflera-arboricola",
     "display_name": "Umbrella Tree",
     "scientific_name": "Schefflera arboricola",
+    "dutch_names": [
+      "Parapluplantje",
+      "Vingerplant"
+    ],
+    "select_label": "Umbrella Tree / Parapluplantje (Schefflera arboricola)",
     "aliases": [
+      "Parapluplantje",
       "Schefflera arboricola",
-      "Umbrella Tree"
+      "Umbrella Tree",
+      "Vingerplant"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -783,9 +957,14 @@
     "id": "baby-rubber-plant-peperomia-obtusifolia",
     "display_name": "Baby Rubber Plant",
     "scientific_name": "Peperomia obtusifolia",
+    "dutch_names": [
+      "Vetblad Peperomia"
+    ],
+    "select_label": "Baby Rubber Plant / Vetblad Peperomia (Peperomia obtusifolia)",
     "aliases": [
       "Baby Rubber Plant",
-      "Peperomia obtusifolia"
+      "Peperomia obtusifolia",
+      "Vetblad Peperomia"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -796,6 +975,8 @@
     "id": "emerald-ripple-peperomia-peperomia-caperata",
     "display_name": "Emerald Ripple Peperomia",
     "scientific_name": "Peperomia caperata",
+    "dutch_names": [],
+    "select_label": "Emerald Ripple Peperomia (Peperomia caperata)",
     "aliases": [
       "Emerald Ripple Peperomia",
       "Peperomia caperata"
@@ -809,6 +990,8 @@
     "id": "watermelon-peperomia-peperomia-argyreia",
     "display_name": "Watermelon Peperomia",
     "scientific_name": "Peperomia argyreia",
+    "dutch_names": [],
+    "select_label": "Watermelon Peperomia (Peperomia argyreia)",
     "aliases": [
       "Peperomia argyreia",
       "Watermelon Peperomia"
@@ -822,8 +1005,15 @@
     "id": "wax-plant-hoya-carnosa",
     "display_name": "Wax Plant",
     "scientific_name": "Hoya carnosa",
+    "dutch_names": [
+      "Wasbloem",
+      "Hoya"
+    ],
+    "select_label": "Wax Plant / Wasbloem (Hoya carnosa)",
     "aliases": [
+      "Hoya",
       "Hoya carnosa",
+      "Wasbloem",
       "Wax Plant"
     ],
     "profile": "standard",
@@ -835,6 +1025,8 @@
     "id": "sweetheart-hoya-hoya-kerrii",
     "display_name": "Sweetheart Hoya",
     "scientific_name": "Hoya kerrii",
+    "dutch_names": [],
+    "select_label": "Sweetheart Hoya (Hoya kerrii)",
     "aliases": [
       "Hoya kerrii",
       "Sweetheart Hoya"
@@ -848,9 +1040,16 @@
     "id": "spider-plant-chlorophytum-comosum",
     "display_name": "Spider Plant",
     "scientific_name": "Chlorophytum comosum",
+    "dutch_names": [
+      "Graslelie",
+      "Spinnenplant"
+    ],
+    "select_label": "Spider Plant / Graslelie (Chlorophytum comosum)",
     "aliases": [
       "Chlorophytum comosum",
-      "Spider Plant"
+      "Graslelie",
+      "Spider Plant",
+      "Spinnenplant"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -861,6 +1060,8 @@
     "id": "wandering-jew-tradescantia-zebrina",
     "display_name": "Wandering Jew",
     "scientific_name": "Tradescantia zebrina",
+    "dutch_names": [],
+    "select_label": "Wandering Jew (Tradescantia zebrina)",
     "aliases": [
       "Tradescantia zebrina",
       "Wandering Jew"
@@ -874,6 +1075,8 @@
     "id": "inch-plant-tradescantia-fluminensis",
     "display_name": "Inch Plant",
     "scientific_name": "Tradescantia fluminensis",
+    "dutch_names": [],
+    "select_label": "Inch Plant (Tradescantia fluminensis)",
     "aliases": [
       "Inch Plant",
       "Tradescantia fluminensis"
@@ -887,8 +1090,19 @@
     "id": "chinese-money-plant-pilea-peperomioides",
     "display_name": "Chinese Money Plant",
     "scientific_name": "Pilea peperomioides",
+    "dutch_names": [
+      "Pannenkoekenplant",
+      "Pannenkoekplant",
+      "Pannekoekplant",
+      "Chinese Muntplant"
+    ],
+    "select_label": "Chinese Money Plant / Pannenkoekenplant (Pilea peperomioides)",
     "aliases": [
       "Chinese Money Plant",
+      "Chinese Muntplant",
+      "Pannekoekplant",
+      "Pannenkoekenplant",
+      "Pannenkoekplant",
       "Pilea peperomioides"
     ],
     "profile": "standard",
@@ -900,6 +1114,8 @@
     "id": "aluminum-plant-pilea-cadierei",
     "display_name": "Aluminum Plant",
     "scientific_name": "Pilea cadierei",
+    "dutch_names": [],
+    "select_label": "Aluminum Plant (Pilea cadierei)",
     "aliases": [
       "Aluminum Plant",
       "Pilea cadierei"
@@ -913,6 +1129,8 @@
     "id": "chinese-evergreen-aglaonema-commutatum",
     "display_name": "Chinese Evergreen",
     "scientific_name": "Aglaonema commutatum",
+    "dutch_names": [],
+    "select_label": "Chinese Evergreen (Aglaonema commutatum)",
     "aliases": [
       "Aglaonema commutatum",
       "Chinese Evergreen"
@@ -926,7 +1144,12 @@
     "id": "croton-codiaeum-variegatum",
     "display_name": "Croton",
     "scientific_name": "Codiaeum variegatum",
+    "dutch_names": [
+      "Bonte Codiaeum"
+    ],
+    "select_label": "Croton / Bonte Codiaeum (Codiaeum variegatum)",
     "aliases": [
+      "Bonte Codiaeum",
       "Codiaeum variegatum",
       "Croton"
     ],
@@ -939,6 +1162,8 @@
     "id": "ti-plant-cordyline-fruticosa",
     "display_name": "Ti Plant",
     "scientific_name": "Cordyline fruticosa",
+    "dutch_names": [],
+    "select_label": "Ti Plant (Cordyline fruticosa)",
     "aliases": [
       "Cordyline fruticosa",
       "Ti Plant"
@@ -952,6 +1177,8 @@
     "id": "english-ivy-hedera-helix",
     "display_name": "English Ivy",
     "scientific_name": "Hedera helix",
+    "dutch_names": [],
+    "select_label": "English Ivy (Hedera helix)",
     "aliases": [
       "English Ivy",
       "Hedera helix"
@@ -965,6 +1192,8 @@
     "id": "swedish-ivy-plectranthus-verticillatus",
     "display_name": "Swedish Ivy",
     "scientific_name": "Plectranthus verticillatus",
+    "dutch_names": [],
+    "select_label": "Swedish Ivy (Plectranthus verticillatus)",
     "aliases": [
       "Plectranthus verticillatus",
       "Swedish Ivy"
@@ -978,6 +1207,8 @@
     "id": "fatsia-fatsia-japonica",
     "display_name": "Fatsia",
     "scientific_name": "Fatsia japonica",
+    "dutch_names": [],
+    "select_label": "Fatsia (Fatsia japonica)",
     "aliases": [
       "Fatsia",
       "Fatsia japonica"
@@ -991,6 +1222,8 @@
     "id": "kentia-palm-howea-forsteriana",
     "display_name": "Kentia Palm",
     "scientific_name": "Howea forsteriana",
+    "dutch_names": [],
+    "select_label": "Kentia Palm (Howea forsteriana)",
     "aliases": [
       "Howea forsteriana",
       "Kentia Palm"
@@ -1004,8 +1237,15 @@
     "id": "parlor-palm-chamaedorea-elegans",
     "display_name": "Parlor Palm",
     "scientific_name": "Chamaedorea elegans",
+    "dutch_names": [
+      "Kamerpalm",
+      "Mexicaanse Dwergpalm"
+    ],
+    "select_label": "Parlor Palm / Kamerpalm (Chamaedorea elegans)",
     "aliases": [
       "Chamaedorea elegans",
+      "Kamerpalm",
+      "Mexicaanse Dwergpalm",
       "Parlor Palm"
     ],
     "profile": "standard",
@@ -1017,9 +1257,14 @@
     "id": "areca-palm-dypsis-lutescens",
     "display_name": "Areca Palm",
     "scientific_name": "Dypsis lutescens",
+    "dutch_names": [
+      "Goudpalm"
+    ],
+    "select_label": "Areca Palm / Goudpalm (Dypsis lutescens)",
     "aliases": [
       "Areca Palm",
-      "Dypsis lutescens"
+      "Dypsis lutescens",
+      "Goudpalm"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -1030,6 +1275,8 @@
     "id": "lady-palm-rhapis-excelsa",
     "display_name": "Lady Palm",
     "scientific_name": "Rhapis excelsa",
+    "dutch_names": [],
+    "select_label": "Lady Palm (Rhapis excelsa)",
     "aliases": [
       "Lady Palm",
       "Rhapis excelsa"
@@ -1043,7 +1290,12 @@
     "id": "bamboo-palm-chamaedorea-seifrizii",
     "display_name": "Bamboo Palm",
     "scientific_name": "Chamaedorea seifrizii",
+    "dutch_names": [
+      "Bamboepalm"
+    ],
+    "select_label": "Bamboo Palm / Bamboepalm (Chamaedorea seifrizii)",
     "aliases": [
+      "Bamboepalm",
       "Bamboo Palm",
       "Chamaedorea seifrizii"
     ],
@@ -1056,8 +1308,13 @@
     "id": "poinsettia-euphorbia-pulcherrima",
     "display_name": "Poinsettia",
     "scientific_name": "Euphorbia pulcherrima",
+    "dutch_names": [
+      "Kerstster"
+    ],
+    "select_label": "Poinsettia / Kerstster (Euphorbia pulcherrima)",
     "aliases": [
       "Euphorbia pulcherrima",
+      "Kerstster",
       "Poinsettia"
     ],
     "profile": "standard",
@@ -1069,8 +1326,15 @@
     "id": "christmas-cactus-schlumbergera-truncata",
     "display_name": "Christmas Cactus",
     "scientific_name": "Schlumbergera truncata",
+    "dutch_names": [
+      "Kerstcactus",
+      "Lidcactus"
+    ],
+    "select_label": "Christmas Cactus / Kerstcactus (Schlumbergera truncata)",
     "aliases": [
       "Christmas Cactus",
+      "Kerstcactus",
+      "Lidcactus",
       "Schlumbergera truncata"
     ],
     "profile": "standard",
@@ -1082,7 +1346,12 @@
     "id": "thanksgiving-cactus-schlumbergera-truncata",
     "display_name": "Thanksgiving Cactus",
     "scientific_name": "Schlumbergera truncata",
+    "dutch_names": [
+      "Kerstcactus"
+    ],
+    "select_label": "Thanksgiving Cactus / Kerstcactus (Schlumbergera truncata)",
     "aliases": [
+      "Kerstcactus",
       "Schlumbergera truncata",
       "Thanksgiving Cactus"
     ],
@@ -1095,6 +1364,8 @@
     "id": "norfolk-island-pine-araucaria-heterophylla",
     "display_name": "Norfolk Island Pine",
     "scientific_name": "Araucaria heterophylla",
+    "dutch_names": [],
+    "select_label": "Norfolk Island Pine (Araucaria heterophylla)",
     "aliases": [
       "Araucaria heterophylla",
       "Norfolk Island Pine"
@@ -1108,7 +1379,12 @@
     "id": "money-tree-pachira-aquatica",
     "display_name": "Money Tree",
     "scientific_name": "Pachira aquatica",
+    "dutch_names": [
+      "Malabar Kastanje"
+    ],
+    "select_label": "Money Tree / Malabar Kastanje (Pachira aquatica)",
     "aliases": [
+      "Malabar Kastanje",
       "Money Tree",
       "Pachira aquatica"
     ],
@@ -1121,6 +1397,8 @@
     "id": "ficus-ginseng-bonsai-ficus-microcarpa",
     "display_name": "Ficus Ginseng (Bonsai)",
     "scientific_name": "Ficus microcarpa",
+    "dutch_names": [],
+    "select_label": "Ficus Ginseng (Bonsai) (Ficus microcarpa)",
     "aliases": [
       "Ficus Ginseng (Bonsai)",
       "Ficus microcarpa"
@@ -1134,6 +1412,8 @@
     "id": "polka-dot-begonia-begonia-maculata",
     "display_name": "Polka Dot Begonia",
     "scientific_name": "Begonia maculata",
+    "dutch_names": [],
+    "select_label": "Polka Dot Begonia (Begonia maculata)",
     "aliases": [
       "Begonia maculata",
       "Polka Dot Begonia"
@@ -1147,6 +1427,8 @@
     "id": "rex-begonia-vine-cissus-discolor",
     "display_name": "Rex Begonia Vine",
     "scientific_name": "Cissus discolor",
+    "dutch_names": [],
+    "select_label": "Rex Begonia Vine (Cissus discolor)",
     "aliases": [
       "Cissus discolor",
       "Rex Begonia Vine"
@@ -1160,6 +1442,8 @@
     "id": "angel-wing-begonia-begonia-coccinea",
     "display_name": "Angel Wing Begonia",
     "scientific_name": "Begonia coccinea",
+    "dutch_names": [],
+    "select_label": "Angel Wing Begonia (Begonia coccinea)",
     "aliases": [
       "Angel Wing Begonia",
       "Begonia coccinea"
@@ -1173,9 +1457,14 @@
     "id": "dumb-cane-dieffenbachia-seguine",
     "display_name": "Dumb Cane",
     "scientific_name": "Dieffenbachia seguine",
+    "dutch_names": [
+      "Hondsoor"
+    ],
+    "select_label": "Dumb Cane / Hondsoor (Dieffenbachia seguine)",
     "aliases": [
       "Dieffenbachia seguine",
-      "Dumb Cane"
+      "Dumb Cane",
+      "Hondsoor"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -1186,9 +1475,14 @@
     "id": "silver-squill-ledebouria-socialis",
     "display_name": "Silver Squill",
     "scientific_name": "Ledebouria socialis",
+    "dutch_names": [
+      "Zilveruitje"
+    ],
+    "select_label": "Silver Squill / Zilveruitje (Ledebouria socialis)",
     "aliases": [
       "Ledebouria socialis",
-      "Silver Squill"
+      "Silver Squill",
+      "Zilveruitje"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -1199,9 +1493,14 @@
     "id": "coffee-plant-coffea-arabica",
     "display_name": "Coffee Plant",
     "scientific_name": "Coffea arabica",
+    "dutch_names": [
+      "Koffieplant"
+    ],
+    "select_label": "Coffee Plant / Koffieplant (Coffea arabica)",
     "aliases": [
       "Coffea arabica",
-      "Coffee Plant"
+      "Coffee Plant",
+      "Koffieplant"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -1212,6 +1511,8 @@
     "id": "bird-s-nest-sansevieria-dracaena-hahnii",
     "display_name": "Bird's Nest Sansevieria",
     "scientific_name": "Dracaena hahnii",
+    "dutch_names": [],
+    "select_label": "Bird's Nest Sansevieria (Dracaena hahnii)",
     "aliases": [
       "Bird's Nest Sansevieria",
       "Dracaena hahnii"
@@ -1225,6 +1526,8 @@
     "id": "rattlesnake-plant-vine-nepenthes-alata-tropical-pitcher",
     "display_name": "Rattlesnake Plant Vine",
     "scientific_name": "Nepenthes alata (tropical pitcher)",
+    "dutch_names": [],
+    "select_label": "Rattlesnake Plant Vine (Nepenthes alata (tropical pitcher))",
     "aliases": [
       "Nepenthes alata (tropical pitcher)",
       "Rattlesnake Plant Vine"
@@ -1238,9 +1541,16 @@
     "id": "moth-orchid-phalaenopsis-spp",
     "display_name": "Moth Orchid",
     "scientific_name": "Phalaenopsis spp.",
+    "dutch_names": [
+      "Vlinderorchidee",
+      "Orchidee"
+    ],
+    "select_label": "Moth Orchid / Vlinderorchidee (Phalaenopsis spp.)",
     "aliases": [
       "Moth Orchid",
-      "Phalaenopsis spp."
+      "Orchidee",
+      "Phalaenopsis spp.",
+      "Vlinderorchidee"
     ],
     "profile": "epiphytic",
     "dry_threshold": 15,
@@ -1251,6 +1561,8 @@
     "id": "dendrobium-orchid-dendrobium-spp",
     "display_name": "Dendrobium Orchid",
     "scientific_name": "Dendrobium spp.",
+    "dutch_names": [],
+    "select_label": "Dendrobium Orchid (Dendrobium spp.)",
     "aliases": [
       "Dendrobium Orchid",
       "Dendrobium spp."
@@ -1264,6 +1576,8 @@
     "id": "cattleya-orchid-cattleya-spp",
     "display_name": "Cattleya Orchid",
     "scientific_name": "Cattleya spp.",
+    "dutch_names": [],
+    "select_label": "Cattleya Orchid (Cattleya spp.)",
     "aliases": [
       "Cattleya Orchid",
       "Cattleya spp."
@@ -1277,6 +1591,8 @@
     "id": "oncidium-orchid-oncidium-spp",
     "display_name": "Oncidium Orchid",
     "scientific_name": "Oncidium spp.",
+    "dutch_names": [],
+    "select_label": "Oncidium Orchid (Oncidium spp.)",
     "aliases": [
       "Oncidium Orchid",
       "Oncidium spp."
@@ -1290,7 +1606,12 @@
     "id": "staghorn-fern-platycerium-bifurcatum",
     "display_name": "Staghorn Fern",
     "scientific_name": "Platycerium bifurcatum",
+    "dutch_names": [
+      "Hertshoornvaren"
+    ],
+    "select_label": "Staghorn Fern / Hertshoornvaren (Platycerium bifurcatum)",
     "aliases": [
+      "Hertshoornvaren",
       "Platycerium bifurcatum",
       "Staghorn Fern"
     ],
@@ -1303,9 +1624,18 @@
     "id": "peace-lily-spathiphyllum-wallisii",
     "display_name": "Peace Lily",
     "scientific_name": "Spathiphyllum wallisii",
+    "dutch_names": [
+      "Lepelplant",
+      "Vaantjesplant",
+      "Vredeslelie"
+    ],
+    "select_label": "Peace Lily / Lepelplant (Spathiphyllum wallisii)",
     "aliases": [
+      "Lepelplant",
       "Peace Lily",
-      "Spathiphyllum wallisii"
+      "Spathiphyllum wallisii",
+      "Vaantjesplant",
+      "Vredeslelie"
     ],
     "profile": "moisture_loving",
     "dry_threshold": 30,
@@ -1316,6 +1646,8 @@
     "id": "prayer-plant-maranta-leuconeura",
     "display_name": "Prayer Plant",
     "scientific_name": "Maranta leuconeura",
+    "dutch_names": [],
+    "select_label": "Prayer Plant (Maranta leuconeura)",
     "aliases": [
       "Maranta leuconeura",
       "Prayer Plant"
@@ -1329,6 +1661,8 @@
     "id": "rattlesnake-plant-calathea-lancifolia",
     "display_name": "Rattlesnake Plant",
     "scientific_name": "Calathea lancifolia",
+    "dutch_names": [],
+    "select_label": "Rattlesnake Plant (Calathea lancifolia)",
     "aliases": [
       "Calathea lancifolia",
       "Rattlesnake Plant"
@@ -1342,6 +1676,8 @@
     "id": "peacock-plant-calathea-makoyana",
     "display_name": "Peacock Plant",
     "scientific_name": "Calathea makoyana",
+    "dutch_names": [],
+    "select_label": "Peacock Plant (Calathea makoyana)",
     "aliases": [
       "Calathea makoyana",
       "Peacock Plant"
@@ -1355,6 +1691,8 @@
     "id": "calathea-medallion-calathea-roseopicta",
     "display_name": "Calathea Medallion",
     "scientific_name": "Calathea roseopicta",
+    "dutch_names": [],
+    "select_label": "Calathea Medallion (Calathea roseopicta)",
     "aliases": [
       "Calathea Medallion",
       "Calathea roseopicta"
@@ -1368,6 +1706,8 @@
     "id": "calathea-orbifolia-calathea-orbifolia",
     "display_name": "Calathea Orbifolia",
     "scientific_name": "Calathea orbifolia",
+    "dutch_names": [],
+    "select_label": "Calathea Orbifolia (Calathea orbifolia)",
     "aliases": [
       "Calathea Orbifolia",
       "Calathea orbifolia"
@@ -1381,6 +1721,8 @@
     "id": "fishbone-prayer-plant-ctenanthe-burle-marxii",
     "display_name": "Fishbone Prayer Plant",
     "scientific_name": "Ctenanthe burle-marxii",
+    "dutch_names": [],
+    "select_label": "Fishbone Prayer Plant (Ctenanthe burle-marxii)",
     "aliases": [
       "Ctenanthe burle-marxii",
       "Fishbone Prayer Plant"
@@ -1394,6 +1736,8 @@
     "id": "never-never-plant-ctenanthe-oppenheimiana",
     "display_name": "Never-Never Plant",
     "scientific_name": "Ctenanthe oppenheimiana",
+    "dutch_names": [],
+    "select_label": "Never-Never Plant (Ctenanthe oppenheimiana)",
     "aliases": [
       "Ctenanthe oppenheimiana",
       "Never-Never Plant"
@@ -1407,8 +1751,13 @@
     "id": "nerve-plant-fittonia-albivenis",
     "display_name": "Nerve Plant",
     "scientific_name": "Fittonia albivenis",
+    "dutch_names": [
+      "Mozaïekplant"
+    ],
+    "select_label": "Nerve Plant / Mozaïekplant (Fittonia albivenis)",
     "aliases": [
       "Fittonia albivenis",
+      "Mozaïekplant",
       "Nerve Plant"
     ],
     "profile": "moisture_loving",
@@ -1420,9 +1769,14 @@
     "id": "african-mask-plant-alocasia-amazonica",
     "display_name": "African Mask Plant",
     "scientific_name": "Alocasia amazonica",
+    "dutch_names": [
+      "Olifantsoor"
+    ],
+    "select_label": "African Mask Plant / Olifantsoor (Alocasia amazonica)",
     "aliases": [
       "African Mask Plant",
-      "Alocasia amazonica"
+      "Alocasia amazonica",
+      "Olifantsoor"
     ],
     "profile": "moisture_loving",
     "dry_threshold": 30,
@@ -1433,9 +1787,14 @@
     "id": "elephant-ear-colocasia-esculenta",
     "display_name": "Elephant Ear",
     "scientific_name": "Colocasia esculenta",
+    "dutch_names": [
+      "Olifantsoor"
+    ],
+    "select_label": "Elephant Ear / Olifantsoor (Colocasia esculenta)",
     "aliases": [
       "Colocasia esculenta",
-      "Elephant Ear"
+      "Elephant Ear",
+      "Olifantsoor"
     ],
     "profile": "moisture_loving",
     "dry_threshold": 30,
@@ -1446,9 +1805,14 @@
     "id": "flamingo-flower-anthurium-andraeanum",
     "display_name": "Flamingo Flower",
     "scientific_name": "Anthurium andraeanum",
+    "dutch_names": [
+      "Flamingoplant"
+    ],
+    "select_label": "Flamingo Flower / Flamingoplant (Anthurium andraeanum)",
     "aliases": [
       "Anthurium andraeanum",
-      "Flamingo Flower"
+      "Flamingo Flower",
+      "Flamingoplant"
     ],
     "profile": "moisture_loving",
     "dry_threshold": 30,
@@ -1459,6 +1823,8 @@
     "id": "rex-begonia-begonia-rex",
     "display_name": "Rex Begonia",
     "scientific_name": "Begonia rex",
+    "dutch_names": [],
+    "select_label": "Rex Begonia (Begonia rex)",
     "aliases": [
       "Begonia rex",
       "Rex Begonia"
@@ -1472,9 +1838,14 @@
     "id": "boston-fern-nephrolepis-exaltata",
     "display_name": "Boston Fern",
     "scientific_name": "Nephrolepis exaltata",
+    "dutch_names": [
+      "Zwaardvaren"
+    ],
+    "select_label": "Boston Fern / Zwaardvaren (Nephrolepis exaltata)",
     "aliases": [
       "Boston Fern",
-      "Nephrolepis exaltata"
+      "Nephrolepis exaltata",
+      "Zwaardvaren"
     ],
     "profile": "moisture_loving",
     "dry_threshold": 30,
@@ -1485,6 +1856,8 @@
     "id": "maidenhair-fern-adiantum-raddianum",
     "display_name": "Maidenhair Fern",
     "scientific_name": "Adiantum raddianum",
+    "dutch_names": [],
+    "select_label": "Maidenhair Fern (Adiantum raddianum)",
     "aliases": [
       "Adiantum raddianum",
       "Maidenhair Fern"
@@ -1498,9 +1871,14 @@
     "id": "bird-s-nest-fern-asplenium-nidus",
     "display_name": "Bird's Nest Fern",
     "scientific_name": "Asplenium nidus",
+    "dutch_names": [
+      "Vogelnestvaren"
+    ],
+    "select_label": "Bird's Nest Fern / Vogelnestvaren (Asplenium nidus)",
     "aliases": [
       "Asplenium nidus",
-      "Bird's Nest Fern"
+      "Bird's Nest Fern",
+      "Vogelnestvaren"
     ],
     "profile": "moisture_loving",
     "dry_threshold": 30,
@@ -1511,8 +1889,15 @@
     "id": "wijze-varen-bird-s-nest-fern-asplenium-antiquum",
     "display_name": "Wijze Varen (Bird's Nest Fern)",
     "scientific_name": "Asplenium antiquum",
+    "dutch_names": [
+      "Wijze Varen",
+      "Vogelnestvaren"
+    ],
+    "select_label": "Wijze Varen (Bird's Nest Fern) / Wijze Varen (Asplenium antiquum)",
     "aliases": [
       "Asplenium antiquum",
+      "Vogelnestvaren",
+      "Wijze Varen",
       "Wijze Varen (Bird's Nest Fern)"
     ],
     "profile": "moisture_loving",
@@ -1524,6 +1909,8 @@
     "id": "table-fern-pteris-cretica",
     "display_name": "Table Fern",
     "scientific_name": "Pteris cretica",
+    "dutch_names": [],
+    "select_label": "Table Fern (Pteris cretica)",
     "aliases": [
       "Pteris cretica",
       "Table Fern"
@@ -1537,9 +1924,16 @@
     "id": "baby-s-tears-soleirolia-soleirolii",
     "display_name": "Baby's Tears",
     "scientific_name": "Soleirolia soleirolii",
+    "dutch_names": [
+      "Helxine",
+      "Sterremos"
+    ],
+    "select_label": "Baby's Tears / Helxine (Soleirolia soleirolii)",
     "aliases": [
       "Baby's Tears",
-      "Soleirolia soleirolii"
+      "Helxine",
+      "Soleirolia soleirolii",
+      "Sterremos"
     ],
     "profile": "moisture_loving",
     "dry_threshold": 30,
@@ -1550,6 +1944,8 @@
     "id": "spikemoss-selaginella-kraussiana",
     "display_name": "Spikemoss",
     "scientific_name": "Selaginella kraussiana",
+    "dutch_names": [],
+    "select_label": "Spikemoss (Selaginella kraussiana)",
     "aliases": [
       "Selaginella kraussiana",
       "Spikemoss"
@@ -1563,8 +1959,13 @@
     "id": "african-violet-saintpaulia-ionantha",
     "display_name": "African Violet",
     "scientific_name": "Saintpaulia ionantha",
+    "dutch_names": [
+      "Kaaps Viooltje"
+    ],
+    "select_label": "African Violet / Kaaps Viooltje (Saintpaulia ionantha)",
     "aliases": [
       "African Violet",
+      "Kaaps Viooltje",
       "Saintpaulia ionantha"
     ],
     "profile": "moisture_loving",
@@ -1576,6 +1977,8 @@
     "id": "cape-primrose-streptocarpus-spp",
     "display_name": "Cape Primrose",
     "scientific_name": "Streptocarpus spp.",
+    "dutch_names": [],
+    "select_label": "Cape Primrose (Streptocarpus spp.)",
     "aliases": [
       "Cape Primrose",
       "Streptocarpus spp."
@@ -1589,6 +1992,8 @@
     "id": "cyclamen-cyclamen-persicum",
     "display_name": "Cyclamen",
     "scientific_name": "Cyclamen persicum",
+    "dutch_names": [],
+    "select_label": "Cyclamen (Cyclamen persicum)",
     "aliases": [
       "Cyclamen",
       "Cyclamen persicum"
@@ -1602,6 +2007,8 @@
     "id": "primrose-primula-vulgaris",
     "display_name": "Primrose",
     "scientific_name": "Primula vulgaris",
+    "dutch_names": [],
+    "select_label": "Primrose (Primula vulgaris)",
     "aliases": [
       "Primrose",
       "Primula vulgaris"
@@ -1615,6 +2022,8 @@
     "id": "caladium-caladium-bicolor",
     "display_name": "Caladium",
     "scientific_name": "Caladium bicolor",
+    "dutch_names": [],
+    "select_label": "Caladium (Caladium bicolor)",
     "aliases": [
       "Caladium",
       "Caladium bicolor"
@@ -1628,6 +2037,8 @@
     "id": "guzmania-bromeliad-guzmania-lingulata",
     "display_name": "Guzmania Bromeliad",
     "scientific_name": "Guzmania lingulata",
+    "dutch_names": [],
+    "select_label": "Guzmania Bromeliad (Guzmania lingulata)",
     "aliases": [
       "Guzmania Bromeliad",
       "Guzmania lingulata"
@@ -1641,6 +2052,8 @@
     "id": "vriesea-bromeliad-vriesea-splendens",
     "display_name": "Vriesea Bromeliad",
     "scientific_name": "Vriesea splendens",
+    "dutch_names": [],
+    "select_label": "Vriesea Bromeliad (Vriesea splendens)",
     "aliases": [
       "Vriesea Bromeliad",
       "Vriesea splendens"
@@ -1654,6 +2067,8 @@
     "id": "aechmea-bromeliad-aechmea-fasciata",
     "display_name": "Aechmea Bromeliad",
     "scientific_name": "Aechmea fasciata",
+    "dutch_names": [],
+    "select_label": "Aechmea Bromeliad (Aechmea fasciata)",
     "aliases": [
       "Aechmea Bromeliad",
       "Aechmea fasciata"
@@ -1667,6 +2082,8 @@
     "id": "azalea-potted-rhododendron-simsii",
     "display_name": "Azalea (potted)",
     "scientific_name": "Rhododendron simsii",
+    "dutch_names": [],
+    "select_label": "Azalea (potted) (Rhododendron simsii)",
     "aliases": [
       "Azalea (potted)",
       "Rhododendron simsii"
@@ -1680,6 +2097,8 @@
     "id": "hydrangea-potted-hydrangea-macrophylla",
     "display_name": "Hydrangea (potted)",
     "scientific_name": "Hydrangea macrophylla",
+    "dutch_names": [],
+    "select_label": "Hydrangea (potted) (Hydrangea macrophylla)",
     "aliases": [
       "Hydrangea (potted)",
       "Hydrangea macrophylla"
@@ -1693,6 +2112,8 @@
     "id": "paradijsvogel-wijze-varen-bundle-name-strelitzia-reginae",
     "display_name": "Paradijsvogel (Wijze Varen bundle name)",
     "scientific_name": "Strelitzia reginae",
+    "dutch_names": [],
+    "select_label": "Paradijsvogel (Wijze Varen bundle name) (Strelitzia reginae)",
     "aliases": [
       "Paradijsvogel (Wijze Varen bundle name)",
       "Strelitzia reginae"
@@ -1706,8 +2127,15 @@
     "id": "bird-of-paradise-strelitzia-reginae",
     "display_name": "Bird of Paradise",
     "scientific_name": "Strelitzia reginae",
+    "dutch_names": [
+      "Paradijsvogel",
+      "Paradijsvogelbloem"
+    ],
+    "select_label": "Bird of Paradise / Paradijsvogel (Strelitzia reginae)",
     "aliases": [
       "Bird of Paradise",
+      "Paradijsvogel",
+      "Paradijsvogelbloem",
       "Strelitzia reginae"
     ],
     "profile": "drought_tolerant",
@@ -1719,8 +2147,13 @@
     "id": "umbrella-papyrus-cyperus-alternifolius",
     "display_name": "Umbrella Papyrus",
     "scientific_name": "Cyperus alternifolius",
+    "dutch_names": [
+      "Papyrusplant"
+    ],
+    "select_label": "Umbrella Papyrus / Papyrusplant (Cyperus alternifolius)",
     "aliases": [
       "Cyperus alternifolius",
+      "Papyrusplant",
       "Umbrella Papyrus"
     ],
     "profile": "high_moisture",
@@ -1732,6 +2165,8 @@
     "id": "venus-flytrap-dionaea-muscipula",
     "display_name": "Venus Flytrap",
     "scientific_name": "Dionaea muscipula",
+    "dutch_names": [],
+    "select_label": "Venus Flytrap (Dionaea muscipula)",
     "aliases": [
       "Dionaea muscipula",
       "Venus Flytrap"
@@ -1745,6 +2180,8 @@
     "id": "pitcher-plant-sarracenia-spp",
     "display_name": "Pitcher Plant",
     "scientific_name": "Sarracenia spp.",
+    "dutch_names": [],
+    "select_label": "Pitcher Plant (Sarracenia spp.)",
     "aliases": [
       "Pitcher Plant",
       "Sarracenia spp."
@@ -1758,6 +2195,8 @@
     "id": "sundew-drosera-capensis",
     "display_name": "Sundew",
     "scientific_name": "Drosera capensis",
+    "dutch_names": [],
+    "select_label": "Sundew (Drosera capensis)",
     "aliases": [
       "Drosera capensis",
       "Sundew"
@@ -1771,7 +2210,12 @@
     "id": "calla-lily-potted-zantedeschia-aethiopica",
     "display_name": "Calla Lily (potted)",
     "scientific_name": "Zantedeschia aethiopica",
+    "dutch_names": [
+      "Aronskelk"
+    ],
+    "select_label": "Calla Lily (potted) / Aronskelk (Zantedeschia aethiopica)",
     "aliases": [
+      "Aronskelk",
       "Calla Lily (potted)",
       "Zantedeschia aethiopica"
     ],
@@ -1784,6 +2228,8 @@
     "id": "sensitive-plant-mimosa-pudica",
     "display_name": "Sensitive Plant",
     "scientific_name": "Mimosa pudica",
+    "dutch_names": [],
+    "select_label": "Sensitive Plant (Mimosa pudica)",
     "aliases": [
       "Mimosa pudica",
       "Sensitive Plant"
@@ -1797,6 +2243,8 @@
     "id": "mexican-snowball-echeveria-elegans",
     "display_name": "Mexican Snowball",
     "scientific_name": "Echeveria elegans",
+    "dutch_names": [],
+    "select_label": "Mexican Snowball (Echeveria elegans)",
     "aliases": [
       "Echeveria elegans",
       "Mexican Snowball"
@@ -1810,6 +2258,8 @@
     "id": "echeveria-perle-von-nurnberg-echeveria-perle-von-nurnberg",
     "display_name": "Echeveria 'Perle von Nurnberg'",
     "scientific_name": "Echeveria 'Perle von Nurnberg'",
+    "dutch_names": [],
+    "select_label": "Echeveria 'Perle von Nurnberg' (Echeveria 'Perle von Nurnberg')",
     "aliases": [
       "Echeveria 'Perle von Nurnberg'"
     ],
@@ -1822,6 +2272,8 @@
     "id": "tree-houseleek-aeonium-arboreum",
     "display_name": "Tree Houseleek",
     "scientific_name": "Aeonium arboreum",
+    "dutch_names": [],
+    "select_label": "Tree Houseleek (Aeonium arboreum)",
     "aliases": [
       "Aeonium arboreum",
       "Tree Houseleek"
@@ -1835,6 +2287,8 @@
     "id": "mother-of-thousands-kalanchoe-daigremontiana",
     "display_name": "Mother of Thousands",
     "scientific_name": "Kalanchoe daigremontiana",
+    "dutch_names": [],
+    "select_label": "Mother of Thousands (Kalanchoe daigremontiana)",
     "aliases": [
       "Kalanchoe daigremontiana",
       "Mother of Thousands"
@@ -1848,6 +2302,8 @@
     "id": "watch-chain-plant-crassula-muscosa",
     "display_name": "Watch Chain Plant",
     "scientific_name": "Crassula muscosa",
+    "dutch_names": [],
+    "select_label": "Watch Chain Plant (Crassula muscosa)",
     "aliases": [
       "Crassula muscosa",
       "Watch Chain Plant"
@@ -1861,6 +2317,8 @@
     "id": "fairy-washboard-haworthiopsis-limifolia",
     "display_name": "Fairy Washboard",
     "scientific_name": "Haworthiopsis limifolia",
+    "dutch_names": [],
+    "select_label": "Fairy Washboard (Haworthiopsis limifolia)",
     "aliases": [
       "Fairy Washboard",
       "Haworthiopsis limifolia"
@@ -1874,6 +2332,8 @@
     "id": "baseball-plant-euphorbia-obesa",
     "display_name": "Baseball Plant",
     "scientific_name": "Euphorbia obesa",
+    "dutch_names": [],
+    "select_label": "Baseball Plant (Euphorbia obesa)",
     "aliases": [
       "Baseball Plant",
       "Euphorbia obesa"
@@ -1887,6 +2347,8 @@
     "id": "living-stones-lithops-spp",
     "display_name": "Living Stones",
     "scientific_name": "Lithops spp.",
+    "dutch_names": [],
+    "select_label": "Living Stones (Lithops spp.)",
     "aliases": [
       "Lithops spp.",
       "Living Stones"
@@ -1900,6 +2362,8 @@
     "id": "jelly-bean-plant-sedum-rubrotinctum",
     "display_name": "Jelly Bean Plant",
     "scientific_name": "Sedum rubrotinctum",
+    "dutch_names": [],
+    "select_label": "Jelly Bean Plant (Sedum rubrotinctum)",
     "aliases": [
       "Jelly Bean Plant",
       "Sedum rubrotinctum"
@@ -1913,6 +2377,8 @@
     "id": "starfish-flower-stapelia-grandiflora",
     "display_name": "Starfish Flower",
     "scientific_name": "Stapelia grandiflora",
+    "dutch_names": [],
+    "select_label": "Starfish Flower (Stapelia grandiflora)",
     "aliases": [
       "Stapelia grandiflora",
       "Starfish Flower"
@@ -1926,6 +2392,8 @@
     "id": "hoya-bella-hoya-bella",
     "display_name": "Hoya Bella",
     "scientific_name": "Hoya bella",
+    "dutch_names": [],
+    "select_label": "Hoya Bella (Hoya bella)",
     "aliases": [
       "Hoya Bella",
       "Hoya bella"
@@ -1939,6 +2407,8 @@
     "id": "neon-pothos-epipremnum-aureum-neon",
     "display_name": "Neon Pothos",
     "scientific_name": "Epipremnum aureum 'Neon'",
+    "dutch_names": [],
+    "select_label": "Neon Pothos (Epipremnum aureum 'Neon')",
     "aliases": [
       "Epipremnum aureum 'Neon'",
       "Neon Pothos"
@@ -1952,6 +2422,8 @@
     "id": "cebu-blue-pothos-epipremnum-pinnatum",
     "display_name": "Cebu Blue Pothos",
     "scientific_name": "Epipremnum pinnatum",
+    "dutch_names": [],
+    "select_label": "Cebu Blue Pothos (Epipremnum pinnatum)",
     "aliases": [
       "Cebu Blue Pothos",
       "Epipremnum pinnatum"
@@ -1965,6 +2437,8 @@
     "id": "philodendron-prince-of-orange-philodendron-prince-of-orange",
     "display_name": "Philodendron Prince of Orange",
     "scientific_name": "Philodendron 'Prince of Orange'",
+    "dutch_names": [],
+    "select_label": "Philodendron Prince of Orange (Philodendron 'Prince of Orange')",
     "aliases": [
       "Philodendron 'Prince of Orange'",
       "Philodendron Prince of Orange"
@@ -1978,6 +2452,8 @@
     "id": "philodendron-congo-philodendron-congo",
     "display_name": "Philodendron Congo",
     "scientific_name": "Philodendron 'Congo'",
+    "dutch_names": [],
+    "select_label": "Philodendron Congo (Philodendron 'Congo')",
     "aliases": [
       "Philodendron 'Congo'",
       "Philodendron Congo"
@@ -1991,6 +2467,8 @@
     "id": "philodendron-brasil-philodendron-hederaceum-brasil",
     "display_name": "Philodendron Brasil",
     "scientific_name": "Philodendron hederaceum 'Brasil'",
+    "dutch_names": [],
+    "select_label": "Philodendron Brasil (Philodendron hederaceum 'Brasil')",
     "aliases": [
       "Philodendron Brasil",
       "Philodendron hederaceum 'Brasil'"
@@ -2004,6 +2482,8 @@
     "id": "alocasia-polly-alocasia-amazonica-polly",
     "display_name": "Alocasia Polly",
     "scientific_name": "Alocasia 'Amazonica Polly'",
+    "dutch_names": [],
+    "select_label": "Alocasia Polly (Alocasia 'Amazonica Polly')",
     "aliases": [
       "Alocasia 'Amazonica Polly'",
       "Alocasia Polly"
@@ -2017,6 +2497,8 @@
     "id": "alocasia-black-velvet-alocasia-reginula",
     "display_name": "Alocasia Black Velvet",
     "scientific_name": "Alocasia reginula",
+    "dutch_names": [],
+    "select_label": "Alocasia Black Velvet (Alocasia reginula)",
     "aliases": [
       "Alocasia Black Velvet",
       "Alocasia reginula"
@@ -2030,6 +2512,8 @@
     "id": "alocasia-zebrina-alocasia-zebrina",
     "display_name": "Alocasia Zebrina",
     "scientific_name": "Alocasia zebrina",
+    "dutch_names": [],
+    "select_label": "Alocasia Zebrina (Alocasia zebrina)",
     "aliases": [
       "Alocasia Zebrina",
       "Alocasia zebrina"
@@ -2043,6 +2527,8 @@
     "id": "anthurium-clarinervium-anthurium-clarinervium",
     "display_name": "Anthurium Clarinervium",
     "scientific_name": "Anthurium clarinervium",
+    "dutch_names": [],
+    "select_label": "Anthurium Clarinervium (Anthurium clarinervium)",
     "aliases": [
       "Anthurium Clarinervium",
       "Anthurium clarinervium"
@@ -2056,6 +2542,8 @@
     "id": "anthurium-crystallinum-anthurium-crystallinum",
     "display_name": "Anthurium Crystallinum",
     "scientific_name": "Anthurium crystallinum",
+    "dutch_names": [],
+    "select_label": "Anthurium Crystallinum (Anthurium crystallinum)",
     "aliases": [
       "Anthurium Crystallinum",
       "Anthurium crystallinum"
@@ -2069,6 +2557,8 @@
     "id": "calathea-white-fusion-calathea-lietzei-white-fusion",
     "display_name": "Calathea White Fusion",
     "scientific_name": "Calathea lietzei 'White Fusion'",
+    "dutch_names": [],
+    "select_label": "Calathea White Fusion (Calathea lietzei 'White Fusion')",
     "aliases": [
       "Calathea White Fusion",
       "Calathea lietzei 'White Fusion'"
@@ -2082,6 +2572,8 @@
     "id": "raindrop-peperomia-peperomia-polybotrya",
     "display_name": "Raindrop Peperomia",
     "scientific_name": "Peperomia polybotrya",
+    "dutch_names": [],
+    "select_label": "Raindrop Peperomia (Peperomia polybotrya)",
     "aliases": [
       "Peperomia polybotrya",
       "Raindrop Peperomia"
@@ -2095,6 +2587,8 @@
     "id": "cupid-peperomia-peperomia-scandens",
     "display_name": "Cupid Peperomia",
     "scientific_name": "Peperomia scandens",
+    "dutch_names": [],
+    "select_label": "Cupid Peperomia (Peperomia scandens)",
     "aliases": [
       "Cupid Peperomia",
       "Peperomia scandens"
@@ -2108,6 +2602,8 @@
     "id": "red-log-peperomia-peperomia-verticillata",
     "display_name": "Red Log Peperomia",
     "scientific_name": "Peperomia verticillata",
+    "dutch_names": [],
+    "select_label": "Red Log Peperomia (Peperomia verticillata)",
     "aliases": [
       "Peperomia verticillata",
       "Red Log Peperomia"
@@ -2121,6 +2617,8 @@
     "id": "trailing-jade-peperomia-rotundifolia",
     "display_name": "Trailing Jade",
     "scientific_name": "Peperomia rotundifolia",
+    "dutch_names": [],
+    "select_label": "Trailing Jade (Peperomia rotundifolia)",
     "aliases": [
       "Peperomia rotundifolia",
       "Trailing Jade"
@@ -2134,6 +2632,8 @@
     "id": "zebra-plant-aphelandra-squarrosa",
     "display_name": "Zebra Plant",
     "scientific_name": "Aphelandra squarrosa",
+    "dutch_names": [],
+    "select_label": "Zebra Plant (Aphelandra squarrosa)",
     "aliases": [
       "Aphelandra squarrosa",
       "Zebra Plant"
@@ -2147,6 +2647,8 @@
     "id": "polka-dot-plant-hypoestes-phyllostachya",
     "display_name": "Polka Dot Plant",
     "scientific_name": "Hypoestes phyllostachya",
+    "dutch_names": [],
+    "select_label": "Polka Dot Plant (Hypoestes phyllostachya)",
     "aliases": [
       "Hypoestes phyllostachya",
       "Polka Dot Plant"
@@ -2160,6 +2662,8 @@
     "id": "purple-heart-tradescantia-pallida",
     "display_name": "Purple Heart",
     "scientific_name": "Tradescantia pallida",
+    "dutch_names": [],
+    "select_label": "Purple Heart (Tradescantia pallida)",
     "aliases": [
       "Purple Heart",
       "Tradescantia pallida"
@@ -2173,8 +2677,13 @@
     "id": "turtle-vine-callisia-repens",
     "display_name": "Turtle Vine",
     "scientific_name": "Callisia repens",
+    "dutch_names": [
+      "Schildpadplant"
+    ],
+    "select_label": "Turtle Vine / Schildpadplant (Callisia repens)",
     "aliases": [
       "Callisia repens",
+      "Schildpadplant",
       "Turtle Vine"
     ],
     "profile": "standard",
@@ -2186,6 +2695,8 @@
     "id": "red-aglaonema-aglaonema-red-valentine",
     "display_name": "Red Aglaonema",
     "scientific_name": "Aglaonema 'Red Valentine'",
+    "dutch_names": [],
+    "select_label": "Red Aglaonema (Aglaonema 'Red Valentine')",
     "aliases": [
       "Aglaonema 'Red Valentine'",
       "Red Aglaonema"
@@ -2199,6 +2710,8 @@
     "id": "lemon-lime-dracaena-dracaena-lemon-lime",
     "display_name": "Lemon Lime Dracaena",
     "scientific_name": "Dracaena 'Lemon Lime'",
+    "dutch_names": [],
+    "select_label": "Lemon Lime Dracaena (Dracaena 'Lemon Lime')",
     "aliases": [
       "Dracaena 'Lemon Lime'",
       "Lemon Lime Dracaena"
@@ -2212,6 +2725,8 @@
     "id": "asparagus-fern-asparagus-setaceus",
     "display_name": "Asparagus Fern",
     "scientific_name": "Asparagus setaceus",
+    "dutch_names": [],
+    "select_label": "Asparagus Fern (Asparagus setaceus)",
     "aliases": [
       "Asparagus Fern",
       "Asparagus setaceus"
@@ -2225,6 +2740,8 @@
     "id": "rabbit-s-foot-fern-davallia-fejeensis",
     "display_name": "Rabbit's Foot Fern",
     "scientific_name": "Davallia fejeensis",
+    "dutch_names": [],
+    "select_label": "Rabbit's Foot Fern (Davallia fejeensis)",
     "aliases": [
       "Davallia fejeensis",
       "Rabbit's Foot Fern"
@@ -2238,7 +2755,12 @@
     "id": "purple-shamrock-oxalis-triangularis",
     "display_name": "Purple Shamrock",
     "scientific_name": "Oxalis triangularis",
+    "dutch_names": [
+      "Klaverzuring"
+    ],
+    "select_label": "Purple Shamrock / Klaverzuring (Oxalis triangularis)",
     "aliases": [
+      "Klaverzuring",
       "Oxalis triangularis",
       "Purple Shamrock"
     ],
@@ -2251,8 +2773,13 @@
     "id": "lucky-bamboo-dracaena-sanderiana",
     "display_name": "Lucky Bamboo",
     "scientific_name": "Dracaena sanderiana",
+    "dutch_names": [
+      "Geluksbamboe"
+    ],
+    "select_label": "Lucky Bamboo / Geluksbamboe (Dracaena sanderiana)",
     "aliases": [
       "Dracaena sanderiana",
+      "Geluksbamboe",
       "Lucky Bamboo"
     ],
     "profile": "moisture_loving",
@@ -2264,9 +2791,14 @@
     "id": "amaryllis-hippeastrum-spp",
     "display_name": "Amaryllis",
     "scientific_name": "Hippeastrum spp.",
+    "dutch_names": [
+      "Ridderster"
+    ],
+    "select_label": "Amaryllis / Ridderster (Hippeastrum spp.)",
     "aliases": [
       "Amaryllis",
-      "Hippeastrum spp."
+      "Hippeastrum spp.",
+      "Ridderster"
     ],
     "profile": "standard",
     "dry_threshold": 15,
@@ -2277,6 +2809,8 @@
     "id": "clivia-clivia-miniata",
     "display_name": "Clivia",
     "scientific_name": "Clivia miniata",
+    "dutch_names": [],
+    "select_label": "Clivia (Clivia miniata)",
     "aliases": [
       "Clivia",
       "Clivia miniata"
@@ -2290,8 +2824,13 @@
     "id": "rain-lily-zephyranthes-spp",
     "display_name": "Rain Lily",
     "scientific_name": "Zephyranthes spp.",
+    "dutch_names": [
+      "Regenlelie"
+    ],
+    "select_label": "Rain Lily / Regenlelie (Zephyranthes spp.)",
     "aliases": [
       "Rain Lily",
+      "Regenlelie",
       "Zephyranthes spp."
     ],
     "profile": "standard",
@@ -2303,7 +2842,12 @@
     "id": "jasmine-jasminum-polyanthum",
     "display_name": "Jasmine",
     "scientific_name": "Jasminum polyanthum",
+    "dutch_names": [
+      "Jasmijn"
+    ],
+    "select_label": "Jasmine / Jasmijn (Jasminum polyanthum)",
     "aliases": [
+      "Jasmijn",
       "Jasmine",
       "Jasminum polyanthum"
     ],
@@ -2316,9 +2860,14 @@
     "id": "gardenia-gardenia-jasminoides",
     "display_name": "Gardenia",
     "scientific_name": "Gardenia jasminoides",
+    "dutch_names": [
+      "Kaapse Jasmijn"
+    ],
+    "select_label": "Gardenia / Kaapse Jasmijn (Gardenia jasminoides)",
     "aliases": [
       "Gardenia",
-      "Gardenia jasminoides"
+      "Gardenia jasminoides",
+      "Kaapse Jasmijn"
     ],
     "profile": "moisture_loving",
     "dry_threshold": 30,
@@ -2329,8 +2878,13 @@
     "id": "chinese-hibiscus-hibiscus-rosa-sinensis",
     "display_name": "Chinese Hibiscus",
     "scientific_name": "Hibiscus rosa-sinensis",
+    "dutch_names": [
+      "Hibiscus"
+    ],
+    "select_label": "Chinese Hibiscus / Hibiscus (Hibiscus rosa-sinensis)",
     "aliases": [
       "Chinese Hibiscus",
+      "Hibiscus",
       "Hibiscus rosa-sinensis"
     ],
     "profile": "moisture_loving",
@@ -2342,7 +2896,12 @@
     "id": "passion-flower-passiflora-caerulea",
     "display_name": "Passion Flower",
     "scientific_name": "Passiflora caerulea",
+    "dutch_names": [
+      "Passiebloem"
+    ],
+    "select_label": "Passion Flower / Passiebloem (Passiflora caerulea)",
     "aliases": [
+      "Passiebloem",
       "Passiflora caerulea",
       "Passion Flower"
     ],
@@ -2355,6 +2914,8 @@
     "id": "boat-lily-tradescantia-spathacea",
     "display_name": "Boat Lily",
     "scientific_name": "Tradescantia spathacea",
+    "dutch_names": [],
+    "select_label": "Boat Lily (Tradescantia spathacea)",
     "aliases": [
       "Boat Lily",
       "Tradescantia spathacea"
@@ -2368,6 +2929,8 @@
     "id": "peperomia-hope-peperomia-tetraphylla-hope",
     "display_name": "Peperomia Hope",
     "scientific_name": "Peperomia tetraphylla 'Hope'",
+    "dutch_names": [],
+    "select_label": "Peperomia Hope (Peperomia tetraphylla 'Hope')",
     "aliases": [
       "Peperomia Hope",
       "Peperomia tetraphylla 'Hope'"
@@ -2381,6 +2944,8 @@
     "id": "watermelon-begonia-peperomia-argyreia",
     "display_name": "Watermelon Begonia",
     "scientific_name": "Peperomia argyreia",
+    "dutch_names": [],
+    "select_label": "Watermelon Begonia (Peperomia argyreia)",
     "aliases": [
       "Peperomia argyreia",
       "Watermelon Begonia"
@@ -2394,6 +2959,8 @@
     "id": "silver-pothos-scindapsus-pictus-silvery-ann",
     "display_name": "Silver Pothos",
     "scientific_name": "Scindapsus pictus 'Silvery Ann'",
+    "dutch_names": [],
+    "select_label": "Silver Pothos (Scindapsus pictus 'Silvery Ann')",
     "aliases": [
       "Scindapsus pictus 'Silvery Ann'",
       "Silver Pothos"
@@ -2407,6 +2974,8 @@
     "id": "philodendron-micans-philodendron-hederaceum-micans",
     "display_name": "Philodendron Micans",
     "scientific_name": "Philodendron hederaceum 'Micans'",
+    "dutch_names": [],
+    "select_label": "Philodendron Micans (Philodendron hederaceum 'Micans')",
     "aliases": [
       "Philodendron Micans",
       "Philodendron hederaceum 'Micans'"
@@ -2420,7 +2989,12 @@
     "id": "peace-lily-domino-spathiphyllum-domino",
     "display_name": "Peace Lily 'Domino'",
     "scientific_name": "Spathiphyllum 'Domino'",
+    "dutch_names": [
+      "Lepelplant 'Domino'"
+    ],
+    "select_label": "Peace Lily 'Domino' / Lepelplant 'Domino' (Spathiphyllum 'Domino')",
     "aliases": [
+      "Lepelplant 'Domino'",
       "Peace Lily 'Domino'",
       "Spathiphyllum 'Domino'"
     ],
@@ -2433,6 +3007,8 @@
     "id": "dwarf-umbrella-tree-schefflera-arboricola-compacta",
     "display_name": "Dwarf Umbrella Tree",
     "scientific_name": "Schefflera arboricola 'Compacta'",
+    "dutch_names": [],
+    "select_label": "Dwarf Umbrella Tree (Schefflera arboricola 'Compacta')",
     "aliases": [
       "Dwarf Umbrella Tree",
       "Schefflera arboricola 'Compacta'"
@@ -2446,6 +3022,8 @@
     "id": "ponytail-palm-dwarf-beaucarnea-recurvata-nolina",
     "display_name": "Ponytail Palm (dwarf)",
     "scientific_name": "Beaucarnea recurvata 'Nolina'",
+    "dutch_names": [],
+    "select_label": "Ponytail Palm (dwarf) (Beaucarnea recurvata 'Nolina')",
     "aliases": [
       "Beaucarnea recurvata 'Nolina'",
       "Ponytail Palm (dwarf)"
@@ -2459,6 +3037,8 @@
     "id": "bunny-ear-cactus-opuntia-microdasys-albata",
     "display_name": "Bunny Ear Cactus",
     "scientific_name": "Opuntia microdasys 'Albata'",
+    "dutch_names": [],
+    "select_label": "Bunny Ear Cactus (Opuntia microdasys 'Albata')",
     "aliases": [
       "Bunny Ear Cactus",
       "Opuntia microdasys 'Albata'"
@@ -2472,6 +3052,8 @@
     "id": "christmas-kalanchoe-kalanchoe-blossfeldiana-calandiva",
     "display_name": "Christmas Kalanchoe",
     "scientific_name": "Kalanchoe blossfeldiana 'Calandiva'",
+    "dutch_names": [],
+    "select_label": "Christmas Kalanchoe (Kalanchoe blossfeldiana 'Calandiva')",
     "aliases": [
       "Christmas Kalanchoe",
       "Kalanchoe blossfeldiana 'Calandiva'"
@@ -2485,6 +3067,8 @@
     "id": "bunny-succulent-monilaria-obconica",
     "display_name": "Bunny Succulent",
     "scientific_name": "Monilaria obconica",
+    "dutch_names": [],
+    "select_label": "Bunny Succulent (Monilaria obconica)",
     "aliases": [
       "Bunny Succulent",
       "Monilaria obconica"
@@ -2493,5 +3077,182 @@
     "dry_threshold": 10,
     "wet_threshold": 40,
     "care_tip": "Succulent: let the soil dry out almost completely between waterings. Bright light. Seasonal succulent resembling tiny rabbit ears when young."
+  },
+  {
+    "id": "banana-plant-musa-spp",
+    "display_name": "Banana Plant",
+    "scientific_name": "Musa spp.",
+    "dutch_names": [
+      "Bananenplant"
+    ],
+    "select_label": "Banana Plant / Bananenplant (Musa spp.)",
+    "aliases": [
+      "Banana Plant",
+      "Bananenplant",
+      "Musa spp."
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Large, dramatic leaves; a heavy drinker and feeder in the growing season."
+  },
+  {
+    "id": "canary-island-date-palm-phoenix-canariensis",
+    "display_name": "Canary Island Date Palm",
+    "scientific_name": "Phoenix canariensis",
+    "dutch_names": [
+      "Canarische Dadelpalm"
+    ],
+    "select_label": "Canary Island Date Palm / Canarische Dadelpalm (Phoenix canariensis)",
+    "aliases": [
+      "Canarische Dadelpalm",
+      "Canary Island Date Palm",
+      "Phoenix canariensis"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Large, arching feathery fronds; likes bright light."
+  },
+  {
+    "id": "pygmy-date-palm-phoenix-roebelenii",
+    "display_name": "Pygmy Date Palm",
+    "scientific_name": "Phoenix roebelenii",
+    "dutch_names": [
+      "Dwergdadelpalm"
+    ],
+    "select_label": "Pygmy Date Palm / Dwergdadelpalm (Phoenix roebelenii)",
+    "aliases": [
+      "Dwergdadelpalm",
+      "Phoenix roebelenii",
+      "Pygmy Date Palm"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Compact date palm, smaller than its Canary Island relative."
+  },
+  {
+    "id": "european-fan-palm-chamaerops-humilis",
+    "display_name": "European Fan Palm",
+    "scientific_name": "Chamaerops humilis",
+    "dutch_names": [
+      "Europese Dwergpalm"
+    ],
+    "select_label": "European Fan Palm / Europese Dwergpalm (Chamaerops humilis)",
+    "aliases": [
+      "Chamaerops humilis",
+      "European Fan Palm",
+      "Europese Dwergpalm"
+    ],
+    "profile": "drought_tolerant",
+    "dry_threshold": 12,
+    "wet_threshold": 50,
+    "care_tip": "Very forgiving: let the soil dry out well between waterings. Tolerates low light. Mediterranean palm; more drought-tolerant than most indoor palms."
+  },
+  {
+    "id": "room-lime-sparrmannia-africana",
+    "display_name": "Room Lime",
+    "scientific_name": "Sparrmannia africana",
+    "dutch_names": [
+      "Kamerlinde"
+    ],
+    "select_label": "Room Lime / Kamerlinde (Sparrmannia africana)",
+    "aliases": [
+      "Kamerlinde",
+      "Room Lime",
+      "Sparrmannia africana"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. A traditional Dutch houseplant with soft, fuzzy leaves; a thirsty grower."
+  },
+  {
+    "id": "rose-grape-medinilla-magnifica",
+    "display_name": "Rose Grape",
+    "scientific_name": "Medinilla magnifica",
+    "dutch_names": [
+      "Medinilla"
+    ],
+    "select_label": "Rose Grape / Medinilla (Medinilla magnifica)",
+    "aliases": [
+      "Medinilla",
+      "Medinilla magnifica",
+      "Rose Grape"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Dramatic pink flower clusters; likes high humidity and rainwater if possible."
+  },
+  {
+    "id": "fishtail-palm-caryota-mitis",
+    "display_name": "Fishtail Palm",
+    "scientific_name": "Caryota mitis",
+    "dutch_names": [
+      "Vistaartpalm"
+    ],
+    "select_label": "Fishtail Palm / Vistaartpalm (Caryota mitis)",
+    "aliases": [
+      "Caryota mitis",
+      "Fishtail Palm",
+      "Vistaartpalm"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Distinctive ragged, fishtail-shaped leaflets."
+  },
+  {
+    "id": "lemon-tree-potted-citrus-limon",
+    "display_name": "Lemon Tree (potted)",
+    "scientific_name": "Citrus limon",
+    "dutch_names": [
+      "Citroenboom"
+    ],
+    "select_label": "Lemon Tree (potted) / Citroenboom (Citrus limon)",
+    "aliases": [
+      "Citroenboom",
+      "Citrus limon",
+      "Lemon Tree (potted)"
+    ],
+    "profile": "standard",
+    "dry_threshold": 15,
+    "wet_threshold": 55,
+    "care_tip": "Let the top layer of soil dry before watering again. Bright, indirect light. Needs as much bright, direct light as you can give it indoors; benefits from a summer outdoors."
+  },
+  {
+    "id": "orchid-cactus-epiphyllum-spp",
+    "display_name": "Orchid Cactus",
+    "scientific_name": "Epiphyllum spp.",
+    "dutch_names": [
+      "Bladcactus"
+    ],
+    "select_label": "Orchid Cactus / Bladcactus (Epiphyllum spp.)",
+    "aliases": [
+      "Bladcactus",
+      "Epiphyllum spp.",
+      "Orchid Cactus"
+    ],
+    "profile": "epiphytic",
+    "dry_threshold": 15,
+    "wet_threshold": 45,
+    "care_tip": "Grown in bark/orchid mix, which holds little water: water thoroughly, then let it dry out. Never let roots sit in water. An epiphytic 'leaf cactus' - unlike desert cacti, don't let it dry out completely."
+  },
+  {
+    "id": "kris-plant-alocasia-sanderiana",
+    "display_name": "Kris Plant",
+    "scientific_name": "Alocasia sanderiana",
+    "dutch_names": [],
+    "select_label": "Kris Plant (Alocasia sanderiana)",
+    "aliases": [
+      "Alocasia sanderiana",
+      "Kris Plant"
+    ],
+    "profile": "moisture_loving",
+    "dry_threshold": 30,
+    "wet_threshold": 70,
+    "care_tip": "Keep the soil consistently and evenly moist - don't let it fully dry out. Likes higher humidity. Wavy-edged, dark leaves with pale veins; sensitive to both over- and under-watering."
   }
 ]

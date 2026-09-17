@@ -22,6 +22,8 @@ jobs:
         run: pip install homeassistant
       - name: Run calculation-engine tests
         run: python tests/test_plant_data.py
+      - name: Run species-database tests
+        run: python tests/test_species.py
       - name: Validate JSON files
         run: |
           python -c "

@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.3.0
+
+- Species database grown from 192 to **202 plants**, reviewed against Dutch
+  garden-centre (Intratuin) assortments; added Banana Plant, Canary Island
+  Date Palm, Pygmy Date Palm, European Fan Palm, Room Lime (Kamerlinde),
+  Rose Grape (Medinilla), Fishtail Palm, potted Lemon Tree, Orchid Cactus,
+  and Kris Plant.
+- **Dutch common names** added as matchable aliases for 65 entries
+  (Pannenkoekenplant, Vrouwentong, Gatenplant, Drakenbloedboom, Lepelplant,
+  Aronskelk, Geluksplant, Geluksbamboe, Kamerlinde, Bananenplant, and more)
+  - fixes plants not being found when typed by their Dutch name.
+- The species picker now shows **common name(s) and the formal Latin name
+  together** (e.g. "Chinese Money Plant / Pannenkoekenplant (Pilea
+  peperomioides)"), generated from the same data used for matching.
+- `scripts/generate_species_data.py` (the database generator) is now part
+  of the repo, so contributors can add or correct entries via PR.
+- New `tests/test_species.py`: database integrity (no duplicate IDs) and a
+  Dutch-name regression test.
+
 ## 0.2.0
 
 - **Free-text plant names** with a bundled 192-species database

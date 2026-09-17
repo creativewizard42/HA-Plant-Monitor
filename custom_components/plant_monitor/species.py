@@ -41,8 +41,11 @@ def find_species(name: str) -> dict[str, Any] | None:
 
 
 def species_select_options() -> list[dict[str, str]]:
-    """Options for a SelectSelector, sorted alphabetically by display name."""
+    """Options for a SelectSelector: value is the canonical display_name
+    (what find_species() matches on), label shows common name(s) + the
+    Latin name together so the dropdown's own type-ahead search also
+    matches on a Dutch name or the scientific name."""
     return [
-        {"value": entry["display_name"], "label": entry["display_name"]}
+        {"value": entry["display_name"], "label": entry.get("select_label", entry["display_name"])}
         for entry in sorted(load_species(), key=lambda e: e["display_name"].casefold())
     ]
