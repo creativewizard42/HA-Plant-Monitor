@@ -103,6 +103,7 @@
     "sensor": {
       "advice": { "name": "Advies" },
       "care_tip": { "name": "Verzorgingstip" },
+      "soil_moisture": { "name": "Bodemvocht" },
       "health_score": { "name": "Gezondheidsscore" },
       "drying_rate": { "name": "Droogsnelheid" },
       "water_prediction": { "name": "Waterbehoefte" },

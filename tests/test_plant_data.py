@@ -212,6 +212,28 @@ def test_care_tip_and_photo_path():
     print("test_care_tip_and_photo_path: OK")
 
 
+def test_photo_url_fallback_chain():
+    # No upload, no species match -> nothing to show.
+    hass, plant = make_plant({"soil_moisture_entity": "sensor.soil", "species": "Not A Real Plant"})
+    assert plant.photo_url is None
+
+    # No upload, but species matched and has a stock photo -> use it.
+    hass, plant = make_plant({"soil_moisture_entity": "sensor.soil", "species": "Monstera"})
+    assert plant.photo_url is not None
+    assert plant.photo_url.startswith("https://")
+
+    # No upload, species matched but that species has NO stock photo -> None.
+    hass, plant = make_plant({"soil_moisture_entity": "sensor.soil", "species": "Fatsia"})
+    assert plant.photo_url is None
+
+    # A user upload always wins over any stock photo, even for a species that has one.
+    hass, plant = make_plant(
+        {"soil_moisture_entity": "sensor.soil", "species": "Monstera", "photo_path": "/local/plant_monitor/mine.jpg"}
+    )
+    assert plant.photo_url == "/local/plant_monitor/mine.jpg"
+    print("test_photo_url_fallback_chain: OK")
+
+
 if __name__ == "__main__":
     tests = [
         test_advice_dry,
@@ -223,6 +245,7 @@ if __name__ == "__main__":
         test_dry_binary_sensor_logic_via_thresholds,
         test_options_override_data,
         test_care_tip_and_photo_path,
+        test_photo_url_fallback_chain,
     ]
     failures = 0
     for t in tests:

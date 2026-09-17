@@ -25,6 +25,7 @@ async def async_setup_entry(
         [
             PlantAdviceSensor(entry, plant),
             PlantCareTipSensor(entry, plant),
+            PlantSoilMoistureSensor(entry, plant),
             PlantHealthScoreSensor(entry, plant),
             PlantDryingRateSensor(entry, plant),
             PlantWaterPredictionSensor(entry, plant),
@@ -93,6 +94,27 @@ class PlantCareTipSensor(_PlantSensorBase):
     @property
     def native_value(self) -> str:
         return self._plant.care_tip
+
+
+class PlantSoilMoistureSensor(_PlantSensorBase):
+    """Mirrors the linked source sensor's current value under a stable,
+    Plant-Monitor-owned entity_id/unique_id, so the recorder keeps its own
+    history for this plant regardless of what the underlying hardware
+    sensor happens to be - used by the bundled dashboard card's history
+    graph and useful on its own for graphing/statistics either way."""
+
+    _attr_translation_key = "soil_moisture"
+    _attr_icon = "mdi:water-percent"
+    _attr_native_unit_of_measurement = "%"
+    _attr_state_class = SensorStateClass.MEASUREMENT
+
+    def __init__(self, entry: ConfigEntry, plant: PlantData) -> None:
+        super().__init__(entry, plant)
+        self._attr_unique_id = f"{entry.entry_id}_soil_moisture"
+
+    @property
+    def native_value(self) -> float | None:
+        return self._plant.soil_moisture
 
 
 class PlantHealthScoreSensor(_PlantSensorBase):

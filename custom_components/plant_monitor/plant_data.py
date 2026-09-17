@@ -28,6 +28,7 @@ from .const import (
     CONF_HUMIDITY_LOW,
     CONF_PHOTO_PATH,
     CONF_SOIL_MOISTURE_ENTITY,
+    CONF_SPECIES,
     CONF_TEMP_COLD,
     CONF_TEMP_HOT,
     CONF_TEMPERATURE_ENTITY,
@@ -46,6 +47,7 @@ from .const import (
     MIN_SPAN_MINUTES_FOR_RATE,
     SIGNAL_UPDATE,
 )
+from .species import find_species
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -133,6 +135,19 @@ class PlantData:
     @property
     def photo_path(self) -> str | None:
         return self.entry.options.get(CONF_PHOTO_PATH, self.entry.data.get(CONF_PHOTO_PATH))
+
+    @property
+    def photo_url(self) -> str | None:
+        """The user's own uploaded photo takes priority; falls back to the
+        matched species' bundled stock photo (an external, verified URL)
+        if the plant has none of its own yet."""
+        uploaded = self.photo_path
+        if uploaded:
+            return uploaded
+        match = find_species(self.entry.data.get(CONF_SPECIES, ""))
+        if match and match.get("stock_photo_url"):
+            return match["stock_photo_url"]
+        return None
 
     def _entity(self, key: str) -> str | None:
         return self.entry.data.get(key)

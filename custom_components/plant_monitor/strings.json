@@ -103,6 +103,7 @@
     "sensor": {
       "advice": { "name": "Advice" },
       "care_tip": { "name": "Care tip" },
+      "soil_moisture": { "name": "Soil moisture" },
       "health_score": { "name": "Health score" },
       "drying_rate": { "name": "Drying rate" },
       "water_prediction": { "name": "Water prediction" },

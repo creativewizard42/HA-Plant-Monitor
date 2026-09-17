@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.5.0
+
+- **Multi-section care guide** for all 201 plants: Light, Watering,
+  Humidity, Temperature, Fertilizing, Repotting, Common problems, and pet
+  Toxicity - templated per watering-need profile with species-specific
+  watering and toxicity, shown in the card's expandable section. Fixed a
+  duplicate/broken Strelitzia entry found while building this.
+- **Toxicity data** grounded in the ASPCA toxic/non-toxic plant database
+  for 182 of 201 plants (e.g. confirmed Bird of Paradise is mildly toxic -
+  it was previously unlisted).
+- New `sensor.<plant>_soil_moisture`: mirrors the linked source sensor
+  under a stable, Plant-Monitor-owned entity so the recorder keeps its own
+  history for it - used by the card's new history graph.
+- **Card redesign** to match the project's own 3-section reference
+  dashboard: photo hero with a gradient moisture bar + tiles, a 14-day
+  soil-moisture history graph (via `history/history_during_period`, its
+  exact response shape verified against a real test Home Assistant
+  instance) with the dry/wet "optimal" range shaded, and an expandable
+  care-guide section parsed from the care_tip sensor.
+- **Stock photos**: 4 of 201 plants (Bird of Paradise, Wijze Varen,
+  Monstera, Snake Plant) now show a verified, properly-credited Wikimedia
+  Commons photo automatically if the user hasn't uploaded their own - see
+  `PHOTO_CREDITS.md` for licensing and how to add more. Fetched live at
+  view time, not stored in the repo.
+- `image.py` rewritten to serve either a local upload or a remote stock
+  photo through one unified `async_image()`.
+- New/updated tests: `tests/test_species.py` gained no new tests here but
+  the card's jsdom suite now covers the history graph (using the verified
+  response shape) and the care-guide parser; `test_plant_data.py` gained
+  `test_photo_url_fallback_chain`.
+
 ## 0.4.0
 
 - **Bundled Lovelace card** (`plant-monitor-card`): shows one plant's
