@@ -5,7 +5,7 @@ blueprint:
     (after a configurable delay) when it has been overwatered - the delay
     gives water time to soak into the soil before you're warned.
   domain: automation
-  source_url: https://github.com/YOUR_GITHUB_USERNAME/ha-plant-monitor/blob/main/blueprints/automation/plant_monitor/plant_needs_attention.yaml
+  source_url: https://github.com/creativewizard42/HA-Plant-Monitor/blob/main/blueprints/automation/plant_monitor/plant_needs_attention.yaml
   input:
     dry_sensor:
       name: '"Dry" sensor'

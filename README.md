@@ -41,7 +41,7 @@ point it at the entities you already have in Home Assistant.
 
 1. In Home Assistant, open **HACS**.
 2. Go to any HACS section, open the **⋮** menu -> **Custom repositories**.
-3. Add `https://github.com/YOUR_GITHUB_USERNAME/ha-plant-monitor`, category
+3. Add `https://github.com/creativewizard42/HA-Plant-Monitor`, category
    **Integration**.
 4. Search for "Plant Monitor" in HACS and install it.
 5. Restart Home Assistant.
@@ -109,12 +109,29 @@ All modules have also been import-checked against a real installed
   instance**. Please try it in a test/dev instance before relying on it,
   and open an issue if something doesn't load.
 
-## Before you publish this yourself
+## Publishing to creativewizard42/HA-Plant-Monitor
 
-Replace `YOUR_GITHUB_USERNAME` in `custom_components/plant_monitor/manifest.json`,
-`blueprints/automation/plant_monitor/plant_needs_attention.yaml`, and this
-README with your actual GitHub username/repo, then push to a new repo named
-e.g. `ha-plant-monitor`.
+All URLs in this repo already point at
+[`creativewizard42/HA-Plant-Monitor`](https://github.com/creativewizard42/HA-Plant-Monitor).
+Push it there:
+
+```bash
+cd plant_monitor_hacs
+git remote add origin https://github.com/creativewizard42/HA-Plant-Monitor.git
+git push -u origin main --tags
+```
+
+If the GitHub repo already has a commit (like an auto-generated README or
+license), pushing may be rejected as a non-fast-forward. Either start from
+an empty repo, or force the initial push if you're fine overwriting it:
+
+```bash
+git push -u origin main --tags --force
+```
+
+Once pushed, add it in HACS: **HACS -> ⋮ -> Custom repositories ->**
+`https://github.com/creativewizard42/HA-Plant-Monitor`, category
+**Integration**.
 
 ## License
 
