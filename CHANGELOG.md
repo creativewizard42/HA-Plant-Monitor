@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.6.0
+
+- **Card visually redesigned** to match a hand-built reference dashboard's
+  look: the photo now fills the entire hero (not a strip above a separate
+  section), with the moisture readout, gradient bar, three glass-style
+  tiles and the water-need/advice footnote all overlaid on a bottom-up
+  scrim over the photo - not on a plain background below it.
+- The history graph now sits in its own dark, rounded, bordered panel
+  (matching a `stack-in-card` look) and uses a smoothed line (quadratic
+  bezier through midpoints) plus a marker dot on the latest reading,
+  instead of a plain straight-segment polyline.
+- The care guide now renders as flowing bold-labelled paragraphs (e.g.
+  **Watering:** ...) with the toxicity note as an italic footnote, instead
+  of boxed icon items - closer to a natural-reading care guide.
+- Status label changed from "Dorstig" to "Droog" to match the reference
+  wording.
+- Config format is unchanged - existing `type: custom:plant-monitor-card`
+  cards just pick up the new look after updating.
+
 ## 0.5.1
 
 - **Bugfix**: the "add the Lovelace resource manually" Repairs notice

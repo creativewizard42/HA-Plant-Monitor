@@ -152,14 +152,14 @@ async function run() {
   assert.ok(html.includes("Non-toxic to pets"), "expected Toxicity section content");
   console.log("test_care_guide_render: OK");
 
-  // --- Test 6: status badge flips to Dorstig / Te nat ---
+  // --- Test 6: status badge flips to Droog / Te nat ---
   const hassDry = JSON.parse(JSON.stringify(makeHass()));
   hassDry.states["binary_sensor.pannenkoekenplant_puppy_droog"].state = "on";
   hassDry.callWS = async () => ({ "sensor.pannenkoekenplant_puppy_bodemvocht": [] });
   const el3 = document.createElement("plant-monitor-card");
   el3.setConfig({ device_id: DEVICE_ID });
   el3.hass = hassDry;
-  assert.ok(el3.innerHTML.includes(">Dorstig<"), "expected Dorstig status badge");
+  assert.ok(el3.innerHTML.includes(">Droog<"), "expected Droog status badge");
   console.log("test_status_badge_dry: OK");
 
   // --- Test 7: manual entities override bypasses auto-discovery entirely ---
