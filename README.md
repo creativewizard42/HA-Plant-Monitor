@@ -13,13 +13,17 @@ at the entities (or a whole device) you already have in Home Assistant.
 - **A dashboard card ships with the integration** - `plant-monitor-card`
   shows one plant in three sections: a photo hero with a moisture/temp
   readout, a red-to-blue gradient bar and humidity/battery/temperature
-  tiles; a 14-day soil-moisture history graph with the dry/wet "optimal"
-  range shaded; and an expandable, multi-section care guide. No separate
-  HACS "plugin" install: the integration serves its own JavaScript and
-  (on storage-mode Lovelace, the default) registers itself as a dashboard
-  resource automatically the first time it loads. On YAML-mode dashboards,
-  or if anything about that fails, a repair notice gives the one manual
-  step instead of failing silently.
+  tiles (tap the hero to open the soil-moisture sensor's own more-info
+  history dialog); a 14-day soil-moisture history graph with the dry/wet
+  "optimal" range shaded and a hover tooltip showing the date/time and
+  value at any point; and an expandable, multi-section Dutch-language
+  care guide with a visible expand/collapse chevron. No separate HACS
+  "plugin" install: the integration serves its own JavaScript and (on
+  storage-mode Lovelace, the default) registers itself as a dashboard
+  resource automatically the first time it loads. On YAML-mode
+  dashboards, or if anything about that fails, a repair notice - and a
+  note right in the integration's own setup screen - gives the one
+  manual step instead of failing silently.
 - **Works with any soil moisture sensor** - Zigbee2MQTT, ESPHome, Xiaomi Mi
   Flora, Tuya, whatever exposes a plain `sensor.*` percentage.
 - **Type any plant name.** It's matched (case-insensitively, by common name,
@@ -30,15 +34,16 @@ at the entities (or a whole device) you already have in Home Assistant.
   Dutch garden centres (Intratuin and others) most commonly sell, under
   their Dutch names (Pannenkoekenplant, Vrouwentong, Gatenplant,
   Drakenbloedboom, Kamerlinde, Bananenplant, and 60 more). A match
-  pre-fills a full **multi-section care guide** - Light, Watering,
-  Humidity, Temperature, Fertilizing, Repotting, Common problems, and pet
-  Toxicity (checked against the ASPCA's toxic/non-toxic plant database for
-  182 of the 201) - shown on the dashboard card in an expandable section.
-  Everything is still fully editable as one text field. No species match
-  just means generic defaults and an empty field to fill in yourself. The
-  picker shows the common name(s) *and* the formal Latin name together,
-  e.g. "Chinese Money Plant / Pannenkoekenplant (Pilea peperomioides)", and
-  you can type either to find it.
+  pre-fills a full **multi-section care guide, in Dutch** - Licht, Water
+  geven, Luchtvochtigheid, Temperatuur, Bemesten, Verpotten,
+  Veelvoorkomende problemen, and a Giftigheid (toxicity) footnote (checked
+  against the ASPCA's toxic/non-toxic plant database for 182 of the 201) -
+  shown on the dashboard card in an expandable section. Everything is
+  still fully editable as one text field. No species match just means
+  generic defaults and an empty field to fill in yourself. The picker
+  shows the common name(s) *and* the formal Latin name together, e.g.
+  "Chinese Money Plant / Pannenkoekenplant (Pilea peperomioides)", and you
+  can type either to find it.
   - Thresholds are **not lab-measured values** - no such universal standard
     exists, since soil-moisture % readings depend on sensor type, soil mix
     and pot size. They're a consistent translation of general watering
@@ -102,6 +107,12 @@ Copy `custom_components/plant_monitor` into your Home Assistant's
 `config/custom_components/` folder and restart.
 
 ## Setup
+
+> **Dashboardkaart-resource**: deze integratie levert een eigen dashboardkaart
+> (`plant-monitor-card`) die normaal gesproken automatisch beschikbaar wordt.
+> Lukt dat niet (zie **Settings -> Repairs**), voeg dan eenmalig zelf de
+> resource toe: **Settings -> Dashboards -> ⋮ -> Resources -> Add resource**,
+> URL `/plant_monitor_files/plant-monitor-card.js`, type **JavaScript module**.
 
 1. **Settings -> Devices & services -> Add integration -> Plant Monitor.**
 2. **Plant name & species**: give it a label, type any plant name (pick from

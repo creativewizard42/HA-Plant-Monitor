@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Plant toevoegen",
-        "description": "Typ een willekeurige plantnaam - komt die overeen met onze ingebouwde lijst, dan worden drempels en een verzorgingstip op de volgende stappen alvast ingevuld (nog steeds volledig aanpasbaar). Kies optioneel het apparaat waar je sensor bij hoort (bijv. een Zigbee2MQTT-plantsensor) en de entiteiten worden automatisch gekoppeld.",
+        "description": "Typ een willekeurige plantnaam - komt die overeen met onze ingebouwde lijst, dan worden drempels en een verzorgingstip op de volgende stappen alvast ingevuld (nog steeds volledig aanpasbaar). Kies optioneel het apparaat waar je sensor bij hoort (bijv. een Zigbee2MQTT-plantsensor) en de entiteiten worden automatisch gekoppeld.\n\nTip: er komt een dashboardkaart (`plant-monitor-card`) met deze integratie mee. Meestal wordt die automatisch beschikbaar; lukt dat niet, voeg dan eenmalig zelf de resource `/plant_monitor_files/plant-monitor-card.js` toe via Instellingen -> Dashboards -> ⋮ -> Resources.",
         "data": {
           "name": "Naam van de plant (jouw eigen label)",
           "species": "Plantsoort",

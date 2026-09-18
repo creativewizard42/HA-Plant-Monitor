@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Add a plant",
-        "description": "Type any plant name - if it matches our built-in list, thresholds and a care tip are pre-filled on the next steps (still fully editable). Optionally pick the device your sensor belongs to (e.g. a Zigbee2MQTT plant sensor) and its entities will be auto-mapped.",
+        "description": "Type any plant name - if it matches our built-in list, thresholds and a care tip are pre-filled on the next steps (still fully editable). Optionally pick the device your sensor belongs to (e.g. a Zigbee2MQTT plant sensor) and its entities will be auto-mapped.\n\nTip: a dashboard card (`plant-monitor-card`) ships with this integration. It's usually made available automatically; if not, add the resource `/plant_monitor_files/plant-monitor-card.js` yourself once via Settings -> Dashboards -> ⋮ -> Resources.",
         "data": {
           "name": "Plant name (your own label for it)",
           "species": "Plant species",

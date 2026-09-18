@@ -84,7 +84,7 @@ async def test_full_flow_unknown_species_gets_generic_defaults(hass):
     dry_field = next(k for k in schema if str(k) == "dry_threshold")
     tip_field = next(k for k in schema if str(k) == "care_tip")
     assert dry_field.default() == 20.0  # generic default, not a species match
-    assert "No species matched" in tip_field.default()
+    assert "Geen soort herkend" in tip_field.default()
     print("test_full_flow_unknown_species_gets_generic_defaults: OK")
 
 

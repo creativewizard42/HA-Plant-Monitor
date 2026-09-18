@@ -237,7 +237,10 @@ class PlantMonitorCard extends HTMLElement {
             <span class="pm-graph-title">BODEMVOCHT</span>
             <span class="pm-graph-days">${HISTORY_DAYS} DAGEN</span>
           </div>
-          <div class="pm-graph-svg-slot"></div>
+          <div class="pm-graph-svg-slot">
+            <div class="pm-graph-svg-inner"></div>
+            <div class="pm-tooltip"></div>
+          </div>
           <div class="pm-graph-footer">
             <span>${HISTORY_DAYS} D TERUG</span>
             <span class="pm-graph-optimal"></span>
@@ -246,10 +249,26 @@ class PlantMonitorCard extends HTMLElement {
         </div>
 
         <details class="pm-care">
-          <summary class="pm-care-summary"></summary>
+          <summary class="pm-care-summary"><span class="pm-care-chevron">\u25b6</span><span class="pm-care-summary-text"></span></summary>
           <div class="pm-care-body"></div>
         </details>
       </ha-card>`;
+
+    this.querySelector(".pm-hero-content").addEventListener("click", () => {
+      const soilId = this._entityIds && this._entityIds.soil_moisture;
+      if (!soilId) return;
+      this.dispatchEvent(
+        new CustomEvent("hass-more-info", {
+          bubbles: true,
+          composed: true,
+          detail: { entityId: soilId },
+        })
+      );
+    });
+
+    const graphSlot = this.querySelector(".pm-graph-svg-slot");
+    graphSlot.addEventListener("mousemove", (ev) => this._handleGraphHover(ev));
+    graphSlot.addEventListener("mouseleave", () => this._hideGraphTooltip());
   }
 
   _css() {
@@ -312,12 +331,22 @@ class PlantMonitorCard extends HTMLElement {
       .pm-graph-empty { font-size: 11px; color: #9ca3af; text-align: center; padding: 24px 0; }
 
       .pm-care { padding: 4px 14px 14px; }
-      .pm-care-summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--primary-text-color); padding: 8px 0; list-style: none; }
+      .pm-care-summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--primary-text-color); padding: 8px 0; list-style: none; display: flex; align-items: center; gap: 6px; }
       .pm-care-summary::-webkit-details-marker { display: none; }
+      .pm-care-chevron { display: inline-block; font-size: 10px; transition: transform 0.15s ease; }
+      details[open] .pm-care-chevron { transform: rotate(90deg); }
       details[open] .pm-care-summary { margin-bottom: 2px; }
       .pm-care-body { padding-top: 6px; font-size: 13px; line-height: 1.6; color: var(--primary-text-color); }
       .pm-care-body p { margin: 0 0 12px; }
       .pm-care-body em { display: block; margin-top: 4px; color: var(--secondary-text-color); }
+
+      .pm-hero-content { cursor: pointer; }
+      .pm-tooltip {
+        position: absolute; pointer-events: none; background: rgba(11,18,32,0.95); color: #f1f5f9;
+        border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 4px 8px;
+        font-size: 10.5px; white-space: nowrap; transform: translate(-50%, -110%); display: none; z-index: 2;
+      }
+      .pm-graph-svg-slot { position: relative; margin-top: 4px; }
     `;
   }
 
@@ -393,7 +422,7 @@ class PlantMonitorCard extends HTMLElement {
   }
 
   _renderGraph() {
-    const slot = this.querySelector(".pm-graph-svg-slot");
+    const slot = this.querySelector(".pm-graph-svg-inner");
     if (!slot) return;
 
     const dryTh = this._entity("dry_threshold");
@@ -404,6 +433,7 @@ class PlantMonitorCard extends HTMLElement {
       `GRIJS = OPTIMAAL ${dryVal}-${wetVal}%`;
 
     const points = this._historyPoints;
+    this._renderedGraphPoints = null;
     if (!points || points.length < 2) {
       slot.innerHTML = `<div class="pm-graph-empty">Nog niet genoeg geschiedenis (${HISTORY_DAYS} dagen nodig)</div>`;
       return;
@@ -427,8 +457,79 @@ class PlantMonitorCard extends HTMLElement {
         <rect x="0" y="${bandTop.toFixed(1)}" width="${width}" height="${(bandBottom - bandTop).toFixed(1)}"
           fill="#94a3b8" opacity="0.15" />
         <path d="${path}" fill="none" stroke="#f97316" stroke-width="1.5" />
+        <line class="pm-hover-line" x1="0" y1="0" x2="0" y2="${height}" stroke="#f1f5f9" stroke-width="1" opacity="0" />
+        <circle class="pm-hover-dot" cx="0" cy="0" r="3.5" fill="#f97316" stroke="#fff" stroke-width="1.5" opacity="0" />
         <circle cx="${xy[xy.length - 1][0].toFixed(1)}" cy="${xy[xy.length - 1][1].toFixed(1)}" r="3" fill="#ef4444" stroke="#fff" stroke-width="1" />
       </svg>`;
+
+    // Stored for hover hit-testing: SVG-space coordinates + the original
+    // point (timestamp + value) + the SVG's own viewBox width, since the
+    // hover handler needs to convert real mouse-pixel X back to this
+    // coordinate space (the SVG scales to the container's actual width).
+    this._renderedGraphPoints = { xy, points, viewBoxWidth: width };
+  }
+
+  _handleGraphHover(ev) {
+    const data = this._renderedGraphPoints;
+    const svg = this.querySelector(".pm-graph-svg-inner svg");
+    if (!data || !svg) {
+      this._hideGraphTooltip();
+      return;
+    }
+    const rect = svg.getBoundingClientRect();
+    if (rect.width === 0) return;
+    const relativeX = ev.clientX - rect.left;
+    const svgX = (relativeX / rect.width) * data.viewBoxWidth;
+
+    // Nearest point by X distance in SVG space.
+    let nearestIdx = 0;
+    let nearestDist = Infinity;
+    data.xy.forEach(([x], i) => {
+      const dist = Math.abs(x - svgX);
+      if (dist < nearestDist) {
+        nearestDist = dist;
+        nearestIdx = i;
+      }
+    });
+
+    const [px, py] = data.xy[nearestIdx];
+    const point = data.points[nearestIdx];
+
+    const hoverLine = svg.querySelector(".pm-hover-line");
+    const hoverDot = svg.querySelector(".pm-hover-dot");
+    if (hoverLine) {
+      hoverLine.setAttribute("x1", px.toFixed(1));
+      hoverLine.setAttribute("x2", px.toFixed(1));
+      hoverLine.setAttribute("opacity", "0.4");
+    }
+    if (hoverDot) {
+      hoverDot.setAttribute("cx", px.toFixed(1));
+      hoverDot.setAttribute("cy", py.toFixed(1));
+      hoverDot.setAttribute("opacity", "1");
+    }
+
+    const tooltip = this.querySelector(".pm-tooltip");
+    if (tooltip) {
+      const date = new Date(point.t);
+      const dateLabel = date.toLocaleDateString("nl-NL", { day: "numeric", month: "short" });
+      const timeLabel = date.toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" });
+      tooltip.textContent = `${dateLabel} ${timeLabel} \u2014 ${point.v}%`;
+      tooltip.style.display = "block";
+      tooltip.style.left = `${(px / data.viewBoxWidth) * 100}%`;
+      tooltip.style.top = `${(py / 90) * 100}%`;
+    }
+  }
+
+  _hideGraphTooltip() {
+    const tooltip = this.querySelector(".pm-tooltip");
+    if (tooltip) tooltip.style.display = "none";
+    const svg = this.querySelector(".pm-graph-svg-inner svg");
+    if (svg) {
+      const hoverLine = svg.querySelector(".pm-hover-line");
+      const hoverDot = svg.querySelector(".pm-hover-dot");
+      if (hoverLine) hoverLine.setAttribute("opacity", "0");
+      if (hoverDot) hoverDot.setAttribute("opacity", "0");
+    }
   }
 
   // Simple, dependency-free curve smoothing (quadratic bezier through
@@ -451,11 +552,11 @@ class PlantMonitorCard extends HTMLElement {
 
   _renderCareGuide() {
     const careTip = this._entity("care_tip");
-    const summary = this.querySelector(".pm-care-summary");
+    const summaryText = this.querySelector(".pm-care-summary-text");
     const body = this.querySelector(".pm-care-body");
     const { model } = this._deviceTitleAndModel();
 
-    summary.innerHTML = `\ud83c\udf3f Verzorgingstips \u2014 ${this._escape(model || "")}`;
+    summaryText.innerHTML = `\ud83c\udf3f Verzorgingstips \u2014 ${this._escape(model || "")}`;
 
     if (!careTip || !careTip.state) {
       body.innerHTML = `<p>Geen verzorgingstip ingesteld.</p>`;
@@ -463,8 +564,9 @@ class PlantMonitorCard extends HTMLElement {
     }
 
     // care_tip's state is "Label: text" lines, one section per line - see
-    // species_data.json / the config flow's care step. Toxicity is shown
-    // as an italic footnote, matching the reference design.
+    // species_data.json / the config flow's care step. Giftigheid
+    // (toxicity) is shown as an italic footnote, matching the reference
+    // design, instead of a labelled paragraph like the others.
     const lines = String(careTip.state).split("\n").filter(Boolean);
     const paragraphs = [];
     let toxicityLine = "";
@@ -476,7 +578,7 @@ class PlantMonitorCard extends HTMLElement {
       }
       const label = line.slice(0, idx).trim();
       const text = line.slice(idx + 1).trim();
-      if (label.toLowerCase() === "toxicity") {
+      if (label.toLowerCase() === "giftigheid" || label.toLowerCase() === "toxicity") {
         toxicityLine = `<em>${this._escape(text)}</em>`;
         continue;
       }

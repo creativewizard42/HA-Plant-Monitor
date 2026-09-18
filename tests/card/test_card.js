@@ -193,6 +193,48 @@ async function run() {
   assert.ok(threw, "setConfig should throw when neither device_id nor entities given");
   console.log("test_setconfig_requires_target: OK");
 
+  // --- Test 10: clicking the hero dispatches hass-more-info for soil_moisture ---
+  const el6 = document.createElement("plant-monitor-card");
+  el6.setConfig({ device_id: DEVICE_ID });
+  el6.hass = hass;
+  let capturedDetail = null;
+  el6.addEventListener("hass-more-info", (ev) => { capturedDetail = ev.detail; });
+  el6.querySelector(".pm-hero-content").dispatchEvent(new dom.window.MouseEvent("click", { bubbles: true }));
+  assert.ok(capturedDetail, "expected a hass-more-info event to fire on hero click");
+  assert.strictEqual(capturedDetail.entityId, "sensor.pannenkoekenplant_puppy_bodemvocht");
+  console.log("test_click_hero_opens_more_info: OK");
+
+  // --- Test 11: Dutch care-guide categories and a visible expand chevron ---
+  const hassDutch = makeHass();
+  hassDutch.states["sensor.pannenkoekenplant_puppy_verzorgingstip"].state =
+    "Licht: Helder, indirect licht.\nWater geven: Laat de bovenste laag opdrogen.\nGiftigheid: Niet giftig voor huisdieren.";
+  const el7 = document.createElement("plant-monitor-card");
+  el7.setConfig({ device_id: DEVICE_ID });
+  el7.hass = hassDutch;
+  const el7html = el7.innerHTML;
+  assert.ok(el7html.includes("<b>Licht:</b>"), "expected Dutch 'Licht' category label");
+  assert.ok(el7html.includes("<b>Water geven:</b>"), "expected Dutch 'Water geven' category label");
+  assert.ok(el7html.includes("<em>Niet giftig voor huisdieren.</em>"), "expected Giftigheid rendered as italic footnote, not a labelled paragraph");
+  assert.ok(!el7html.includes("<b>Giftigheid:</b>"), "Giftigheid should not appear as a regular labelled paragraph");
+  assert.ok(el7html.includes('class="pm-care-chevron"'), "expected a visible expand/collapse chevron icon");
+  console.log("test_dutch_categories_and_chevron: OK");
+
+  // --- Test 12: graph hover shows a tooltip with date + value ---
+  const el8 = document.createElement("plant-monitor-card");
+  el8.setConfig({ device_id: DEVICE_ID });
+  el8.hass = hass;
+  await flushMicrotasks();
+  const svgEl = el8.querySelector(".pm-graph-svg-inner svg");
+  assert.ok(svgEl, "expected the graph svg to exist before testing hover");
+  svgEl.getBoundingClientRect = () => ({ left: 0, width: 600, top: 0, height: 90 });
+  el8._handleGraphHover({ clientX: 300 });
+  const tooltip = el8.querySelector(".pm-tooltip");
+  assert.strictEqual(tooltip.style.display, "block", "expected the tooltip to become visible on hover");
+  assert.ok(/\d+%/.test(tooltip.textContent), "expected the tooltip to show a percentage value");
+  el8._hideGraphTooltip();
+  assert.strictEqual(tooltip.style.display, "none", "expected the tooltip to hide again");
+  console.log("test_graph_hover_tooltip: OK");
+
   console.log("\nAll card tests passed.");
 }
 

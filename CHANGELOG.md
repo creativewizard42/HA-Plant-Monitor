@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.7.0
+
+- **Care guide content is now Dutch**, using the exact categories
+  requested: Licht, Water geven, Luchtvochtigheid, Temperatuur, Bemesten,
+  Verpotten, Veelvoorkomende problemen, plus a Giftigheid (toxicity)
+  footnote. Translated the profile-level templates, all ~201
+  species-specific notes, and the toxicity text/fallback. This is a
+  content-language change (baked into `species_data.json`), separate from
+  the UI's existing EN/NL translation system.
+- **Card: tap the hero to open the soil-moisture sensor's more-info
+  dialog** (`hass-more-info` event), for the full native history view.
+- **Card: the 14-day graph is now hoverable** - move over it to see a
+  tooltip with the exact date/time and moisture % at that point, plus a
+  guide line and marker dot.
+- **Card: a visible expand/collapse chevron** on the care-guide section
+  (rotates on open) - it was accidentally left without a visible marker
+  in the v0.6.0 redesign.
+- The dashboard-resource URL (`/plant_monitor_files/plant-monitor-card.js`)
+  is now also mentioned directly in the integration's own setup screen and
+  in the README's Setup section, not only in the Repairs notice if
+  auto-registration fails.
+- New jsdom tests: click-to-more-info, Dutch category rendering +
+  chevron, and graph hover/tooltip behaviour.
+- Note: the dynamic `advice`/`water_prediction` sensor text (generated in
+  `plant_data.py`, not from `species_data.json`) is still English - only
+  the species care guide content was in scope for this release.
+
 ## 0.6.0
 
 - **Card visually redesigned** to match a hand-built reference dashboard's

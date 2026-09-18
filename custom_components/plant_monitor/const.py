@@ -20,7 +20,7 @@ CONF_HUMIDITY_LOW = "humidity_low_threshold"
 CONF_BATTERY_LOW = "battery_low_threshold"
 CONF_WATER_JUMP = "water_jump_threshold"
 
-DEFAULT_CARE_TIP = "No species matched - add your own care notes here."
+DEFAULT_CARE_TIP = "Geen soort herkend - voeg hier je eigen verzorgingsnotities toe."
 PHOTO_SUBDIR = "plant_monitor"  # under Home Assistant's www/ folder
 
 DEFAULT_DRY_THRESHOLD = 20.0

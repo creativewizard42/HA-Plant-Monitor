@@ -191,7 +191,7 @@ def test_options_override_data():
 def test_care_tip_and_photo_path():
     # No care_tip/photo set at all -> generic fallback text, no photo.
     hass, plant = make_plant({"soil_moisture_entity": "sensor.soil"})
-    assert "No species matched" in plant.care_tip
+    assert "Geen soort herkend" in plant.care_tip
     assert plant.photo_path is None
 
     # Set via data (as the initial config flow would).
