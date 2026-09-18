@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.5.1
+
+- **Bugfix**: the "add the Lovelace resource manually" Repairs notice
+  could appear even on completely normal storage-mode dashboards. Cause:
+  `lovelace` wasn't declared as a manifest dependency, so Plant Monitor's
+  `async_setup()` could run *before* Lovelace had finished its own setup -
+  `hass.data["lovelace"]` simply didn't exist yet, which looked identical
+  from the outside to the genuine YAML-mode case. Added `lovelace` to
+  `dependencies`, so Home Assistant now guarantees it's ready first.
+- Added the test that should have caught this originally:
+  `test_storage_mode_lovelace_gets_resource_registered_automatically` in
+  `tests/test_frontend.py` actually asserts the resource lands in the
+  collection on a normal setup, not just that failures are handled
+  gracefully (which was all `test_frontend.py` covered before).
+- If you already have the Repairs notice: update, restart, and it should
+  register itself and clear the notice automatically. If it doesn't, the
+  one-step manual instruction the notice already gives you always works
+  regardless of the cause.
+
 ## 0.5.0
 
 - **Multi-section care guide** for all 201 plants: Light, Watering,
