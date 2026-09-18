@@ -185,6 +185,7 @@ TOXICITY = {
     "Primrose": "mildly_toxic", "Sensitive Plant": "mildly_toxic",
     "Umbrella Papyrus": "non_toxic", "Banana Plant": "non_toxic", "Room Lime": "non_toxic",
     "Rose Grape": "non_toxic", "Orchid Cactus": "non_toxic",
+    "Calathea Rufibarba": "non_toxic", "Blue Star Fern": "non_toxic",
 }
 DEFAULT_TOXICITY_NOTE = (
     "Geen bevestigde ASPCA-vermelding gevonden voor deze specifieke plant - wees "
@@ -195,6 +196,107 @@ TOXICITY_TEXT = {
     "toxic": "Giftig voor katten en honden (en houd 'm ook uit de buurt van kleine kinderen) bij inname - neem bij inname contact op met een dierenarts of het vergiftigingeninformatiecentrum.",
     "mildly_toxic": "Licht giftig / kan maagklachten veroorzaken bij inname door huisdieren of kinderen - meestal niet levensbedreigend, maar toch buiten bereik houden.",
     "non_toxic": "Wordt door de ASPCA beschouwd als niet giftig voor katten en honden - een van de veiligere keuzes als je huisdieren hebt.",
+}
+
+# In-depth, individually researched Dutch care guides for specific plants -
+# overrides the shorter profile-templated sections above (light, watering,
+# humidity, temperature, fertilizing, repotting, common_problems) for just
+# these species. This is deliberately NOT done for all 201 plants (writing
+# genuinely researched, bespoke guides at this depth for the full database
+# isn't tractable in one pass) - these are the plants a real user's own
+# dashboard actually uses. Toxicity still comes from TOXICITY/TOXICITY_TEXT
+# above, consistently with every other plant.
+DETAILED_CARE_GUIDES = {
+    "Bird of Paradise": {
+        "light": "Houdt van helder, indirect licht (bijvoorbeeld bij een oost- of noordraam). Na gewenning kan hij ook een paar uur ochtend- of avondzon verdragen, maar felle middagzon achter glas kan de bladeren verbranden. Te weinig licht geeft trage groei en geen bloei.",
+        "watering": "Laat de bovenste 2-3 cm van de aarde opdrogen voor je weer water geeft - in de zomer meestal zo'n 1x per 7-10 dagen, in de winter veel minder (om de 2-3 weken, soms nog langer). Geef dan grondig water tot het onderin wegloopt en laat nooit water in de schotel staan: de vlezige wortels zijn gevoelig voor wortelrot bij natte voeten.",
+        "humidity": "Gemiddelde kamervochtigheid is prima (40-60%); bij droge verwarmingslucht in de winter helpt een luchtbevochtiger, een schaaltje water met kiezels onder de pot, of af en toe besproeien.",
+        "temperature": "Het prettigst tussen 18-25\u00b0C, niet onder de 10-12\u00b0C. Een iets koelere winterperiode (15-18\u00b0C) bevordert bloei. Vermijd tocht en de buurt van radiatoren.",
+        "fertilizing": "Van maart t/m september elke 2 weken vloeibare kamerplantenvoeding op halve sterkte; in de winterrust niet bemesten.",
+        "repotting": "Om de 2-3 jaar in het voorjaar, in een pot die maar 2-3 cm groter is - Strelitzia bloeit juist beter als de pot iets krap zit. Gebruik goed doorlatende potgrond, eventueel met wat extra perliet.",
+        "common_problems": "Bruine bladranden wijzen meestal op te droge lucht of hard leidingwater (probeer regenwater); gele bladeren komen vaak door te veel water of een tekort aan voeding; geen bloei betekent meestal te weinig licht, een plant die nog te jong is (bloeit vaak pas na 3-5 jaar) of een pot die te ruim is.",
+    },
+    "Wijze Varen (Bird's Nest Fern)": {
+        "light": "Houdt van helder, indirect licht - een paar meter van een raam is ideaal. Vermijd direct zonlicht, dat verbrandt de bladeren snel. In te donkere hoeken groeit hij trager en verliest hij glans.",
+        "watering": "Gemiddeld zo'n 1x per week, maar laat altijd eerst de bovenste 2-3 cm van de aarde opdrogen voordat je weer water geeft. In de winter kan dat oplopen tot elke 10-14 dagen. Zorg voor goede drainage - natte voeten verdraagt deze varen slecht.",
+        "humidity": "Houdt van een hoge luchtvochtigheid (bij voorkeur 40-60% of hoger) en waardeert het om regelmatig licht besproeid te worden, of zet er een luchtbevochtiger of schaaltje water bij in de buurt.",
+        "temperature": "Het prettigst tussen 18-24\u00b0C. Vermijd koude tocht, plotselinge temperatuurschommelingen en de buurt van radiatoren of airco.",
+        "fertilizing": "In het voor- en najaar 1x per maand een gebalanceerde vloeibare kamerplantenvoeding (bijv. 10-10-10) op halve sterkte. In herfst en winter niet bemesten.",
+        "repotting": "In het voorjaar of vroege zomer, in een pot die 2-3 cm groter is. Gebruik luchtige, goed doorlatende potgrond met wat extra veenmos of perliet.",
+        "common_problems": "Bruine bladranden of -punten wijzen meestal op te lage luchtvochtigheid, onder- of overwatering, te veel direct zonlicht of een voedingstekort - controleer eerst je water- en lichtschema.",
+    },
+    "Monstera": {
+        "light": "Zet de plant ongeveer een meter van een raam, in helder maar indirect licht. Te veel felle zon verbrandt het blad; te weinig licht zorgt ervoor dat de kenmerkende gaten in volwassen bladeren niet goed ontstaan.",
+        "watering": "Geef pas water als de bovenste 5 cm van de grond droog aanvoelt (vingertest). Laat overtollig water na het gieten volledig wegzakken - nooit water in de schotel laten staan. Geef in de winter duidelijk minder water.",
+        "humidity": "Gedijt het best boven 18\u00b0C en verdraagt geen temperaturen onder 10\u00b0C. In een warme, drogere kamer waardeert de plant het om af en toe licht beneveld te worden.",
+        "temperature": "Kamertemperatuur tussen 18-27\u00b0C is ideaal; vermijd tocht en plekken vlak bij een koud raam of de verwarming.",
+        "fertilizing": "In het voor- en najaar maandelijks een algemene kamerplantenvoeding.",
+        "repotting": "Verpot in het voorjaar zodra je wortels uit de drainagegaten ziet komen, in universele of speciale kamerplantenpotgrond.",
+        "common_problems": "Gele bladeren wijzen meestal op te veel water of een voedingstekort; bruine plekken komen door direct zonlicht; slap hangende bladeren door te veel of te weinig water, of een plant die aan zijn pot ontgroeid is. Wolluis en schildluis kun je met een vochtige doek wegvegen.",
+    },
+    "Calathea Rufibarba": {
+        "light": "Houdt van veel indirect licht. Ze overleven in de schaduw, maar groeien mooier en voller bij helder, indirect licht vlakbij een raam. Vermijd direct zonlicht - dat verbrandt de bladeren.",
+        "watering": "In het voor- en najaar de grond licht vochtig houden en water geven zodra de bovenste centimeters iets opdrogen. In de herfst en winter mag de grond wat verder opdrogen tussen de beurten door. Zorg altijd voor goede drainage om wortelrot te voorkomen.",
+        "humidity": "Dit is d\u00e9 cruciale factor voor deze plant - een Calathea Rufibarba wil een zeer hoge luchtvochtigheid, idealiter boven de 80%. Besproei meerdere keren per week of zet de plant in een (lichte) badkamer om bruine bladranden te voorkomen.",
+        "temperature": "Het prettigst tussen 18-24\u00b0C; vermijd tocht, koude vensterbanken en temperaturen onder 15\u00b0C.",
+        "fertilizing": "Alleen tijdens de groeifase (voorjaar t/m zomer) met een stikstofrijke kamerplantenvoeding.",
+        "repotting": "Verpotten is door de trage groei zelden nodig; snoei door hele bladstelen bij de grond te verwijderen om de plant in vorm te houden.",
+        "common_problems": "Gele bladeren komen meestal door te veel water; hangende bladeren door te droge grond; bruine, droge bladranden door te lage luchtvochtigheid - verhoog dan direct de vochtigheid.",
+    },
+    "Mini Monstera": {
+        "light": "Houdt van helder, indirect licht. De plant kan ook wat schaduw verdragen, maar groeit het mooist en maakt meer karakteristieke bladeren bij voldoende indirect licht. Vermijd felle, directe middagzon - die kan de bladeren verbranden.",
+        "watering": "Laat de bovenste paar centimeters van de potgrond licht opdrogen voordat je opnieuw water geeft. In het voorjaar en de zomer heeft de plant doorgaans wat vaker water nodig; in de herfst en winter mag de grond verder opdrogen. Zorg altijd voor goede drainage om wortelrot te voorkomen.",
+        "humidity": "Een normale luchtvochtigheid in huis is meestal voldoende, maar de plant waardeert een wat hogere luchtvochtigheid. Bij droge lucht kunnen bruine bladranden of droge plekjes ontstaan. Een luchtbevochtiger of een plek met van nature wat meer vocht kan helpen.",
+        "temperature": "Voelt zich prettig bij kamertemperaturen van ongeveer 18-27\u00b0C. Vermijd koude tocht, plotselinge temperatuurschommelingen en temperaturen onder ongeveer 15\u00b0C.",
+        "fertilizing": "Bemest tijdens de groeifase (voorjaar en zomer) ongeveer eens per 2-4 weken met een evenwichtige kamerplantenvoeding. In de herfst en winter kun je sterk minderen of stoppen.",
+        "repotting": "Verpot wanneer de wortels de pot duidelijk vullen, meestal eens per 1-2 jaar. Gebruik een luchtige, goed drainerende potgrond. Het is een klimplant en kan mooi omhoog groeien langs een mosstok of klimrek. Snoei lange of ongewenste scheuten terug boven een bladknoop om de plant compact te houden.",
+        "common_problems": "Gele bladeren komen vaak door te veel water of slechte drainage; slappe of hangende bladeren kunnen wijzen op dorst, maar ook op wortelproblemen. Bruine, droge bladranden ontstaan vaak door droge lucht of te weinig water. Krullende bladeren kunnen eveneens wijzen op uitdroging.",
+    },
+    "Heartleaf Philodendron": {
+        "light": "Houdt van een lichte plek, maar niet van direct zonlicht - een halfschaduwplek of zo'n 2 meter van een raam is ideaal. Zet 'm nooit op een echte schaduwplek, want daar groeit hij niet lekker door.",
+        "watering": "Laat de bovenste 2-3 cm aarde opdrogen voor je weer water geeft. In lente en zomer meestal 1-2x per week, in de winter ongeveer 1x per week. Een Philodendron drinkt niet veel en is gevoelig voor te veel water - geef liever iets te weinig dan te veel.",
+        "humidity": "Komt van oorsprong uit tropische wouden en is dus gewend aan een hoge luchtvochtigheid. Besproei de plant regelmatig (minstens 1x per week, in de winter vaker) of zet er een luchtbevochtiger of schaaltje water bij - dat voorkomt ook bruine bladranden.",
+        "temperature": "Ideaal tussen 18-22\u00b0C. Onder de 12\u00b0C voelt de plant zich minder prettig; probeer dat te vermijden. Vermijd ook tocht en plekken vlak bij de verwarming.",
+        "fertilizing": "In het groeiseizoen (lente/zomer) wekelijks tot maandelijks een vloeibare kamerplantenvoeding op halve sterkte; in herfst/winter niet of nauwelijks bemesten.",
+        "repotting": "Verpot in het voorjaar zodra de plant te groot wordt voor de pot, in verse potgrond - dat geeft de wortels weer verse voedingsstoffen na de verhuizing.",
+        "common_problems": "Gele bladeren wijzen bijna altijd op te veel water; slappe stengels en drassige grond eveneens. Bladeren die naar binnen krullen wijzen vaak op te weinig water of te lage luchtvochtigheid; droge, knapperige randen komen door kalkwater of droge lucht.",
+    },
+    "Chinese Money Plant": {
+        "light": "Helder, indirect licht bij een oost- of noordraam. Direct zonlicht verbleekt of verbrandt de ronde bladeren; te weinig licht geeft trage groei en lange, kale stelen.",
+        "watering": "Laat de bovenste 2-3 cm van de aarde opdrogen voor je weer water geeft, meestal zo'n 1x per week. Gebruik bij voorkeur gefilterd water of regenwater en laat nooit water in de schotel staan.",
+        "humidity": "Past zich goed aan de gemiddelde kamervochtigheid aan, maar waardeert een schaaltje water of af en toe besproeien in de droge winterperiode.",
+        "temperature": "Het prettigst tussen 15-25\u00b0C; kan tot 10\u00b0C hebben in de winter, maar groeit dan minder hard. Vermijd tocht en de buurt van radiatoren.",
+        "fertilizing": "Maandelijks in voorjaar t/m herfst met verdunde kamerplantenvoeding; in de winter niet bemesten.",
+        "repotting": "Om de 2 jaar in het voorjaar, in een pot die maar iets groter is, met verse potgrond.",
+        "common_problems": "Gele, afvallende blaadjes wijzen op overwatering en wortelrot; bruine vlekken op te veel felle zon; krullende blaadjes op te droog staan; let op bladluis en spint.",
+    },
+    "Turtle Vine": {
+        "light": "Zet 'm in helder, indirect licht voor een compacte en gezonde groei. Vermijd sterk direct zonlicht, dat de tere blaadjes kan verbranden. Bij te weinig licht groeit de plant lang en spichtig met minder blad.",
+        "watering": "Geef water als de bovenste laag van de grond licht droog aanvoelt - in de meeste huizen komt dat neer op ongeveer 1x per week in de zomer, in de winter minder vaak. Een beetje droge grond is beter dan een te natte: te veel water leidt snel tot wortelrot en vergelende bladeren.",
+        "humidity": "Niet kieskeurig - normale kamervochtigheid is prima, al waardeert de plant iets meer vocht in een erg droge, verwarmde kamer.",
+        "temperature": "Houdt van warmte, ideaal tussen 18-25\u00b0C; kan ook goed tegen iets drogere lucht. Vermijd temperaturen onder ongeveer 12\u00b0C.",
+        "fertilizing": "In de lente en zomer eens per maand een uitgebalanceerde vloeibare kamerplantenvoeding; in de winterrust niet bemesten.",
+        "repotting": "Om de 1-2 jaar verpotten zodra de pot te vol raakt, in goed drainerende kamerplantengrond (eventueel met wat extra perliet). Knip lange stengels regelmatig terug om de plant vol en bossig te houden.",
+        "common_problems": "Slappe, glazige of donker verkleurende stengels wijzen op langdurig te natte grond/wortelrot - knip gezonde toppen af als stek in verse grond. Let ook op spint (fijne webjes) en wolluis (witte, wasachtige plukjes).",
+    },
+    "Alocasia Polly": {
+        "light": "Houdt van helder, indirect licht, maar niet van directe zon - dat geeft al snel bladverbranding. Bij te weinig licht krijgt de plant lange, magere stelen op zoek naar meer licht.",
+        "watering": "Houd de grond het hele jaar door licht vochtig, maar geef nooit zo veel water dat de wortels in een laagje water blijven staan - dat veroorzaakt al snel wortelrot. Geef pas weer water als de bovenste paar centimeter grond is opgedroogd, met water op kamertemperatuur.",
+        "humidity": "Deze plant komt uit het tropisch regenwoud en wil dat je dat nabootst: een hoge luchtvochtigheid is cruciaal. Besproei de bladeren idealiter dagelijks, of zet een luchtbevochtiger of schaaltje water in de buurt - bij te lage luchtvochtigheid drogen de bladpunten en -randen bruin uit.",
+        "temperature": "Voelt zich het prettigst in een gematigde, warme omgeving zonder directe zon; houd 'm uit de buurt van radiatoren, open haarden en tocht.",
+        "fertilizing": "Geef in de groeiperiode (lente/zomer) ongeveer elke 2 weken tot maandelijks wat kamerplantenvoeding; stop met bemesten zodra de groei in de herfst vertraagt.",
+        "repotting": "Verpot jaarlijks in het voorjaar in verse potgrond voor groene planten, met kleikorrels onderin de pot voor een betere drainage.",
+        "common_problems": "Bruine bladranden of -punten wijzen vrijwel altijd op te lage luchtvochtigheid; vervormde nieuwe bladeren wijzen meestal op te veel water. Gele bladeren komen door te weinig licht of (bij oudere bladeren onderaan) gewoon natuurlijke veroudering. Let op spint bij droge lucht.",
+    },
+    "Blue Star Fern": {
+        "light": "Fel, indirect licht is ideaal - bijvoorbeeld een paar meter van een zuidraam of wat dichter bij een raam op het westen/oosten. Vermijd directe zon, die de delicate bladeren kan verbranden.",
+        "watering": "Laat de bovenste laag van de grond tussen de gietbeurten door licht opdrogen; gemiddeld zo'n 2x per week in de zomer en 1x per week in de winter. Geef water aan de zijkant van de pot, niet in het hart van de plant, en laat nooit een laagje water onderin de pot staan.",
+        "humidity": "Houdt, zoals de meeste varens, van een hoge luchtvochtigheid - idealiter 60-70%. Besproei regelmatig (minstens 1x per week, in de winter vaker) of zet de plant in een lichte badkamer.",
+        "temperature": "Het prettigst tussen 18-24\u00b0C; vermijd tocht en de buurt van radiatoren of airco. Onder de 12\u00b0C wil de plant liever niet meer buiten staan.",
+        "fertilizing": "Bemest van april tot september ongeveer eens per 4-6 weken met verdunde universele kamerplantenvoeding; in de winterrust niet bemesten - de plant heeft dan weinig voedingsbehoefte.",
+        "repotting": "Om de 2-3 jaar in het voorjaar, wanneer de plant te groot wordt voor de pot. Snoeien is niet nodig; verwijder minder mooie bladeren gewoon met een schaar zo dicht mogelijk bij het uitlooppunt.",
+        "common_problems": "Bruine, knapperige bladeren wijzen meestal op te lage luchtvochtigheid of te weinig water; gele bladeren komen vaak door een voedingstekort. Let ook op spint, tripsen en rouwmuggen bij een aangetaste plant.",
+    },
 }
 
 # Starter set of stock photos, keyed by display_name - a curated, verified
@@ -449,6 +551,10 @@ PLANTS = [
     ("Orchid Cactus", "Epiphyllum spp.", "epiphytic", "Een epifytische 'bladcactus' - laat, anders dan woestijncactussen, niet helemaal uitdrogen."),
     ("Kris Plant", "Alocasia sanderiana", "moisture_loving", "Golvende, donkere bladeren met lichte nerven; gevoelig voor zowel te veel als te weinig water."),
 
+    # --- Toegevoegd voor gebruikers eigen dashboard (v0.8.0) ---
+    ("Calathea Rufibarba", "Calathea rufibarba", "moisture_loving", "Fluweelachtige, golvende bladeren met een paarse onderkant; wil een zeer hoge luchtvochtigheid."),
+    ("Blue Star Fern", "Phlebodium aureum", "moisture_loving", "Blauwgroene, golvende bladeren; een epifytische varen die van hoge luchtvochtigheid houdt."),
+
 ]
 
 # Well-known distinct Dutch common names, keyed by the English display_name
@@ -521,6 +627,7 @@ DUTCH_NAMES = {
     "Fishtail Palm": ["Vistaartpalm"],
     "Lemon Tree (potted)": ["Citroenboom"],
     "Orchid Cactus": ["Bladcactus"],
+    "Blue Star Fern": ["Blauwvaren"],
 }
 
 # Keep the four originals from the first release's thresholds verbatim
@@ -562,18 +669,31 @@ def build() -> list[dict]:
         aliases = sorted({display_name, scientific_name, *dutch_names})
 
         sections = CARE_GUIDE_SECTIONS[profile]
+        detailed = DETAILED_CARE_GUIDES.get(display_name)
         toxicity_level = TOXICITY.get(display_name)
         toxicity_text = TOXICITY_TEXT.get(toxicity_level, DEFAULT_TOXICITY_NOTE)
-        care_guide = {
-            "light": sections["light"],
-            "watering": f"{generic_note} {extra_note}".strip(),
-            "humidity": sections["humidity"],
-            "temperature": sections["temperature"],
-            "fertilizing": sections["fertilizing"],
-            "repotting": sections["repotting"],
-            "common_problems": sections["common_problems"],
-            "toxicity": toxicity_text,
-        }
+        if detailed:
+            care_guide = {
+                "light": detailed["light"],
+                "watering": detailed["watering"],
+                "humidity": detailed["humidity"],
+                "temperature": detailed["temperature"],
+                "fertilizing": detailed["fertilizing"],
+                "repotting": detailed["repotting"],
+                "common_problems": detailed["common_problems"],
+                "toxicity": toxicity_text,
+            }
+        else:
+            care_guide = {
+                "light": sections["light"],
+                "watering": f"{generic_note} {extra_note}".strip(),
+                "humidity": sections["humidity"],
+                "temperature": sections["temperature"],
+                "fertilizing": sections["fertilizing"],
+                "repotting": sections["repotting"],
+                "common_problems": sections["common_problems"],
+                "toxicity": toxicity_text,
+            }
         # A single flattened string for simple display (e.g. the sensor's
         # state) - the structured `care_guide` above is what the dashboard
         # card's expandable section actually renders from.
@@ -620,16 +740,21 @@ if __name__ == "__main__":
     unknown_photo_keys = set(STOCK_PHOTOS) - plant_names
     if unknown_photo_keys:
         raise SystemExit(f"STOCK_PHOTOS has keys with no matching plant: {unknown_photo_keys}")
+    unknown_detailed_keys = set(DETAILED_CARE_GUIDES) - plant_names
+    if unknown_detailed_keys:
+        raise SystemExit(f"DETAILED_CARE_GUIDES has keys with no matching plant: {unknown_detailed_keys}")
 
     data = build()
     with_dutch = sum(1 for e in data if e["dutch_names"])
     with_known_toxicity = sum(1 for e in data if e["display_name"] in TOXICITY)
     with_stock_photo = sum(1 for e in data if e["stock_photo_url"])
+    with_detailed_guide = sum(1 for e in data if e["display_name"] in DETAILED_CARE_GUIDES)
     print(
         f"Generated {len(data)} species entries "
         f"({with_dutch} with a distinct Dutch name, "
         f"{with_known_toxicity} with a confirmed ASPCA toxicity listing, "
-        f"{with_stock_photo} with a verified stock photo)."
+        f"{with_stock_photo} with a verified stock photo, "
+        f"{with_detailed_guide} with an in-depth researched care guide)."
     )
     out_path = os.path.join(
         os.path.dirname(__file__), "..", "custom_components", "plant_monitor", "species_data.json"

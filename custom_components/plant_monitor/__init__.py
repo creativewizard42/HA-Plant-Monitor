@@ -9,8 +9,11 @@ from homeassistant.helpers import config_validation as cv, device_registry as dr
 
 from .const import CONF_PHOTO_PATH, DOMAIN, PLATFORMS, SERVICE_LOG_WATERING
 from .frontend import async_register_frontend
+from .notifications import PlantNotifier
 from .photo import async_delete_photo
 from .plant_data import PlantData
+
+NOTIFIERS_KEY = f"{DOMAIN}_notifiers"
 
 LOG_WATERING_SCHEMA = vol.Schema(
     {vol.Required("device_id"): vol.All(cv.ensure_list, [cv.string])}
@@ -46,10 +49,15 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Plant Monitor from a config entry (one plant)."""
     hass.data.setdefault(DOMAIN, {})
+    hass.data.setdefault(NOTIFIERS_KEY, {})
 
     plant = PlantData(hass, entry)
     await plant.async_setup()
     hass.data[DOMAIN][entry.entry_id] = plant
+
+    notifier = PlantNotifier(hass, entry, plant)
+    await notifier.async_setup()
+    hass.data[NOTIFIERS_KEY][entry.entry_id] = notifier
 
     entry.async_on_unload(entry.add_update_listener(_async_update_listener))
 
@@ -63,6 +71,8 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     if unload_ok:
         plant: PlantData = hass.data[DOMAIN].pop(entry.entry_id)
         await plant.async_unload()
+        notifier: PlantNotifier = hass.data[NOTIFIERS_KEY].pop(entry.entry_id)
+        await notifier.async_unload()
     return unload_ok
 
 

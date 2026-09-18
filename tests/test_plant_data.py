@@ -234,6 +234,55 @@ def test_photo_url_fallback_chain():
     print("test_photo_url_fallback_chain: OK")
 
 
+def test_care_guide_sections_parses_flattened_text():
+    hass, plant = make_plant(
+        {
+            "soil_moisture_entity": "sensor.soil",
+            "care_tip": "Licht: Helder licht.\nWater geven: Laat opdrogen.\nGiftigheid: Niet giftig.",
+        }
+    )
+    sections = plant.care_guide_sections
+    assert sections["Licht"] == "Helder licht."
+    assert sections["Water geven"] == "Laat opdrogen."
+    assert sections["Giftigheid"] == "Niet giftig."
+    print("test_care_guide_sections_parses_flattened_text: OK")
+
+
+def test_linked_entity_ids_exposed():
+    hass, plant = make_plant(
+        {
+            "soil_moisture_entity": "sensor.soil",
+            "temperature_entity": "sensor.temp",
+            "humidity_entity": "sensor.hum",
+            "battery_entity": "sensor.batt",
+        }
+    )
+    assert plant.temperature_entity_id == "sensor.temp"
+    assert plant.humidity_entity_id == "sensor.hum"
+    assert plant.battery_entity_id == "sensor.batt"
+
+    # None of them configured -> all None, not a crash.
+    hass2, plant2 = make_plant({"soil_moisture_entity": "sensor.soil"})
+    assert plant2.temperature_entity_id is None
+    assert plant2.humidity_entity_id is None
+    assert plant2.battery_entity_id is None
+    print("test_linked_entity_ids_exposed: OK")
+
+
+def test_care_tip_can_exceed_ha_state_length_limit():
+    # Regression test: HA sensor states are capped at 255 chars, but a
+    # full multi-section care guide easily exceeds that. plant.care_tip
+    # itself must NOT be silently truncated - only the sensor's
+    # native_value (in sensor.py) truncates, and the full text must stay
+    # available (e.g. via extra_state_attributes) for anything reading
+    # plant.care_tip directly.
+    long_tip = "Licht: " + ("x" * 100) + "\nWater geven: " + ("y" * 100) + "\nGiftigheid: " + ("z" * 100)
+    assert len(long_tip) > 255
+    hass, plant = make_plant({"soil_moisture_entity": "sensor.soil", "care_tip": long_tip})
+    assert plant.care_tip == long_tip, "PlantData.care_tip must never truncate - only the sensor's native_value does"
+    print("test_care_tip_can_exceed_ha_state_length_limit: OK")
+
+
 if __name__ == "__main__":
     tests = [
         test_advice_dry,
@@ -246,6 +295,9 @@ if __name__ == "__main__":
         test_options_override_data,
         test_care_tip_and_photo_path,
         test_photo_url_fallback_chain,
+        test_care_guide_sections_parses_flattened_text,
+        test_linked_entity_ids_exposed,
+        test_care_tip_can_exceed_ha_state_length_limit,
     ]
     failures = 0
     for t in tests:

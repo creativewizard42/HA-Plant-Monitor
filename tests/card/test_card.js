@@ -9,6 +9,7 @@ const cardSource = fs.readFileSync(
 );
 
 const DEVICE_ID = "dev123";
+const SOURCE_DEVICE_ID = "zigbee_device_456"; // the ORIGINAL hardware's device - deliberately different from DEVICE_ID
 
 function makeEntities() {
   return {
@@ -25,10 +26,12 @@ function makeEntities() {
     "number.pannenkoekenplant_puppy_droogte_drempel": { entity_id: "number.pannenkoekenplant_puppy_droogte_drempel", device_id: DEVICE_ID, platform: "plant_monitor", translation_key: "dry_threshold" },
     "number.pannenkoekenplant_puppy_overwater_drempel": { entity_id: "number.pannenkoekenplant_puppy_overwater_drempel", device_id: DEVICE_ID, platform: "plant_monitor", translation_key: "wet_threshold" },
     "image.pannenkoekenplant_puppy_foto": { entity_id: "image.pannenkoekenplant_puppy_foto", device_id: DEVICE_ID, platform: "plant_monitor", translation_key: "photo" },
-    // The user's OWN linked sensors (not plant_monitor's) - found by device_class, same device:
-    "sensor.zigbee_temp": { entity_id: "sensor.zigbee_temp", device_id: DEVICE_ID, platform: "mqtt" },
-    "sensor.zigbee_humidity": { entity_id: "sensor.zigbee_humidity", device_id: DEVICE_ID, platform: "mqtt" },
-    "sensor.zigbee_battery": { entity_id: "sensor.zigbee_battery", device_id: DEVICE_ID, platform: "mqtt" },
+    // The user's OWN linked sensors, on the ORIGINAL hardware's device -
+    // deliberately NOT device_id: DEVICE_ID, matching real-world Plant
+    // Monitor devices vs. the Zigbee2MQTT (or other) sensor's own device.
+    "sensor.zigbee_temp": { entity_id: "sensor.zigbee_temp", device_id: SOURCE_DEVICE_ID, platform: "mqtt" },
+    "sensor.zigbee_humidity": { entity_id: "sensor.zigbee_humidity", device_id: SOURCE_DEVICE_ID, platform: "mqtt" },
+    "sensor.zigbee_battery": { entity_id: "sensor.zigbee_battery", device_id: SOURCE_DEVICE_ID, platform: "mqtt" },
   };
 }
 
@@ -37,10 +40,24 @@ function makeStates() {
     "sensor.pannenkoekenplant_puppy_advies": { entity_id: "sensor.pannenkoekenplant_puppy_advies", state: "\u2705 Alles OK, geen actie nodig.", attributes: {} },
     "sensor.pannenkoekenplant_puppy_verzorgingstip": {
       entity_id: "sensor.pannenkoekenplant_puppy_verzorgingstip",
-      state: "Light: Bright indirect light.\nWatering: Let the top layer dry.\nToxicity: Non-toxic to pets.",
-      attributes: {},
+      // Deliberately short/truncated .state (as HA's 255-char cap forces
+      // in reality) vs. a longer, different full_text attribute - the
+      // card must read from full_text, not .state, to pass this test.
+      state: "Licht: Bright indirect light....",
+      attributes: {
+        full_text: "Licht: Bright indirect light.\nWatering: Let the top layer dry.\nToxicity: Non-toxic to pets.",
+      },
     },
-    "sensor.pannenkoekenplant_puppy_bodemvocht": { entity_id: "sensor.pannenkoekenplant_puppy_bodemvocht", state: "23", attributes: { unit_of_measurement: "%" } },
+    "sensor.pannenkoekenplant_puppy_bodemvocht": {
+      entity_id: "sensor.pannenkoekenplant_puppy_bodemvocht",
+      state: "23",
+      attributes: {
+        unit_of_measurement: "%",
+        temperature_entity_id: "sensor.zigbee_temp",
+        humidity_entity_id: "sensor.zigbee_humidity",
+        battery_entity_id: "sensor.zigbee_battery",
+      },
+    },
     "sensor.pannenkoekenplant_puppy_gezondheidsscore": { entity_id: "sensor.pannenkoekenplant_puppy_gezondheidsscore", state: "98", attributes: { unit_of_measurement: "pts" } },
     "sensor.pannenkoekenplant_puppy_droogsnelheid": { entity_id: "sensor.pannenkoekenplant_puppy_droogsnelheid", state: "1.2", attributes: { unit_of_measurement: "%/h" } },
     "sensor.pannenkoekenplant_puppy_waterbehoefte": { entity_id: "sensor.pannenkoekenplant_puppy_waterbehoefte", state: "Over ongeveer 6.0 uur", attributes: {} },
@@ -147,7 +164,7 @@ async function run() {
   html = el.innerHTML;
   assert.ok(html.includes("<details"), "expected a <details> expandable section");
   assert.ok(html.includes("Chinese Money Plant"), "expected the device model in the care-guide summary");
-  assert.ok(html.includes("LIGHT") || html.includes("Light"), "expected a Light section label");
+  assert.ok(html.includes("<b>Licht:</b>"), "expected a Licht section label");
   assert.ok(html.includes("Bright indirect light"), "expected Light section content");
   assert.ok(html.includes("Non-toxic to pets"), "expected Toxicity section content");
   console.log("test_care_guide_render: OK");
@@ -206,7 +223,7 @@ async function run() {
 
   // --- Test 11: Dutch care-guide categories and a visible expand chevron ---
   const hassDutch = makeHass();
-  hassDutch.states["sensor.pannenkoekenplant_puppy_verzorgingstip"].state =
+  hassDutch.states["sensor.pannenkoekenplant_puppy_verzorgingstip"].attributes.full_text =
     "Licht: Helder, indirect licht.\nWater geven: Laat de bovenste laag opdrogen.\nGiftigheid: Niet giftig voor huisdieren.";
   const el7 = document.createElement("plant-monitor-card");
   el7.setConfig({ device_id: DEVICE_ID });

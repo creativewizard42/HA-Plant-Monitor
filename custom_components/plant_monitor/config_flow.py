@@ -22,6 +22,9 @@ from .const import (
     CONF_HUMIDITY_ENTITY,
     CONF_HUMIDITY_LOW,
     CONF_NAME,
+    CONF_NOTIFY_DAILY_SUMMARY_ENABLED,
+    CONF_NOTIFY_DEVICE_ID,
+    CONF_NOTIFY_ENABLED,
     CONF_PHOTO_PATH,
     CONF_SOIL_MOISTURE_ENTITY,
     CONF_SPECIES,
@@ -101,6 +104,27 @@ def _photo_schema() -> vol.Schema:
             ),
         }
     )
+
+
+def _notify_schema(defaults: dict[str, Any]) -> vol.Schema:
+    schema: dict[Any, Any] = {
+        vol.Required(
+            CONF_NOTIFY_ENABLED, default=defaults.get(CONF_NOTIFY_ENABLED, False)
+        ): selector.BooleanSelector(),
+    }
+    if defaults.get(CONF_NOTIFY_DEVICE_ID):
+        schema[vol.Optional(CONF_NOTIFY_DEVICE_ID, default=defaults[CONF_NOTIFY_DEVICE_ID])] = (
+            selector.DeviceSelector()
+        )
+    else:
+        schema[vol.Optional(CONF_NOTIFY_DEVICE_ID)] = selector.DeviceSelector()
+    schema[
+        vol.Required(
+            CONF_NOTIFY_DAILY_SUMMARY_ENABLED,
+            default=defaults.get(CONF_NOTIFY_DAILY_SUMMARY_ENABLED, False),
+        )
+    ] = selector.BooleanSelector()
+    return vol.Schema(schema)
 
 
 def _advanced_schema(defaults: dict[str, Any]) -> vol.Schema:
@@ -234,12 +258,18 @@ class PlantMonitorConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_advanced(self, user_input: dict[str, Any] | None = None) -> Any:
         if user_input is not None:
             self._data.update(user_input)
+            return await self.async_step_notifications()
+        return self.async_show_form(step_id="advanced", data_schema=_advanced_schema({}))
+
+    async def async_step_notifications(self, user_input: dict[str, Any] | None = None) -> Any:
+        if user_input is not None:
+            self._data.update(user_input)
             await self.async_set_unique_id(
                 f"{self._data[CONF_NAME]}_{self._data[CONF_SOIL_MOISTURE_ENTITY]}"
             )
             self._abort_if_unique_id_configured()
             return self.async_create_entry(title=self._data[CONF_NAME], data=self._data)
-        return self.async_show_form(step_id="advanced", data_schema=_advanced_schema({}))
+        return self.async_show_form(step_id="notifications", data_schema=_notify_schema({}))
 
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow:
@@ -252,7 +282,7 @@ class PlantMonitorOptionsFlow(OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> Any:
         return self.async_show_menu(
             step_id="init",
-            menu_options=["entities", "care", "photo", "advanced"],
+            menu_options=["entities", "care", "photo", "notifications", "advanced"],
         )
 
     def _current(self) -> dict[str, Any]:
@@ -294,6 +324,15 @@ class PlantMonitorOptionsFlow(OptionsFlow):
                     async_delete_photo(self.hass, old_photo)
             return self.async_create_entry(title="", data=new_options)
         return self.async_show_form(step_id="photo", data_schema=_photo_schema())
+
+    async def async_step_notifications(self, user_input: dict[str, Any] | None = None) -> Any:
+        if user_input is not None:
+            new_options = dict(self.config_entry.options)
+            new_options.update(user_input)
+            return self.async_create_entry(title="", data=new_options)
+        return self.async_show_form(
+            step_id="notifications", data_schema=_notify_schema(self._current())
+        )
 
     async def async_step_advanced(self, user_input: dict[str, Any] | None = None) -> Any:
         if user_input is not None:

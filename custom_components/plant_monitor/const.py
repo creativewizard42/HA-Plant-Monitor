@@ -19,8 +19,13 @@ CONF_TEMP_COLD = "temp_cold_threshold"
 CONF_HUMIDITY_LOW = "humidity_low_threshold"
 CONF_BATTERY_LOW = "battery_low_threshold"
 CONF_WATER_JUMP = "water_jump_threshold"
+CONF_NOTIFY_ENABLED = "notify_enabled"
+CONF_NOTIFY_DEVICE_ID = "notify_device_id"
+CONF_NOTIFY_DAILY_SUMMARY_ENABLED = "notify_daily_summary_enabled"
 
 DEFAULT_CARE_TIP = "Geen soort herkend - voeg hier je eigen verzorgingsnotities toe."
+DAILY_SUMMARY_HOUR = 9
+DAILY_SUMMARY_MINUTE = 0
 PHOTO_SUBDIR = "plant_monitor"  # under Home Assistant's www/ folder
 
 DEFAULT_DRY_THRESHOLD = 20.0

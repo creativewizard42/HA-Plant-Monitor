@@ -45,6 +45,8 @@ jobs:
         run: pip install pytest pytest-asyncio pytest-homeassistant-custom-component
       - name: Run end-to-end config flow tests
         run: pytest tests/test_config_flow.py -v
+      - name: Run notification tests
+        run: pytest tests/test_notifications.py -v
       - name: Run frontend (card-serving) tests
         run: pytest tests/test_frontend.py -v
 

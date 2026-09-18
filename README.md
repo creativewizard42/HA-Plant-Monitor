@@ -10,6 +10,13 @@ at the entities (or a whole device) you already have in Home Assistant.
 
 ## Features
 
+- **Optional push notifications** - get alerted the moment a plant becomes
+  dry or overwatered, and/or a daily status summary, sent via
+  `notify.send_message` targeted at a device you pick (typically your
+  phone's mobile app) - no need to know the exact notify service name.
+  Off by default; the setup wizard offers it as its last step, and it can
+  be turned on/off any time from the plant's Configure menu. Each
+  transition (e.g. going dry) notifies exactly once, not on every update.
 - **A dashboard card ships with the integration** - `plant-monitor-card`
   shows one plant in three sections: a photo hero with a moisture/temp
   readout, a red-to-blue gradient bar and humidity/battery/temperature
@@ -125,19 +132,38 @@ Copy `custom_components/plant_monitor` into your Home Assistant's
 5. **Photo**: drag and drop one, or skip.
 6. **Advanced thresholds**: temperature/humidity/battery cutoffs and the
    watering-jump sensitivity - sensible defaults, rarely need changing.
-7. Repeat for each plant - each one is a separate config entry (and its own
+7. **Notifications (optional)**: pick a device to notify (e.g. your phone)
+   and flip on "notify when dry/overwatered" and/or "daily summary" - both
+   off by default. Skip this entirely if you don't want notifications.
+8. Repeat for each plant - each one is a separate config entry (and its own
    device).
 
-Everything from steps 2-6 can be revisited later from the device's
+Everything from steps 2-7 can be revisited later from the device's
 **Configure** button, which opens a menu (entities / care & tip / photo /
-advanced) instead of redoing the whole wizard. The dry/wet thresholds are
-also exposed as `number` entities you can drag straight from a dashboard
-tile, no menu needed.
+notifications / advanced) instead of redoing the whole wizard. The dry/wet
+thresholds are also exposed as `number` entities you can drag straight
+from a dashboard tile, no menu needed.
 
 ## Notifications
 
-Import the blueprint: **Settings -> Automations & scenes -> Blueprints ->
-Import blueprint**, paste the raw URL to
+**Built in (recommended)**: turn this on during setup, or later via the
+plant's **Configure -> Notifications** menu. Pick a device (typically your
+phone's `mobile_app` device) and flip on either or both toggles:
+
+- **Notify when dry/overwatered** - one push notification the moment the
+  plant crosses into "Droog" or "Te nat" (not repeated while it stays
+  there - only on the transition).
+- **Daily status summary** - one push notification per day (09:00) with
+  the plant's current advice text.
+
+This uses `notify.send_message` targeted at the device you picked, so it
+works with any notify-capable device Home Assistant knows about - no need
+to find the exact notify service name.
+
+**Alternative: the bundled blueprint.** If you'd rather build your own
+automation (e.g. to combine multiple plants into one notification, or add
+conditions), import the blueprint instead: **Settings -> Automations &
+scenes -> Blueprints -> Import blueprint**, paste the raw URL to
 `blueprints/automation/plant_monitor/plant_needs_attention.yaml` from this
 repo. Create one automation per plant from it, picking that plant's `Dry`
 and `Overwatered` sensors and your notification target.
@@ -192,12 +218,22 @@ python tests/test_species.py
 
 **End-to-end config flow** (`tests/test_config_flow.py`) - drives the
 actual multi-step config flow (species matching, device-based entity
-auto-mapping, generic-defaults fallback) through a real *test* Home
-Assistant core instance via `pytest-homeassistant-custom-component`:
+auto-mapping, generic-defaults fallback, the notifications step with and
+without a device picked) through a real *test* Home Assistant core
+instance via `pytest-homeassistant-custom-component`:
 
 ```bash
 pip install pytest pytest-asyncio pytest-homeassistant-custom-component
 pytest tests/test_config_flow.py -v
+```
+
+**Notifications** (`tests/test_notifications.py`) - a dry/overwatered
+transition sends exactly one `notify.send_message` call (not a repeat on
+every subsequent update), recovering and going dry again notifies a
+second time, and disabled/no-device plants never send anything:
+
+```bash
+pytest tests/test_notifications.py -v
 ```
 
 **Frontend card serving** (`tests/test_frontend.py`) - confirms the card's
@@ -219,25 +255,34 @@ cd tests/card && npm install && npm test
 
 Both run automatically in CI on every push (see `.github/workflows/`).
 
-## Known limitations (v0.5.0)
+## Known limitations (v0.8.0)
 
 - The species database's thresholds are approximate guidance, not
   lab-measured values (see Features above) - adjust to your own sensor and
-  potting mix. The multi-section care guide is likewise templated per
-  watering-need category (light/humidity/temperature/fertilizing/repotting
-  /common problems are shared within a category; watering and toxicity are
-  species-specific) rather than individually hand-written per plant - see
-  `scripts/generate_species_data.py`'s docstring for the full methodology.
+  potting mix. Most plants' care guides are templated per watering-need
+  category (light/humidity/temperature/fertilizing/repotting/common
+  problems shared within a category; watering and toxicity are
+  species-specific). **10 of 203 plants** - the ones this project's own
+  reference dashboard actually uses (Bird of Paradise, Wijze Varen,
+  Monstera, Calathea Rufibarba, Mini Monstera, Heartleaf Philodendron,
+  Chinese Money Plant, Turtle Vine, Alocasia Polly, Blue Star Fern) - have
+  a fully individually researched Dutch care guide instead (see
+  `DETAILED_CARE_GUIDES` in `scripts/generate_species_data.py`). Writing
+  that depth for the full 203 isn't tractable in one pass; PRs adding more
+  are welcome.
 - Toxicity notes are grounded in the ASPCA's toxic/non-toxic plant
-  database for 182 of 201 plants; the rest show a cautious "no confirmed
+  database for 184 of 203 plants; the rest show a cautious "no confirmed
   listing" note rather than asserting safety that hasn't been verified.
   This is general awareness information, not veterinary advice.
-- The 201-plant list is broad but not exhaustive; true air plants
+- The 203-plant list is broad but not exhaustive; true air plants
   (Tillandsia grown without a potting medium) aren't included since they
   don't suit a soil-moisture-sensor tool.
-- Only **4 of 201 plants** have a verified stock photo so far (see
+- Only **4 of 203 plants** have a verified stock photo so far (see
   `PHOTO_CREDITS.md`); every other plant shows no photo until you upload
   your own, which always takes priority anyway.
+- The daily notification summary is sent at a fixed time (09:00, not
+  currently configurable) - keeping the setup to "pick a device and flip
+  a toggle" as requested. Open an issue if you'd like a per-plant time.
 - The drying-rate history is kept in memory, not in the recorder database:
   it resets on a Home Assistant restart and briefly after an options change
   (entry reload), so the drying rate / prediction take a little while to

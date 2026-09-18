@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.8.0
+
+- **Bugfix**: humidity/battery/temperature weren't showing on the card.
+  Root cause: the card looked for them on the same HA "device" as Plant
+  Monitor's own entities, but the linked hardware sensor is a *different*
+  device entirely. Fixed by exposing the linked entity_ids as attributes
+  on `sensor.<plant>_soil_moisture`, which the card now reads directly.
+- **Bugfix**: care guides showed as very short / cut off. Root cause: Home
+  Assistant caps sensor *states* at 255 characters, and a full guide is
+  1000+ characters. Fixed by moving the full text to the `care_tip`
+  sensor's `full_text` attribute (no length cap) and keeping the state
+  itself short; verified against a real Home Assistant instance
+  (`test_care_tip_sensor_state_never_exceeds_ha_limit_but_full_text_survives`).
+- **10 plants now have an individually researched, in-depth Dutch care
+  guide** instead of the shorter templated one: Bird of Paradise, Wijze
+  Varen, Monstera, Calathea Rufibarba (new species), Mini Monstera,
+  Heartleaf Philodendron, Chinese Money Plant, Turtle Vine, Alocasia
+  Polly, and Blue Star Fern (new species) - the plants this project's own
+  reference dashboard actually uses. Grounded in multiple Dutch
+  gardening/plant-care sources per species.
+- **New: optional push notifications.** Pick a device (e.g. your phone)
+  and toggle "notify when dry/overwatered" and/or "daily status summary" -
+  both off by default, offered automatically as the last step of the setup
+  wizard and revisitable via Configure -> Notifications. Uses
+  `notify.send_message` with device targeting - no notify service name to
+  guess. Notifies once per dry/overwatered *transition*, not on every
+  update (verified with dedicated tests, including a real
+  `vol.Optional` + `DeviceSelector` bug the tests caught: an unset device
+  with a `None` default failed schema validation - fixed by omitting the
+  default entirely when empty, matching the pattern already used for
+  optional entity selectors).
+- New `notifications.py` (`PlantNotifier`), new options-flow /
+  initial-wizard step, new `tests/test_notifications.py` (4 tests).
+
 ## 0.7.0
 
 - **Care guide content is now Dutch**, using the exact categories

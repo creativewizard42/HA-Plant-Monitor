@@ -36,6 +36,15 @@
           "photo_upload": "Upload a photo"
         }
       },
+      "notifications": {
+        "title": "Notifications (optional)",
+        "description": "Get a push notification when this plant needs water or has been overwatered, and/or a daily status summary. Pick the device the notification should go to (e.g. your phone's mobile app) and flip the toggles on - both are off by default. You can change this any time from the plant's Configure menu.",
+        "data": {
+          "notify_enabled": "Notify when dry / overwatered",
+          "notify_device_id": "Notification device",
+          "notify_daily_summary_enabled": "Send a daily status summary"
+        }
+      },
       "advanced": {
         "title": "Advanced thresholds",
         "description": "Sensible defaults - only change these if you know you want to.",
@@ -60,6 +69,7 @@
           "entities": "Sensor entities",
           "care": "Thresholds & care tip",
           "photo": "Photo",
+          "notifications": "Notifications",
           "advanced": "Advanced thresholds"
         }
       },
@@ -85,6 +95,15 @@
         "description": "Uploading a new photo replaces the current one.",
         "data": {
           "photo_upload": "Upload a photo"
+        }
+      },
+      "notifications": {
+        "title": "Notifications",
+        "description": "Get a push notification when this plant needs water or has been overwatered, and/or a daily status summary.",
+        "data": {
+          "notify_enabled": "Notify when dry / overwatered",
+          "notify_device_id": "Notification device",
+          "notify_daily_summary_enabled": "Send a daily status summary"
         }
       },
       "advanced": {

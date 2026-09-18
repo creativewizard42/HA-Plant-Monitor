@@ -136,25 +136,17 @@ class PlantMonitorCard extends HTMLElement {
     };
   }
 
-  // temperature/humidity/battery aren't Plant Monitor's own entities -
-  // they're the user's linked sensors - so find them on the same device
-  // by device_class instead of by role/translation_key.
+  // temperature/humidity/battery aren't Plant Monitor's own entities and
+  // are NOT on the same HA "device" as this integration's entities either
+  // (they stay on the original hardware's device) - so we read the
+  // actual linked entity_ids straight from the soil_moisture sensor's own
+  // attributes (exposed there server-side) instead of guessing.
   _entityStateForRole(kind) {
-    const anyId = Object.values(this._entityIds || {})[0];
-    if (!anyId || !this._hass || !this._hass.entities) return undefined;
-    const reg = this._hass.entities[anyId];
-    const deviceId = reg && reg.device_id;
-    if (!deviceId) return undefined;
-    for (const entry of Object.values(this._hass.entities)) {
-      if (entry.device_id !== deviceId) continue;
-      const state = this._hass.states[entry.entity_id];
-      if (!state) continue;
-      const deviceClass = state.attributes && state.attributes.device_class;
-      if (kind === "temperature" && deviceClass === "temperature") return state;
-      if (kind === "humidity" && deviceClass === "humidity") return state;
-      if (kind === "battery" && deviceClass === "battery") return state;
-    }
-    return undefined;
+    const soil = this._entity("soil_moisture");
+    if (!soil) return undefined;
+    const attrKey = `${kind}_entity_id`;
+    const linkedId = soil.attributes && soil.attributes[attrKey];
+    return linkedId ? this._hass.states[linkedId] : undefined;
   }
 
   async _maybeFetchHistory() {
@@ -558,16 +550,24 @@ class PlantMonitorCard extends HTMLElement {
 
     summaryText.innerHTML = `\ud83c\udf3f Verzorgingstips \u2014 ${this._escape(model || "")}`;
 
-    if (!careTip || !careTip.state) {
+    // The sensor's *state* is capped at 255 characters by Home Assistant
+    // itself - the full multi-section text lives in the full_text
+    // attribute instead (falls back to .state for older integration
+    // versions or a custom entities: override pointing at something else).
+    const fullText = careTip && careTip.attributes && careTip.attributes.full_text
+      ? careTip.attributes.full_text
+      : careTip && careTip.state;
+
+    if (!fullText) {
       body.innerHTML = `<p>Geen verzorgingstip ingesteld.</p>`;
       return;
     }
 
-    // care_tip's state is "Label: text" lines, one section per line - see
-    // species_data.json / the config flow's care step. Giftigheid
-    // (toxicity) is shown as an italic footnote, matching the reference
-    // design, instead of a labelled paragraph like the others.
-    const lines = String(careTip.state).split("\n").filter(Boolean);
+    // "Label: text" lines, one section per line - see species_data.json /
+    // the config flow's care step. Giftigheid (toxicity) is shown as an
+    // italic footnote, matching the reference design, instead of a
+    // labelled paragraph like the others.
+    const lines = String(fullText).split("\n").filter(Boolean);
     const paragraphs = [];
     let toxicityLine = "";
     for (const line of lines) {

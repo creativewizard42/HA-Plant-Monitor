@@ -36,6 +36,15 @@
           "photo_upload": "Upload een foto"
         }
       },
+      "notifications": {
+        "title": "Meldingen (optioneel)",
+        "description": "Ontvang een pushmelding als deze plant water nodig heeft of te nat is geworden, en/of een dagelijkse statussamenvatting. Kies het apparaat waar de melding naartoe moet (bijv. de mobiele app op je telefoon) en zet de schakelaars aan - beide staan standaard uit. Je kunt dit later altijd aanpassen via het Configureren-menu van de plant.",
+        "data": {
+          "notify_enabled": "Melden bij droog / te nat",
+          "notify_device_id": "Apparaat voor melding",
+          "notify_daily_summary_enabled": "Dagelijkse statussamenvatting versturen"
+        }
+      },
       "advanced": {
         "title": "Geavanceerde drempels",
         "description": "Verstandige standaardwaarden - alleen aanpassen als je weet dat je dat wilt.",
@@ -60,6 +69,7 @@
           "entities": "Sensor-entiteiten",
           "care": "Drempels & verzorgingstip",
           "photo": "Foto",
+          "notifications": "Meldingen",
           "advanced": "Geavanceerde drempels"
         }
       },
@@ -85,6 +95,15 @@
         "description": "Een nieuwe foto uploaden vervangt de huidige.",
         "data": {
           "photo_upload": "Upload een foto"
+        }
+      },
+      "notifications": {
+        "title": "Meldingen",
+        "description": "Ontvang een pushmelding als deze plant water nodig heeft of te nat is geworden, en/of een dagelijkse statussamenvatting.",
+        "data": {
+          "notify_enabled": "Melden bij droog / te nat",
+          "notify_device_id": "Apparaat voor melding",
+          "notify_daily_summary_enabled": "Dagelijkse statussamenvatting versturen"
         }
       },
       "advanced": {

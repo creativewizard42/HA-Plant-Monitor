@@ -93,7 +93,17 @@ class PlantCareTipSensor(_PlantSensorBase):
 
     @property
     def native_value(self) -> str:
-        return self._plant.care_tip
+        # Home Assistant sensor states are capped at 255 characters - a
+        # full multi-section care guide is routinely 1000+ characters, so
+        # it must live in extra_state_attributes (no such cap) instead.
+        # The state itself stays short: enough to be useful in the entity
+        # list/history without ever needing truncation.
+        full = self._plant.care_tip
+        return full if len(full) <= 255 else f"{full[:252]}..."
+
+    @property
+    def extra_state_attributes(self) -> dict[str, str]:
+        return {"full_text": self._plant.care_tip, **self._plant.care_guide_sections}
 
 
 class PlantSoilMoistureSensor(_PlantSensorBase):
@@ -115,6 +125,24 @@ class PlantSoilMoistureSensor(_PlantSensorBase):
     @property
     def native_value(self) -> float | None:
         return self._plant.soil_moisture
+
+    @property
+    def extra_state_attributes(self) -> dict[str, str]:
+        # The card can't assume these live on the same HA "device" as this
+        # sensor - Plant Monitor's own entities are on their own device,
+        # separate from whatever device the user's original
+        # temperature/humidity/battery sensors belong to. Exposing the
+        # actual linked entity_ids here lets the card look them up
+        # directly instead of guessing via device_class-on-the-same-device
+        # (which silently found nothing, since it's the wrong device).
+        attrs: dict[str, str] = {}
+        if self._plant.temperature_entity_id:
+            attrs["temperature_entity_id"] = self._plant.temperature_entity_id
+        if self._plant.humidity_entity_id:
+            attrs["humidity_entity_id"] = self._plant.humidity_entity_id
+        if self._plant.battery_entity_id:
+            attrs["battery_entity_id"] = self._plant.battery_entity_id
+        return attrs
 
 
 class PlantHealthScoreSensor(_PlantSensorBase):

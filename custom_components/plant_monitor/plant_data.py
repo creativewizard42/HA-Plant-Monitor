@@ -26,6 +26,9 @@ from .const import (
     CONF_DRY_THRESHOLD,
     CONF_HUMIDITY_ENTITY,
     CONF_HUMIDITY_LOW,
+    CONF_NOTIFY_DAILY_SUMMARY_ENABLED,
+    CONF_NOTIFY_DEVICE_ID,
+    CONF_NOTIFY_ENABLED,
     CONF_PHOTO_PATH,
     CONF_SOIL_MOISTURE_ENTITY,
     CONF_SPECIES,
@@ -133,6 +136,19 @@ class PlantData:
         return value if value else DEFAULT_CARE_TIP
 
     @property
+    def care_guide_sections(self) -> dict[str, str]:
+        """Parse the flattened 'Label: text' lines into a dict, so the
+        dashboard card (and anything else) can read individual sections
+        without re-parsing the raw text itself."""
+        sections: dict[str, str] = {}
+        for line in self.care_tip.split("\n"):
+            if ":" not in line:
+                continue
+            label, _, text = line.partition(":")
+            sections[label.strip()] = text.strip()
+        return sections
+
+    @property
     def photo_path(self) -> str | None:
         return self.entry.options.get(CONF_PHOTO_PATH, self.entry.data.get(CONF_PHOTO_PATH))
 
@@ -151,6 +167,35 @@ class PlantData:
 
     def _entity(self, key: str) -> str | None:
         return self.entry.data.get(key)
+
+    @property
+    def temperature_entity_id(self) -> str | None:
+        return self._entity(CONF_TEMPERATURE_ENTITY)
+
+    @property
+    def humidity_entity_id(self) -> str | None:
+        return self._entity(CONF_HUMIDITY_ENTITY)
+
+    @property
+    def battery_entity_id(self) -> str | None:
+        return self._entity(CONF_BATTERY_ENTITY)
+
+    @property
+    def notify_enabled(self) -> bool:
+        return bool(self.entry.options.get(CONF_NOTIFY_ENABLED, self.entry.data.get(CONF_NOTIFY_ENABLED, False)))
+
+    @property
+    def notify_device_id(self) -> str | None:
+        return self.entry.options.get(CONF_NOTIFY_DEVICE_ID, self.entry.data.get(CONF_NOTIFY_DEVICE_ID))
+
+    @property
+    def notify_daily_summary_enabled(self) -> bool:
+        return bool(
+            self.entry.options.get(
+                CONF_NOTIFY_DAILY_SUMMARY_ENABLED,
+                self.entry.data.get(CONF_NOTIFY_DAILY_SUMMARY_ENABLED, False),
+            )
+        )
 
     # ---- lifecycle ----------------------------------------------------------
     async def async_setup(self) -> None:
