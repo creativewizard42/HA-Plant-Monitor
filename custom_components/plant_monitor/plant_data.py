@@ -166,7 +166,12 @@ class PlantData:
         return None
 
     def _entity(self, key: str) -> str | None:
-        return self.entry.data.get(key)
+        # Options (set via "Configure" after setup) override the initial
+        # config-flow data. A key that is present in options but empty means
+        # the user explicitly cleared that sensor, so don't fall back to data.
+        if key in self.entry.options:
+            return self.entry.options.get(key) or None
+        return self.entry.data.get(key) or None
 
     @property
     def temperature_entity_id(self) -> str | None:
@@ -174,7 +179,12 @@ class PlantData:
 
     @property
     def humidity_entity_id(self) -> str | None:
-        return self._entity(CONF_HUMIDITY_ENTITY)
+        humidity = self._entity(CONF_HUMIDITY_ENTITY)
+        # Older versions could auto-link the soil sensor as air humidity too;
+        # the same entity can never be both, so ignore it in that slot.
+        if humidity and humidity == self._entity(CONF_SOIL_MOISTURE_ENTITY):
+            return None
+        return humidity
 
     @property
     def battery_entity_id(self) -> str | None:
@@ -204,7 +214,7 @@ class PlantData:
             for entity_id in (
                 self._entity(CONF_SOIL_MOISTURE_ENTITY),
                 self._entity(CONF_TEMPERATURE_ENTITY),
-                self._entity(CONF_HUMIDITY_ENTITY),
+                self.humidity_entity_id,
                 self._entity(CONF_BATTERY_ENTITY),
             )
             if entity_id
@@ -248,7 +258,7 @@ class PlantData:
         temp_id = self._entity(CONF_TEMPERATURE_ENTITY)
         self.temperature = _to_float(hass.states.get(temp_id)) if temp_id else None
 
-        hum_id = self._entity(CONF_HUMIDITY_ENTITY)
+        hum_id = self.humidity_entity_id
         self.humidity = _to_float(hass.states.get(hum_id)) if hum_id else None
 
         batt_id = self._entity(CONF_BATTERY_ENTITY)

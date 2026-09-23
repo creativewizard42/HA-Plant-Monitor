@@ -62,7 +62,10 @@ async def test_storage_mode_lovelace_gets_resource_registered_automatically(hass
 
     await async_register_frontend(hass)
 
-    resource_collection = hass.data["lovelace"]["resources"]
+    lovelace_data = hass.data["lovelace"]
+    resource_collection = (
+        lovelace_data["resources"] if isinstance(lovelace_data, dict) else lovelace_data.resources
+    )
     if not resource_collection.loaded:
         await resource_collection.async_load()
     items = resource_collection.async_items()

@@ -71,7 +71,11 @@ async def _try_auto_register_resource(hass: HomeAssistant) -> bool:
         if not lovelace_data:
             return False
 
-        resource_collection = lovelace_data.get("resources")
+        # HA 2025.2+ stores a LovelaceData dataclass; older versions a dict.
+        if isinstance(lovelace_data, dict):
+            resource_collection = lovelace_data.get("resources")
+        else:
+            resource_collection = getattr(lovelace_data, "resources", None)
         if not isinstance(resource_collection, lovelace_resources.ResourceStorageCollection):
             return False  # YAML-mode dashboards - not programmatically editable
 

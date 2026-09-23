@@ -274,3 +274,130 @@ async def test_device_based_entity_auto_mapping(hass):
     assert guesses["humidity_entity"] == hum.entity_id
     assert guesses["battery_entity"] == batt.entity_id
     print("test_device_based_entity_auto_mapping: OK ->", guesses)
+
+
+def _make_device(hass, ident):
+    from pytest_homeassistant_custom_component.common import MockConfigEntry
+
+    owner_entry = MockConfigEntry(domain="mqtt")
+    owner_entry.add_to_hass(hass)
+    device = dr.async_get(hass).async_get_or_create(
+        config_entry_id=owner_entry.entry_id,
+        identifiers={("mqtt", ident)},
+        name="Soil-only Sensor",
+    )
+    return owner_entry, device
+
+
+async def test_soil_only_sensor_is_never_mapped_as_air_humidity(hass):
+    """A soil-only sensor that reports its reading with the 'humidity'
+    device_class (and no 'soil' in its name) must be mapped as SOIL moisture,
+    and the air-humidity slot must stay empty."""
+    owner_entry, device = _make_device(hass, "0xSOILONLY")
+    entity_registry = er.async_get(hass)
+    moist = entity_registry.async_get_or_create(
+        "sensor", "mqtt", "0xSOILONLY_humidity", device_id=device.id, config_entry=owner_entry,
+    )
+    batt = entity_registry.async_get_or_create(
+        "sensor", "mqtt", "0xSOILONLY_battery", device_id=device.id, config_entry=owner_entry,
+    )
+    hass.states.async_set(moist.entity_id, "40", {"device_class": "humidity"})
+    hass.states.async_set(batt.entity_id, "90", {"device_class": "battery"})
+
+    from custom_components.plant_monitor.config_flow import _guess_entities_for_device
+
+    guesses = _guess_entities_for_device(hass, device.id)
+    assert guesses["soil_moisture_entity"] == moist.entity_id
+    assert "humidity_entity" not in guesses
+    assert guesses["battery_entity"] == batt.entity_id
+
+
+async def test_soil_named_humidity_class_sensor_not_used_as_air_humidity(hass):
+    """Soil entity with device_class humidity and 'soil' in the name: soil,
+    never humidity."""
+    owner_entry, device = _make_device(hass, "0xSOILHUM")
+    soil = er.async_get(hass).async_get_or_create(
+        "sensor", "mqtt", "0xSOILHUM_soil_moisture", device_id=device.id, config_entry=owner_entry,
+    )
+    hass.states.async_set(soil.entity_id, "40", {"device_class": "humidity"})
+
+    from custom_components.plant_monitor.config_flow import _guess_entities_for_device
+
+    guesses = _guess_entities_for_device(hass, device.id)
+    assert guesses == {"soil_moisture_entity": soil.entity_id}
+
+
+async def test_entity_prefill_uses_suggested_value_so_clearing_works(hass):
+    """Prefilled entities must be suggestions, not voluptuous defaults:
+    a default gets re-applied when the user clears the field in the UI."""
+    from custom_components.plant_monitor.config_flow import _entities_schema
+
+    schema = _entities_schema(
+        {"soil_moisture_entity": "sensor.soil", "humidity_entity": "sensor.soil"}
+    )
+    # Simulate the user clearing the humidity field (the key is omitted).
+    validated = schema({"soil_moisture_entity": "sensor.soil"})
+    assert "humidity_entity" not in validated
+    hum_key = next(k for k in schema.schema if str(k) == "humidity_entity")
+    assert hum_key.description == {"suggested_value": "sensor.soil"}
+
+
+async def _setup_plant(hass, data, options=None):
+    from pytest_homeassistant_custom_component.common import MockConfigEntry
+
+    entry = MockConfigEntry(
+        domain=DOMAIN, data=data, options=options or {}, title=data["name"], version=2
+    )
+    entry.add_to_hass(hass)
+    assert await hass.config_entries.async_setup(entry.entry_id)
+    await hass.async_block_till_done()
+    return entry
+
+
+def _soil_sensor_attrs(hass, entry):
+    ent_reg = er.async_get(hass)
+    soil = next(
+        e for e in er.async_entries_for_config_entry(ent_reg, entry.entry_id)
+        if e.domain == "sensor" and e.unique_id.endswith("soil_moisture")
+    )
+    return hass.states.get(soil.entity_id).attributes
+
+
+async def test_options_flow_entity_change_reaches_dashboard(hass):
+    """Changing the humidity sensor via Configure must update what the
+    card reads (humidity_entity_id attribute), and clearing it must stick."""
+    hass.states.async_set("sensor.plant_soil", "40", {})
+    hass.states.async_set("sensor.living_room_humidity", "55", {"device_class": "humidity"})
+    entry = await _setup_plant(
+        hass,
+        {
+            "name": "Ficus", "species": "Ficus",
+            "soil_moisture_entity": "sensor.plant_soil",
+            "humidity_entity": "sensor.plant_soil",  # the old mis-mapping
+        },
+    )
+    # Guard: soil sensor is never shown as air humidity, even from old data.
+    assert "humidity_entity_id" not in _soil_sensor_attrs(hass, entry)
+
+    result = await hass.config_entries.options.async_init(entry.entry_id)
+    result = await hass.config_entries.options.async_configure(
+        result["flow_id"], {"next_step_id": "entities"}
+    )
+    result = await hass.config_entries.options.async_configure(
+        result["flow_id"],
+        {"soil_moisture_entity": "sensor.plant_soil", "humidity_entity": "sensor.living_room_humidity"},
+    )
+    assert result["type"] == "create_entry"
+    await hass.async_block_till_done()
+    assert _soil_sensor_attrs(hass, entry)["humidity_entity_id"] == "sensor.living_room_humidity"
+
+    # Now clear it again - must not fall back to the original setup data.
+    result = await hass.config_entries.options.async_init(entry.entry_id)
+    result = await hass.config_entries.options.async_configure(
+        result["flow_id"], {"next_step_id": "entities"}
+    )
+    result = await hass.config_entries.options.async_configure(
+        result["flow_id"], {"soil_moisture_entity": "sensor.plant_soil"}
+    )
+    await hass.async_block_till_done()
+    assert "humidity_entity_id" not in _soil_sensor_attrs(hass, entry)

@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.8.1
+
+- **Bugfix**: a soil-only plant sensor got linked as *air humidity* even
+  when that field was left empty during setup. Two causes: the setup form
+  pre-filled sensors as voluptuous `default`s, which Home Assistant
+  silently re-applies when you clear a field; and the auto-mapping took a
+  soil sensor reporting with the `humidity` device_class (no "soil" in its
+  name) for an air-humidity sensor. Pre-fills are now suggestions (clearing
+  sticks), an entity can never fill two roles, and a lone humidity-class
+  entity on a plant sensor is mapped as soil moisture.
+- **Bugfix**: changing the linked sensors afterwards via *Configure* had no
+  effect on the dashboard card - the integration only ever read the sensors
+  chosen during initial setup. Changes (and clearing a sensor) now apply
+  immediately.
+- **Bugfix**: existing plants whose soil sensor was also linked as air
+  humidity no longer show the soil value in the "Lucht" tile - no
+  reconfiguration needed.
+- **Bugfix**: automatic registration of the dashboard card as a Lovelace
+  resource failed silently on Home Assistant 2025.2+.
+
 ## 0.8.0
 
 - **Bugfix**: humidity/battery/temperature weren't showing on the card.

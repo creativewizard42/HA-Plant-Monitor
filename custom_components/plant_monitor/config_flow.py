@@ -66,17 +66,30 @@ def _percent_selector() -> selector.NumberSelector:
     )
 
 
+OPTIONAL_ENTITY_KEYS = (CONF_TEMPERATURE_ENTITY, CONF_HUMIDITY_ENTITY, CONF_BATTERY_ENTITY)
+
+
 def _entities_schema(guesses: dict[str, str]) -> vol.Schema:
+    """Entity-picker form.
+
+    Pre-filled values use ``suggested_value`` rather than ``default``: with a
+    voluptuous default, a field the user *clears* in the UI gets silently
+    re-filled with the default on submit - which is how a soil sensor ended up
+    linked as air humidity even after the user emptied that field.
+    """
     schema: dict[Any, Any] = {}
-    if CONF_SOIL_MOISTURE_ENTITY in guesses:
-        schema[vol.Required(CONF_SOIL_MOISTURE_ENTITY, default=guesses[CONF_SOIL_MOISTURE_ENTITY])] = _entity_selector()
-    else:
-        schema[vol.Required(CONF_SOIL_MOISTURE_ENTITY)] = _entity_selector()
-    for key in (CONF_TEMPERATURE_ENTITY, CONF_HUMIDITY_ENTITY, CONF_BATTERY_ENTITY):
-        if key in guesses:
-            schema[vol.Optional(key, default=guesses[key])] = _entity_selector()
-        else:
-            schema[vol.Optional(key)] = _entity_selector()
+    soil = guesses.get(CONF_SOIL_MOISTURE_ENTITY)
+    schema[
+        vol.Required(
+            CONF_SOIL_MOISTURE_ENTITY,
+            description={"suggested_value": soil} if soil else None,
+        )
+    ] = _entity_selector()
+    for key in OPTIONAL_ENTITY_KEYS:
+        value = guesses.get(key)
+        schema[
+            vol.Optional(key, description={"suggested_value": value} if value else None)
+        ] = _entity_selector()
     return vol.Schema(schema)
 
 
@@ -155,39 +168,61 @@ def _advanced_schema(defaults: dict[str, Any]) -> vol.Schema:
     )
 
 
+
+
 def _guess_entities_for_device(hass: HomeAssistant, device_id: str) -> dict[str, str]:
     """Best-effort mapping of a device's sensor entities to their roles.
 
-    Matches by device_class first (temperature/humidity/battery), and by an
-    entity_id/unique_id substring for soil moisture (which has no dedicated
-    HA device_class). Always adjustable afterwards - this only fills in
-    sensible defaults.
+    Matches soil moisture by name (``soil``/``bodem``) or the ``moisture``
+    device_class, and temperature/humidity/battery by device_class. Always
+    adjustable afterwards - this only fills in sensible defaults.
+
+    Many plant sensors only measure the soil and report it with the
+    ``humidity`` device_class and no "soil" in the name. So: an entity is
+    never mapped to two roles, and if no dedicated soil entity was found, a
+    lone humidity-class entity is treated as the *soil* sensor rather than as
+    air humidity (a plant sensor without a soil reading makes no sense here).
     """
     entity_registry = er.async_get(hass)
     entries = er.async_entries_for_device(entity_registry, device_id, include_disabled_entities=False)
 
+    soil_named: list[str] = []
+    moisture_class: list[str] = []
+    humidity_class: list[str] = []
     guesses: dict[str, str] = {}
     for entry in entries:
         if entry.domain != "sensor":
             continue
-        haystack = f"{entry.entity_id} {entry.unique_id or ''}".lower()
+        haystack = f"{entry.entity_id} {entry.unique_id or ''} {entry.original_name or ''}".lower()
         state = hass.states.get(entry.entity_id)
-        device_class = state.attributes.get("device_class") if state else None
+        device_class = (state.attributes.get("device_class") if state else None) or (
+            entry.device_class or entry.original_device_class
+        )
 
-        if CONF_SOIL_MOISTURE_ENTITY not in guesses and "soil" in haystack and (
-            "moist" in haystack or "vocht" in haystack
-        ):
-            guesses[CONF_SOIL_MOISTURE_ENTITY] = entry.entity_id
-        elif CONF_BATTERY_ENTITY not in guesses and device_class == "battery":
-            guesses[CONF_BATTERY_ENTITY] = entry.entity_id
-        elif CONF_TEMPERATURE_ENTITY not in guesses and device_class == "temperature":
-            guesses[CONF_TEMPERATURE_ENTITY] = entry.entity_id
-        elif (
-            CONF_HUMIDITY_ENTITY not in guesses
-            and device_class == "humidity"
-            and "soil" not in haystack
-        ):
-            guesses[CONF_HUMIDITY_ENTITY] = entry.entity_id
+        if device_class == "battery":
+            guesses.setdefault(CONF_BATTERY_ENTITY, entry.entity_id)
+        elif device_class == "temperature":
+            guesses.setdefault(CONF_TEMPERATURE_ENTITY, entry.entity_id)
+        elif "soil" in haystack or "bodem" in haystack:
+            soil_named.append(entry.entity_id)
+        elif device_class == "moisture":
+            moisture_class.append(entry.entity_id)
+        elif device_class == "humidity":
+            humidity_class.append(entry.entity_id)
+        elif "moisture" in haystack:
+            moisture_class.append(entry.entity_id)
+
+    if soil_named:
+        guesses[CONF_SOIL_MOISTURE_ENTITY] = soil_named[0]
+    elif moisture_class:
+        guesses[CONF_SOIL_MOISTURE_ENTITY] = moisture_class[0]
+    elif humidity_class:
+        # No explicit soil entity: the humidity-class one IS the soil reading.
+        guesses[CONF_SOIL_MOISTURE_ENTITY] = humidity_class.pop(0)
+
+    # Only guess air humidity when there's a *separate* humidity entity left.
+    if humidity_class:
+        guesses[CONF_HUMIDITY_ENTITY] = humidity_class[0]
     return guesses
 
 
@@ -291,7 +326,11 @@ class PlantMonitorOptionsFlow(OptionsFlow):
     async def async_step_entities(self, user_input: dict[str, Any] | None = None) -> Any:
         if user_input is not None:
             new_options = dict(self.config_entry.options)
-            new_options.update(user_input)
+            new_options[CONF_SOIL_MOISTURE_ENTITY] = user_input[CONF_SOIL_MOISTURE_ENTITY]
+            # A cleared optional field is simply absent from user_input; store
+            # it explicitly as None so it overrides the original setup value.
+            for key in OPTIONAL_ENTITY_KEYS:
+                new_options[key] = user_input.get(key) or None
             return self.async_create_entry(title="", data=new_options)
         current = self._current()
         guesses = {
