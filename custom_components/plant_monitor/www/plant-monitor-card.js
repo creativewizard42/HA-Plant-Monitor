@@ -306,9 +306,9 @@ class PlantMonitorCard extends HTMLElement {
       .pm-tile-label { font-size: 8.5px; color: #9ca3af; }
       .pm-footnote {
         margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.12);
-        font-size: 10.5px; color: #e2e8f0; line-height: 1.45;
+        font-size: 10.5px; color: #e2e8f0; line-height: 1.45; text-align: center;
       }
-      .pm-advice { margin-top: 3px; color: #cbd5e1; }
+      .pm-advice { margin-top: 3px; color: #cbd5e1; white-space: pre-line; }
 
       .pm-graph-panel {
         background: #0b1220; border: 1px solid rgba(255,255,255,0.08);

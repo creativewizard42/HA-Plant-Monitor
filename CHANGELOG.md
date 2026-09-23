@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.9.0
+
+- **Every plant now has its own Dutch care guide.** All 203 species get
+  species-specific light, watering, humidity, temperature, fertilizing,
+  repotting and common-problem advice (new `scripts/care_guides_nl/`),
+  instead of the shared per-category template most plants used before.
+- **Existing plants pick up the new guides automatically.** The care tip is
+  copied into a plant's config at setup time, so plants added with an
+  older release kept that release's (sometimes English) text. The
+  integration now recognises an untouched auto-filled tip, using a hash
+  of every tip text ever generated for that species (see
+  `scripts/legacy_care_tip_hashes.json`), and shows the current guide
+  instead. Any tip you edited yourself is kept as-is.
+- **Dutch by default**: the advice sensor ("Geef nu water...", "Alles OK,
+  geen actie nodig.") and the water prediction ("Over ongeveer X uur",
+  "Geen duidelijke daling", "Nu water nodig", "Onbekend") are now Dutch,
+  matching the card and care guides. The device model / care-guide header
+  shows the Dutch name plus the Latin name (e.g. "Malabar Kastanje
+  (Pachira aquatica)") instead of the English name. Also added 35 more
+  Dutch common names.
+- **Card**: the water-need/advice footnote is now centered, and multi-line
+  advice keeps its line breaks.
 ## 0.8.1
 
 - **Bugfix**: a soil-only plant sensor got linked as *air humidity* even

@@ -77,7 +77,7 @@ function makeStates() {
 function makeHass({ withHistory = true } = {}) {
   const entities = makeEntities();
   const states = makeStates();
-  const devices = { [DEVICE_ID]: { id: DEVICE_ID, name: "Pannenkoekenplant (Puppy)", name_by_user: null, model: "Chinese Money Plant" } };
+  const devices = { [DEVICE_ID]: { id: DEVICE_ID, name: "Pannenkoekenplant (Puppy)", name_by_user: null, model: "Pannenkoekenplant (Pilea peperomioides)" } };
 
   const nowSec = Date.now() / 1000;
   const historyResult = withHistory
@@ -163,7 +163,7 @@ async function run() {
   // --- Test 5: care guide expandable section parses "Label: text" lines ---
   html = el.innerHTML;
   assert.ok(html.includes("<details"), "expected a <details> expandable section");
-  assert.ok(html.includes("Chinese Money Plant"), "expected the device model in the care-guide summary");
+  assert.ok(html.includes("Pannenkoekenplant (Pilea peperomioides)"), "expected the device model in the care-guide summary");
   assert.ok(html.includes("<b>Licht:</b>"), "expected a Licht section label");
   assert.ok(html.includes("Bright indirect light"), "expected Light section content");
   assert.ok(html.includes("Non-toxic to pets"), "expected Toxicity section content");

@@ -350,7 +350,13 @@ class PlantMonitorOptionsFlow(OptionsFlow):
             new_options = dict(self.config_entry.options)
             new_options.update(user_input)
             return self.async_create_entry(title="", data=new_options)
-        return self.async_show_form(step_id="care", data_schema=_care_schema(self._current()))
+        defaults = self._current()
+        # Pre-fill with the tip that's actually shown (an untouched tip from
+        # an older release is swapped for the current species guide).
+        plant = self.hass.data.get(DOMAIN, {}).get(self.config_entry.entry_id)
+        if plant is not None:
+            defaults[CONF_CARE_TIP] = plant.care_tip
+        return self.async_show_form(step_id="care", data_schema=_care_schema(defaults))
 
     async def async_step_photo(self, user_input: dict[str, Any] | None = None) -> Any:
         if user_input is not None:

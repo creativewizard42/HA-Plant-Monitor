@@ -56,7 +56,7 @@ def test_advice_dry():
     hass.states.set("sensor.soil", 10)
     plant._refresh_from_states()
     plant._recompute()
-    assert "Water now" in plant.advice, plant.advice
+    assert "Geef nu water" in plant.advice, plant.advice
     assert plant.health_score is not None and plant.health_score < 100
     print("test_advice_dry: OK ->", plant.advice, "| score:", plant.health_score)
 
@@ -72,7 +72,7 @@ def test_advice_overwatered():
     hass.states.set("sensor.soil", 90)
     plant._refresh_from_states()
     plant._recompute()
-    assert "dry out" in plant.advice, plant.advice
+    assert "opdrogen" in plant.advice, plant.advice
     print("test_advice_overwatered: OK ->", plant.advice)
 
 
@@ -116,8 +116,8 @@ def test_temp_and_battery_and_humidity_advice():
     plant._refresh_from_states()
     plant._recompute()
     assert "warm" in plant.advice
-    assert "dry - mist" in plant.advice
-    assert "battery" in plant.advice
+    assert "droog - besproei" in plant.advice
+    assert "batterij" in plant.advice
     print("test_temp_and_battery_and_humidity_advice: OK ->", repr(plant.advice))
 
 
@@ -138,7 +138,7 @@ def test_drying_rate_and_prediction():
     plant._recompute()
     assert plant.drying_rate == 10.0, plant.drying_rate
     # (40 - 20) / 10 %/h = 2 hours
-    assert "2.0 hours" in plant.water_prediction, plant.water_prediction
+    assert "2.0 uur" in plant.water_prediction, plant.water_prediction
     print("test_drying_rate_and_prediction: OK -> rate:", plant.drying_rate, "| prediction:", plant.water_prediction)
 
 
@@ -210,6 +210,32 @@ def test_care_tip_and_photo_path():
     assert plant.care_tip == "New tip"
     assert plant.photo_path == "/local/plant_monitor/new.jpg"
     print("test_care_tip_and_photo_path: OK")
+
+
+def test_untouched_old_care_tip_is_upgraded_but_user_edits_are_kept():
+    from custom_components.plant_monitor.species import find_species
+
+    current = find_species("Money Tree")["care_tip"]
+    # The exact English one-liner v0.2.0-v0.3.0 auto-filled for this species.
+    old_english = (
+        "Let the top layer of soil dry before watering again. Bright, indirect light. "
+        "Often sold with braided trunks; tolerates a range of light."
+    )
+    hass, plant = make_plant({"soil_moisture_entity": "sensor.soil", "species": "Money Tree", "care_tip": old_english})
+    assert plant.care_tip == current, plant.care_tip
+
+    # Old "no species matched" placeholder, and an empty tip, are upgraded too.
+    for stale in ("No species matched - add your own care notes here.", ""):
+        hass, plant = make_plant({"soil_moisture_entity": "sensor.soil", "species": "Money Tree", "care_tip": stale})
+        assert plant.care_tip == current
+
+    # Anything the user wrote themselves is never replaced.
+    hass, plant = make_plant(
+        {"soil_moisture_entity": "sensor.soil", "species": "Money Tree", "care_tip": old_english},
+        options={"care_tip": "Mijn eigen notitie: staat bij het oostraam."},
+    )
+    assert plant.care_tip == "Mijn eigen notitie: staat bij het oostraam."
+    print("test_untouched_old_care_tip_is_upgraded_but_user_edits_are_kept: OK")
 
 
 def test_photo_url_fallback_chain():
@@ -294,6 +320,7 @@ if __name__ == "__main__":
         test_dry_binary_sensor_logic_via_thresholds,
         test_options_override_data,
         test_care_tip_and_photo_path,
+        test_untouched_old_care_tip_is_upgraded_but_user_edits_are_kept,
         test_photo_url_fallback_chain,
         test_care_guide_sections_parses_flattened_text,
         test_linked_entity_ids_exposed,

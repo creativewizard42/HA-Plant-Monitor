@@ -38,7 +38,12 @@ async def async_setup_entry(
 def _device_info(entry: ConfigEntry) -> DeviceInfo:
     species_name = entry.data.get(CONF_SPECIES, "")
     match = find_species(species_name)
-    model = match["display_name"] if match else (species_name or "Custom")
+    # Dutch-first label, e.g. "Malabar Kastanje (Pachira aquatica)" - the
+    # card shows this in its "Verzorgingstips - ..." header.
+    if match:
+        model = match.get("nl_label") or match["display_name"]
+    else:
+        model = species_name or "Eigen plant"
     return DeviceInfo(
         identifiers={(DOMAIN, entry.entry_id)},
         name=entry.data[CONF_NAME],

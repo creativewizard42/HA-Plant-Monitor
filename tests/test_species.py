@@ -59,9 +59,26 @@ def test_select_options_show_common_and_latin_name():
     print("test_select_options_show_common_and_latin_name: OK ->", pilea_option["label"])
 
 
+def test_every_species_has_its_own_dutch_care_guide():
+    # The old generic profile template's watering line - no species should
+    # fall back to it any more.
+    generic = "Laat de bovenste laag van de grond opdrogen voor je opnieuw water geeft."
+    sections = ("Licht:", "Water geven:", "Luchtvochtigheid:", "Temperatuur:", "Bemesten:",
+                "Verpotten:", "Veelvoorkomende problemen:", "Giftigheid:")
+    for entry in load_species():
+        tip = entry["care_tip"]
+        assert generic not in tip, f"{entry['display_name']} still uses the generic template"
+        for label in sections:
+            assert label in tip, f"{entry['display_name']} is missing {label!r}"
+        assert entry.get("nl_label"), f"{entry['display_name']} has no nl_label"
+        assert entry.get("care_tip_hashes"), f"{entry['display_name']} has no care_tip_hashes"
+    print("test_every_species_has_its_own_dutch_care_guide: OK")
+
+
 if __name__ == "__main__":
     tests = [
         test_database_loads_and_has_no_duplicate_ids,
+        test_every_species_has_its_own_dutch_care_guide,
         test_dutch_common_names_resolve,
         test_scientific_name_and_english_name_still_resolve,
         test_unknown_name_returns_none,

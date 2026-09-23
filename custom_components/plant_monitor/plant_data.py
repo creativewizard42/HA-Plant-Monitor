@@ -50,6 +50,7 @@ from .const import (
     MIN_SPAN_MINUTES_FOR_RATE,
     SIGNAL_UPDATE,
 )
+from .care_tip_hash import care_tip_hash
 from .species import find_species
 
 _LOGGER = logging.getLogger(__name__)
@@ -63,6 +64,21 @@ def _to_float(state: State | None) -> float | None:
         return float(state.state)
     except (ValueError, TypeError):
         return None
+
+
+def _is_auto_filled_care_tip(value: str | None, species: dict) -> bool:
+    """True for an empty tip, a (current or former) "no species matched"
+    placeholder, or any text this species' entry has ever shipped with."""
+    if not value or not value.strip():
+        return True
+    digest = care_tip_hash(value)
+    return digest in species.get("care_tip_hashes", []) or digest in _PLACEHOLDER_HASHES
+
+
+_PLACEHOLDER_HASHES = {
+    care_tip_hash(DEFAULT_CARE_TIP),
+    care_tip_hash("No species matched - add your own care notes here."),
+}
 
 
 @dataclass
@@ -89,7 +105,7 @@ class PlantData:
         self.advice: str = ""
         self.health_score: int | None = None
         self.drying_rate: float | None = None  # %/hour, positive = drying out
-        self.water_prediction: str = "Unknown"
+        self.water_prediction: str = "Onbekend"
 
         self.last_watered: datetime | None = None
         self.waterings_this_week: int = 0
@@ -132,7 +148,15 @@ class PlantData:
 
     @property
     def care_tip(self) -> str:
+        """The stored care tip, unless it's still an untouched auto-filled
+        one: the tip is copied into the config entry at setup time, so a
+        plant added with an older release would otherwise keep that
+        release's (English or generic) text forever. Anything the user
+        edited themselves is always kept as-is."""
         value = self.entry.options.get(CONF_CARE_TIP, self.entry.data.get(CONF_CARE_TIP))
+        match = find_species(self.entry.data.get(CONF_SPECIES, ""))
+        if match and match.get("care_tip") and _is_auto_filled_care_tip(value, match):
+            return match["care_tip"]
         return value if value else DEFAULT_CARE_TIP
 
     @property
@@ -314,19 +338,19 @@ class PlantData:
         soil = self.soil_moisture
 
         if soil is not None and soil < self.dry_threshold:
-            tips.append("\U0001f331 Water now (roughly 200 ml, until it drains).")
+            tips.append("\U0001f331 Geef nu water (ongeveer 200 ml, tot het onderin wegloopt).")
         if soil is not None and soil > self.wet_threshold:
-            tips.append("\U0001f4a7 Let the soil dry out before watering again.")
+            tips.append("\U0001f4a7 Laat de grond eerst opdrogen voor je weer water geeft.")
         if self.temperature is not None and self.temperature > self.temp_hot:
-            tips.append("\U0001f321\ufe0f It's warm - mist the leaves or move to a cooler spot.")
+            tips.append("\U0001f321\ufe0f Het is warm - besproei de bladeren of zet de plant op een koelere plek.")
         if self.temperature is not None and self.temperature < self.temp_cold:
-            tips.append("\U0001f321\ufe0f It's too cold - move to a warmer spot.")
+            tips.append("\U0001f321\ufe0f Het is te koud - zet de plant op een warmere plek.")
         if self.humidity is not None and self.humidity < self.humidity_low:
-            tips.append("\U0001f4a8 The air is dry - mist the leaves regularly.")
+            tips.append("\U0001f4a8 De lucht is droog - besproei de bladeren regelmatig.")
         if self.battery is not None and self.battery < self.battery_low:
-            tips.append("\U0001f50b Replace the sensor battery.")
+            tips.append("\U0001f50b Vervang de batterij van de sensor.")
 
-        self.advice = "\n".join(tips) if tips else "\u2705 All good, no action needed."
+        self.advice = "\n".join(tips) if tips else "\u2705 Alles OK, geen actie nodig. \U0001f33f"
 
     def _recompute_health_score(self) -> None:
         soil = self.soil_moisture
@@ -359,14 +383,14 @@ class PlantData:
     def _recompute_water_prediction(self) -> None:
         soil = self.soil_moisture
         if soil is None:
-            self.water_prediction = "Unknown"
+            self.water_prediction = "Onbekend"
             return
         if soil <= self.dry_threshold:
-            self.water_prediction = "Water needed now"
+            self.water_prediction = "Nu water nodig"
             return
         rate = self.drying_rate
         if rate is None or rate <= 0.05:
-            self.water_prediction = "No clear downward trend"
+            self.water_prediction = "Geen duidelijke daling"
             return
         hours = (soil - self.dry_threshold) / rate
-        self.water_prediction = f"In about {hours:.1f} hours"
+        self.water_prediction = f"Over ongeveer {hours:.1f} uur"

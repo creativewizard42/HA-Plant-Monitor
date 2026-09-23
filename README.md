@@ -84,8 +84,8 @@ at the entities (or a whole device) you already have in Home Assistant.
   - `sensor.<plant>_health_score` - weighted 0-100 score
   - `sensor.<plant>_drying_rate` - %/hour, calculated from a rolling window
     of recent readings (no recorder/history queries needed)
-  - `sensor.<plant>_water_prediction` - "in about X hours" / "water needed
-    now" / "no clear trend"
+  - `sensor.<plant>_water_prediction` - "Over ongeveer X uur" / "Nu water
+    nodig" / "Geen duidelijke daling" (Dutch, like the advice sensor)
   - `sensor.<plant>_last_watered` and `sensor.<plant>_waterings_this_week` -
     automatic watering log, detected from a sudden moisture jump
   - `binary_sensor.<plant>_dry` / `binary_sensor.<plant>_overwatered`
@@ -255,21 +255,15 @@ cd tests/card && npm install && npm test
 
 Both run automatically in CI on every push (see `.github/workflows/`).
 
-## Known limitations (v0.8.1)
+## Known limitations (v0.9.0)
 
 - The species database's thresholds are approximate guidance, not
   lab-measured values (see Features above) - adjust to your own sensor and
-  potting mix. Most plants' care guides are templated per watering-need
-  category (light/humidity/temperature/fertilizing/repotting/common
-  problems shared within a category; watering and toxicity are
-  species-specific). **10 of 203 plants** - the ones this project's own
-  reference dashboard actually uses (Bird of Paradise, Wijze Varen,
-  Monstera, Calathea Rufibarba, Mini Monstera, Heartleaf Philodendron,
-  Chinese Money Plant, Turtle Vine, Alocasia Polly, Blue Star Fern) - have
-  a fully individually researched Dutch care guide instead (see
-  `DETAILED_CARE_GUIDES` in `scripts/generate_species_data.py`). Writing
-  that depth for the full 203 isn't tractable in one pass; PRs adding more
-  are welcome.
+  potting mix. All 203 plants have a species-specific Dutch care guide
+  (light, watering, humidity, temperature, fertilizing, repotting, common
+  problems); the most in-depth ones are in `DETAILED_CARE_GUIDES` in
+  `scripts/generate_species_data.py`, the rest in
+  `scripts/care_guides_nl/`. Corrections and additions are welcome.
 - Toxicity notes are grounded in the ASPCA's toxic/non-toxic plant
   database for 184 of 203 plants; the rest show a cautious "no confirmed
   listing" note rather than asserting safety that hasn't been verified.

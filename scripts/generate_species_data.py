@@ -18,6 +18,18 @@ and potting mix.
 """
 import json
 import os
+import re
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "custom_components", "plant_monitor"))
+from care_tip_hash import care_tip_hash  # noqa: E402
+
+_LEGACY_HASHES_PATH = os.path.join(os.path.dirname(__file__), "legacy_care_tip_hashes.json")
+try:
+    with open(_LEGACY_HASHES_PATH, encoding="utf-8") as _f:
+        LEGACY_CARE_TIP_HASHES: dict[str, list[str]] = json.load(_f)
+except FileNotFoundError:
+    LEGACY_CARE_TIP_HASHES = {}
 
 PROFILES = {
     # key: (dry_threshold, wet_threshold, generic_note)
@@ -200,12 +212,11 @@ TOXICITY_TEXT = {
 
 # In-depth, individually researched Dutch care guides for specific plants -
 # overrides the shorter profile-templated sections above (light, watering,
-# humidity, temperature, fertilizing, repotting, common_problems) for just
-# these species. This is deliberately NOT done for all 201 plants (writing
-# genuinely researched, bespoke guides at this depth for the full database
-# isn't tractable in one pass) - these are the plants a real user's own
-# dashboard actually uses. Toxicity still comes from TOXICITY/TOXICITY_TEXT
-# above, consistently with every other plant.
+# humidity, temperature, fertilizing, repotting, common_problems). The ones
+# below are the most detailed; every other plant gets its species-specific
+# guide from scripts/care_guides_nl/ (merged in further down), so no plant
+# falls back to the generic profile template any more. Toxicity still comes
+# from TOXICITY/TOXICITY_TEXT above, consistently with every other plant.
 DETAILED_CARE_GUIDES = {
     "Bird of Paradise": {
         "light": "Houdt van helder, indirect licht (bijvoorbeeld bij een oost- of noordraam). Na gewenning kan hij ook een paar uur ochtend- of avondzon verdragen, maar felle middagzon achter glas kan de bladeren verbranden. Te weinig licht geeft trage groei en geen bloei.",
@@ -298,6 +309,17 @@ DETAILED_CARE_GUIDES = {
         "common_problems": "Bruine, knapperige bladeren wijzen meestal op te lage luchtvochtigheid of te weinig water; gele bladeren komen vaak door een voedingstekort. Let ook op spint, tripsen en rouwmuggen bij een aangetaste plant.",
     },
 }
+
+# Species-specific Dutch guides for every other plant, in
+# scripts/care_guides_nl/part*.py as 7-tuples (light, watering, humidity,
+# temperature, fertilizing, repotting, common_problems). The hand-written
+# guides above take precedence where both exist.
+from care_guides_nl import GUIDE_ALIASES, SECTION_KEYS, all_guides  # noqa: E402
+
+for _name, _texts in all_guides().items():
+    DETAILED_CARE_GUIDES.setdefault(_name, dict(zip(SECTION_KEYS, _texts)))
+for _alias, _target in GUIDE_ALIASES.items():
+    DETAILED_CARE_GUIDES.setdefault(_alias, DETAILED_CARE_GUIDES[_target])
 
 # Starter set of stock photos, keyed by display_name - a curated, verified
 # subset (NOT all 201 plants). Each points at a specific Wikimedia Commons
@@ -628,6 +650,41 @@ DUTCH_NAMES = {
     "Lemon Tree (potted)": ["Citroenboom"],
     "Orchid Cactus": ["Bladcactus"],
     "Blue Star Fern": ["Blauwvaren"],
+    "English Ivy": ["Klimop"],
+    "Swedish Ivy": ["Zweedse Klimop"],
+    "Fatsia": ["Japanse Vingerplant"],
+    "Cyclamen": ["Alpenviooltje"],
+    "Hydrangea (potted)": ["Hortensia"],
+    "Azalea (potted)": ["Azalea"],
+    "Primrose": ["Sleutelbloem", "Primula"],
+    "Venus Flytrap": ["Venusvliegenvanger"],
+    "Pitcher Plant": ["Trompetbekerplant"],
+    "Sundew": ["Zonnedauw"],
+    "Rattlesnake Plant Vine": ["Bekerplant"],
+    "Sensitive Plant": ["Kruidje-roer-mij-niet"],
+    "Living Stones": ["Levende Stenen"],
+    "Burro's Tail": ["Ezelstaart"],
+    "String of Pearls": ["Erwtenplant"],
+    "String of Hearts": ["Chinees Lantaarntje"],
+    "Hens and Chicks": ["Huislook"],
+    "Desert Rose": ["Woestijnroos"],
+    "Golden Barrel Cactus": ["Schoonmoedersstoel"],
+    "Prickly Pear Cactus": ["Schijfcactus"],
+    "Pencil Cactus": ["Potloodcactus"],
+    "Wandering Jew": ["Vaderplant"],
+    "Purple Heart": ["Paarse Vaderplant"],
+    "Norfolk Island Pine": ["Kamerden"],
+    "Maidenhair Fern": ["Venushaar"],
+    "Asparagus Fern": ["Sierasperge"],
+    "Prayer Plant": ["Gebedsplant"],
+    "Peacock Plant": ["Pauwenplant"],
+    "Zebra Plant": ["Zebraplant"],
+    "Sago Palm": ["Palmvaren"],
+    "Kentia Palm": ["Kentiapalm"],
+    "Lady Palm": ["Stokpalm"],
+    "Rex Begonia": ["Bladbegonia"],
+    "Cape Primrose": ["Kaapse Primula"],
+    "Agave": ["Honderdjarige Aloë"],
 }
 
 # Keep the four originals from the first release's thresholds verbatim
@@ -707,12 +764,26 @@ def build() -> list[dict]:
 
         stock_photo = STOCK_PHOTOS.get(display_name)
 
+        # Every care_tip text this plant has ever shipped with (plus this
+        # one), so the integration can tell an untouched auto-filled tip in
+        # an older config entry apart from one the user edited.
+        tip_hashes = set(LEGACY_CARE_TIP_HASHES.get(display_name, []))
+        tip_hashes.add(care_tip_hash(care_tip))
+        LEGACY_CARE_TIP_HASHES[display_name] = sorted(tip_hashes)
+
+        # Dutch-first label for the device model / card header: the Dutch
+        # common name when there is one, otherwise the Latin name (which is
+        # what Dutch retail labels use for most houseplants anyway).
+        latin = re.sub(r"\s*\(.*\)$", "", scientific_name)
+        nl_label = f"{dutch_names[0]} ({latin})" if dutch_names else latin
+
         species.append(
             {
                 "id": species_id,
                 "display_name": display_name,
                 "scientific_name": scientific_name,
                 "dutch_names": dutch_names,
+                "nl_label": nl_label,
                 "select_label": (
                     display_name if not dutch_names else f"{display_name} / {dutch_names[0]}"
                 ) + f" ({scientific_name})",
@@ -724,6 +795,7 @@ def build() -> list[dict]:
                 "care_tip": care_tip,
                 "stock_photo_url": stock_photo[0] if stock_photo else None,
                 "stock_photo_credit": stock_photo[1] if stock_photo else None,
+                "care_tip_hashes": sorted(tip_hashes),
             }
         )
     return species
@@ -743,6 +815,9 @@ if __name__ == "__main__":
     unknown_detailed_keys = set(DETAILED_CARE_GUIDES) - plant_names
     if unknown_detailed_keys:
         raise SystemExit(f"DETAILED_CARE_GUIDES has keys with no matching plant: {unknown_detailed_keys}")
+    missing_guides = plant_names - set(DETAILED_CARE_GUIDES)
+    if missing_guides:
+        raise SystemExit(f"Plants without a species-specific care guide: {sorted(missing_guides)}")
 
     data = build()
     with_dutch = sum(1 for e in data if e["dutch_names"])
@@ -763,3 +838,6 @@ if __name__ == "__main__":
         json.dump(data, f, indent=2, ensure_ascii=False)
         f.write("\n")
     print(f"Written to {os.path.abspath(out_path)}")
+    with open(_LEGACY_HASHES_PATH, "w", encoding="utf-8") as f:
+        json.dump(dict(sorted(LEGACY_CARE_TIP_HASHES.items())), f, indent=1, ensure_ascii=False)
+        f.write("\n")
