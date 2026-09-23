@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.9.1
+
+- **Bugfix**: after updating, the dashboard kept running the previous
+  release's card from the browser cache (e.g. the Waterbehoefte/advice
+  footnote stayed left-aligned after 0.9.0 centered it). The Lovelace
+  resource URL now includes the integration version
+  (`/plant_monitor_files/plant-monitor-card.js?v=0.9.1`), and an existing
+  entry from an older release is updated to it automatically on startup,
+  so every update loads the new card.
+
 ## 0.9.0
 
 - **Every plant now has its own Dutch care guide.** All 203 species get

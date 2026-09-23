@@ -11,7 +11,7 @@ from homeassistant.helpers import issue_registry as ir
 from homeassistant.setup import async_setup_component
 
 from custom_components.plant_monitor.const import DOMAIN
-from custom_components.plant_monitor.frontend import STATIC_URL_PATH, async_register_frontend
+from custom_components.plant_monitor.frontend import RESOURCE_URL, STATIC_URL_PATH, async_register_frontend
 
 
 @pytest.fixture(autouse=True)
@@ -69,11 +69,36 @@ async def test_storage_mode_lovelace_gets_resource_registered_automatically(hass
     if not resource_collection.loaded:
         await resource_collection.async_load()
     items = resource_collection.async_items()
-    matching = [item for item in items if item.get("url") == STATIC_URL_PATH]
-    assert matching, f"resource {STATIC_URL_PATH} was not registered; items were {items}"
+    matching = [item for item in items if item.get("url") == RESOURCE_URL]
+    assert matching, f"resource {RESOURCE_URL} was not registered; items were {items}"
 
     issue_registry = ir.async_get(hass)
     assert issue_registry.async_get_issue(DOMAIN, "add_lovelace_resource_manually") is None, (
         "a Repairs issue was created even though auto-registration succeeded"
     )
     print("test_storage_mode_lovelace_gets_resource_registered_automatically: OK")
+
+
+async def test_existing_unversioned_resource_is_bumped_to_current_version(hass):
+    """An install upgraded from an older release has the resource without a
+    ?v= query (or an old one); it must be updated in place so browsers fetch
+    the new card instead of running the cached previous release."""
+    assert await async_setup_component(hass, "http", {})
+    assert await async_setup_component(hass, "lovelace", {})
+    await hass.async_block_till_done()
+
+    lovelace_data = hass.data["lovelace"]
+    resource_collection = (
+        lovelace_data["resources"] if isinstance(lovelace_data, dict) else lovelace_data.resources
+    )
+    if not resource_collection.loaded:
+        await resource_collection.async_load()
+        resource_collection.loaded = True
+    await resource_collection.async_create_item({"res_type": "module", "url": STATIC_URL_PATH})
+
+    await async_register_frontend(hass)
+
+    urls = [item.get("url") for item in resource_collection.async_items()]
+    assert urls.count(RESOURCE_URL) == 1, urls
+    assert STATIC_URL_PATH not in urls, urls
+    assert "?v=" in RESOURCE_URL

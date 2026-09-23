@@ -8,6 +8,7 @@ repair/issue with the one manual step instead of failing loudly.
 """
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 
@@ -23,6 +24,20 @@ _LOGGER = logging.getLogger(__name__)
 CARD_FILENAME = "plant-monitor-card.js"
 STATIC_URL_PATH = f"/plant_monitor_files/{CARD_FILENAME}"
 ISSUE_ADD_RESOURCE_MANUALLY = "add_lovelace_resource_manually"
+
+
+def _integration_version() -> str:
+    try:
+        manifest = json.loads((Path(__file__).parent / "manifest.json").read_text(encoding="utf-8"))
+        return str(manifest.get("version", "0"))
+    except (OSError, ValueError):
+        return "0"
+
+
+# The resource URL carries the integration version so browsers (and the HA
+# frontend's cache) fetch the new card after every update, instead of
+# silently keeping the previous release's JavaScript.
+RESOURCE_URL = f"{STATIC_URL_PATH}?v={_integration_version()}"
 
 
 async def async_register_frontend(hass: HomeAssistant) -> None:
@@ -59,7 +74,7 @@ async def async_register_frontend(hass: HomeAssistant) -> None:
         is_persistent=True,
         severity=ir.IssueSeverity.WARNING,
         translation_key=ISSUE_ADD_RESOURCE_MANUALLY,
-        translation_placeholders={"url": STATIC_URL_PATH},
+        translation_placeholders={"url": RESOURCE_URL},
     )
 
 
@@ -83,17 +98,28 @@ async def _try_auto_register_resource(hass: HomeAssistant) -> bool:
             await resource_collection.async_load()
             resource_collection.loaded = True
 
-        already_present = any(
-            item.get("url", "").split("?", 1)[0] == STATIC_URL_PATH
-            for item in resource_collection.async_items()
+        existing = next(
+            (
+                item
+                for item in resource_collection.async_items()
+                if item.get("url", "").split("?", 1)[0] == STATIC_URL_PATH
+            ),
+            None,
         )
-        if already_present:
+        if existing is not None:
+            if existing.get("url") != RESOURCE_URL:
+                # Older release (or no version at all): bump the URL so
+                # browsers drop the cached copy of the previous card.
+                await resource_collection.async_update_item(
+                    existing["id"], {"res_type": "module", "url": RESOURCE_URL}
+                )
+                _LOGGER.info("Updated Lovelace resource to %s", RESOURCE_URL)
             return True
 
         await resource_collection.async_create_item(
-            {"res_type": "module", "url": STATIC_URL_PATH}
+            {"res_type": "module", "url": RESOURCE_URL}
         )
-        _LOGGER.info("Registered %s as a Lovelace resource automatically", STATIC_URL_PATH)
+        _LOGGER.info("Registered %s as a Lovelace resource automatically", RESOURCE_URL)
         return True
     except Exception:  # noqa: BLE001 - a frontend nicety must never break setup
         _LOGGER.debug(

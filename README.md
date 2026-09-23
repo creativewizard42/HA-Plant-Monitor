@@ -255,7 +255,7 @@ cd tests/card && npm install && npm test
 
 Both run automatically in CI on every push (see `.github/workflows/`).
 
-## Known limitations (v0.9.0)
+## Known limitations (v0.9.1)
 
 - The species database's thresholds are approximate guidance, not
   lab-measured values (see Features above) - adjust to your own sensor and
