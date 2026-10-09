@@ -1,0 +1,18 @@
+# Tested Home Assistant harnesses for the supported CI Python versions.
+pytest-homeassistant-custom-component==0.13.205; python_version == "3.12"
+pytest-homeassistant-custom-component==0.13.316; python_version == "3.13"
+# The old 3.12 harness checks thread cleanup; newer pycares leaves a daemon.
+pycares==4.4.0; python_version == "3.12"
+# Mobile App's real device-action path imports its optional camera/cloud APIs.
+PyTurboJPEG==1.7.5; python_version == "3.12"
+PyTurboJPEG==1.8.0; python_version == "3.13"
+PyNaCl==1.5.0; python_version == "3.12"
+PyNaCl==1.6.2; python_version == "3.13"
+hassil==2.1.0; python_version == "3.12"
+hassil==3.5.0; python_version == "3.13"
+home-assistant-intents==2025.1.1; python_version == "3.12"
+home-assistant-intents==2026.1.28; python_version == "3.13"
+mutagen==1.47.0
+ha-ffmpeg==3.2.2
+pymicro-vad==1.0.1
+pyspeex-noise==1.0.2

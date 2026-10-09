@@ -3,7 +3,11 @@
     "@creativewizard42"
   ],
   "config_flow": true,
-  "dependencies": ["file_upload", "http", "lovelace"],
+  "dependencies": [
+    "file_upload",
+    "http",
+    "lovelace"
+  ],
   "documentation": "https://github.com/creativewizard42/HA-Plant-Monitor",
   "domain": "plant_monitor",
   "integration_type": "helper",
@@ -11,5 +15,9 @@
   "issue_tracker": "https://github.com/creativewizard42/HA-Plant-Monitor/issues",
   "name": "Plant Monitor",
   "requirements": [],
-  "version": "0.9.1"
+  "version": "0.9.2",
+  "after_dependencies": [
+    "mobile_app",
+    "notify"
+  ]
 }

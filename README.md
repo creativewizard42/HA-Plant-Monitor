@@ -12,8 +12,8 @@ at the entities (or a whole device) you already have in Home Assistant.
 
 - **Optional push notifications** - get alerted the moment a plant becomes
   dry or overwatered, and/or a daily status summary, sent via
-  `notify.send_message` targeted at a device you pick (typically your
-  phone's mobile app) - no need to know the exact notify service name.
+  the selected device's Mobile App notification action or its notify
+  entities - no need to know the exact notify service name.
   Off by default; the setup wizard offers it as its last step, and it can
   be turned on/off any time from the plant's Configure menu. Each
   transition (e.g. going dry) notifies exactly once, not on every update.
@@ -156,9 +156,9 @@ phone's `mobile_app` device) and flip on either or both toggles:
 - **Daily status summary** - one push notification per day (09:00) with
   the plant's current advice text.
 
-This uses `notify.send_message` targeted at the device you picked, so it
-works with any notify-capable device Home Assistant knows about - no need
-to find the exact notify service name.
+Mobile App phones use their device notification action; devices exposing
+`notify` entities use `notify.send_message` targeted at those entities.
+Setup checks that the selected device supports one of these routes.
 
 **Alternative: the bundled blueprint.** If you'd rather build your own
 automation (e.g. to combine multiple plants into one notification, or add
@@ -166,7 +166,8 @@ conditions), import the blueprint instead: **Settings -> Automations &
 scenes -> Blueprints -> Import blueprint**, paste the raw URL to
 `blueprints/automation/plant_monitor/plant_needs_attention.yaml` from this
 repo. Create one automation per plant from it, picking that plant's `Dry`
-and `Overwatered` sensors and your notification target.
+and `Overwatered` sensors and your notification action. Set that action's
+message field to `{{ plant_message }}` to use the generated alert text.
 
 ## Dashboard
 
@@ -193,7 +194,15 @@ and swap in your own entity IDs from the plant's device page.
 
 ## Testing
 
-Two layers of tests, neither requiring a real Home Assistant server:
+Use Python 3.12 or 3.13 and Node 22.22.2+ or 24.15.0+. Tests run through
+a Home Assistant test harness and jsdom; no physical sensors or production
+server are required. Install the tested dependencies with
+`pip install -r tests/requirements.txt`, then run `pytest tests -v`.
+
+**Regression coverage** (`tests/test_regressions.py`) checks cold startup
+without event-loop file reads, legacy migration, missing/non-finite sensor
+values, temperature conversion, threshold validation, weekly counters,
+blueprint actions and actual Mobile App service routing (no external push).
 
 **Calculation engine** (`tests/test_plant_data.py`) - advice text, health
 score, drying rate, water prediction, watering detection, weekly counter,
@@ -202,7 +211,7 @@ the photo fallback chain (upload > species stock photo > none), tested
 against lightweight stubs:
 
 ```bash
-pip install homeassistant
+pip install -r tests/requirements.txt
 python tests/test_plant_data.py
 ```
 
@@ -223,7 +232,7 @@ without a device picked) through a real *test* Home Assistant core
 instance via `pytest-homeassistant-custom-component`:
 
 ```bash
-pip install pytest pytest-asyncio pytest-homeassistant-custom-component
+pip install -r tests/requirements.txt
 pytest tests/test_config_flow.py -v
 ```
 
@@ -250,12 +259,12 @@ which changes per language), photo rendering, status badges, the manual
 `entities:` override, and HTML-escaping of sensor values:
 
 ```bash
-cd tests/card && npm install && npm test
+cd tests/card && npm ci && npm test
 ```
 
-Both run automatically in CI on every push (see `.github/workflows/`).
+All tests run automatically in CI on every push (see `.github/workflows/`).
 
-## Known limitations (v0.9.1)
+## Known limitations (v0.9.2)
 
 - The species database's thresholds are approximate guidance, not
   lab-measured values (see Features above) - adjust to your own sensor and

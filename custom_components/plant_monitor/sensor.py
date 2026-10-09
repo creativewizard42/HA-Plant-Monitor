@@ -210,7 +210,6 @@ class PlantLastWateredSensor(_PlantSensorBase):
 class PlantWateringsThisWeekSensor(_PlantSensorBase):
     _attr_translation_key = "waterings_this_week"
     _attr_icon = "mdi:counter"
-    _attr_state_class = SensorStateClass.TOTAL_INCREASING
     _attr_entity_category = EntityCategory.DIAGNOSTIC
 
     def __init__(self, entry: ConfigEntry, plant: PlantData) -> None:

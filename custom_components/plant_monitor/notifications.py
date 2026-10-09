@@ -1,14 +1,20 @@
 """Optional push notifications for a plant: an alert the moment it becomes
 dry or overwatered, and/or a daily status summary - both sent via
-`notify.send_message` targeted at a device the user picks (typically their
-phone's mobile_app device), no need to know the exact notify service name.
+the selected device's Mobile App notification action or its notify entities.
 """
+
 from __future__ import annotations
 
 import logging
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.components.device_automation import (
+    DeviceAutomationType,
+    async_get_device_automation_platform,
+)
+from homeassistant.exceptions import HomeAssistantError
+from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.event import async_track_time_change
 
@@ -16,6 +22,31 @@ from .const import CONF_NAME, DAILY_SUMMARY_HOUR, DAILY_SUMMARY_MINUTE, SIGNAL_U
 from .plant_data import PlantData
 
 _LOGGER = logging.getLogger(__name__)
+
+
+async def async_notification_device_supported(
+    hass: HomeAssistant, device_id: str
+) -> bool:
+    """Check actual notify entities or the Mobile App device action."""
+    if any(
+        entry.domain == "notify"
+        for entry in er.async_entries_for_device(
+            er.async_get(hass), device_id, include_disabled_entities=False
+        )
+    ):
+        return True
+    if "mobile_app" not in hass.data:
+        return False
+    try:
+        platform = await async_get_device_automation_platform(
+            hass, "mobile_app", DeviceAutomationType.ACTION
+        )
+        return any(
+            action.get("type") == "notify"
+            for action in await platform.async_get_actions(hass, device_id)
+        )
+    except HomeAssistantError:
+        return False
 
 
 class PlantNotifier:
@@ -27,7 +58,9 @@ class PlantNotifier:
     device is set.
     """
 
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, plant: PlantData) -> None:
+    def __init__(
+        self, hass: HomeAssistant, entry: ConfigEntry, plant: PlantData
+    ) -> None:
         self.hass = hass
         self.entry = entry
         self.plant = plant
@@ -100,23 +133,67 @@ class PlantNotifier:
         self._was_overwatered = is_overwatered
 
     async def _handle_daily_summary(self, _now) -> None:
-        if not (self.plant.notify_daily_summary_enabled and self.plant.notify_device_id):
+        if not (
+            self.plant.notify_daily_summary_enabled and self.plant.notify_device_id
+        ):
             return
         await self._send(
-            f"\ud83c\udf3f Dagelijkse update - {self._plant_name()}",
+            f"\U0001f33f Dagelijkse update - {self._plant_name()}",
             self.plant.advice,
         )
 
     async def _send(self, title: str, message: str) -> None:
         try:
+            device_id = self.plant.notify_device_id
+            device = dr.async_get(self.hass).async_get(device_id) if device_id else None
+            if device is None:
+                raise HomeAssistantError("Notification device is missing")
+            is_mobile_app = any(
+                entry is not None and entry.domain == "mobile_app"
+                for entry in (
+                    self.hass.config_entries.async_get_entry(entry_id)
+                    for entry_id in device.config_entries
+                )
+            )
+            if is_mobile_app and "mobile_app" in self.hass.data:
+                platform = await async_get_device_automation_platform(
+                    self.hass, "mobile_app", DeviceAutomationType.ACTION
+                )
+                actions = await platform.async_get_actions(self.hass, device_id)
+                action = next(
+                    (item for item in actions if item.get("type") == "notify"), None
+                )
+                if action is not None:
+                    config = platform.ACTION_SCHEMA(
+                        {**action, "title": "{{ title }}", "message": "{{ message }}"}
+                    )
+                    config["title"].hass = self.hass
+                    config["message"].hass = self.hass
+                    await platform.async_call_action_from_config(
+                        self.hass, config, {"title": title, "message": message}, None
+                    )
+                    return
+            entities = [
+                entry.entity_id
+                for entry in er.async_entries_for_device(
+                    er.async_get(self.hass), device_id, include_disabled_entities=False
+                )
+                if entry.domain == "notify"
+            ]
+            if not entities:
+                raise HomeAssistantError(
+                    "Selected device has no supported notification action or notify entity"
+                )
             await self.hass.services.async_call(
                 "notify",
                 "send_message",
                 {"title": title, "message": message},
-                target={"device_id": [self.plant.notify_device_id]},
+                target={"entity_id": entities},
                 blocking=True,
             )
         except Exception:  # noqa: BLE001 - a failed notification must never break the integration
             _LOGGER.warning(
-                "Could not send a notification for %s", self._plant_name(), exc_info=True
+                "Could not send a notification for %s",
+                self._plant_name(),
+                exc_info=True,
             )

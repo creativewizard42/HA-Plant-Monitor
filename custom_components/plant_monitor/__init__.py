@@ -1,4 +1,5 @@
 """The Plant Monitor integration."""
+
 from __future__ import annotations
 
 import voluptuous as vol
@@ -12,6 +13,7 @@ from .frontend import async_register_frontend
 from .notifications import PlantNotifier
 from .photo import async_delete_photo
 from .plant_data import PlantData
+from .species import load_species
 
 NOTIFIERS_KEY = f"{DOMAIN}_notifiers"
 
@@ -23,6 +25,7 @@ LOG_WATERING_SCHEMA = vol.Schema(
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
     """Register services and the bundled Lovelace card once, regardless of
     how many plants get added."""
+    await hass.async_add_executor_job(load_species)
     await async_register_frontend(hass)
 
     async def _handle_log_watering(call: ServiceCall) -> None:
@@ -48,6 +51,7 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Plant Monitor from a config entry (one plant)."""
+    await hass.async_add_executor_job(load_species)
     hass.data.setdefault(DOMAIN, {})
     hass.data.setdefault(NOTIFIERS_KEY, {})
 
@@ -86,3 +90,22 @@ async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
     photo_path = entry.options.get(CONF_PHOTO_PATH, entry.data.get(CONF_PHOTO_PATH))
     if photo_path:
         async_delete_photo(hass, photo_path)
+
+
+async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """Upgrade legacy presets without overwriting user thresholds or options."""
+    if entry.version > 2:
+        return False
+    if entry.version == 1:
+        await hass.async_add_executor_job(load_species)
+        presets = {
+            "strelitzia": "Bird of Paradise",
+            "monstera": "Monstera",
+            "calathea": "Calathea",
+            "asplenium": "Bird's Nest Fern",
+        }
+        data = dict(entry.data)
+        if data.get("species") in presets:
+            data["species"] = presets[data["species"]]
+        hass.config_entries.async_update_entry(entry, data=data, version=2)
+    return True

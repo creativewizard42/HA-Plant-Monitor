@@ -6,9 +6,11 @@ state-changed events on the source entities and recompute. A small in-memory
 rolling buffer of soil-moisture samples is kept to estimate a drying rate
 without needing recorder/history queries.
 """
+
 from __future__ import annotations
 
 import logging
+import math
 from collections import deque
 from dataclasses import dataclass
 from datetime import datetime, timedelta
@@ -16,8 +18,14 @@ from datetime import datetime, timedelta
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, State, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_send
-from homeassistant.helpers.event import async_track_state_change_event
+from homeassistant.helpers.event import (
+    async_track_state_change_event,
+    async_track_time_change,
+)
 from homeassistant.util import dt as dt_util
+from homeassistant.util.unit_conversion import TemperatureConverter
+from homeassistant.const import UnitOfTemperature
+from homeassistant.exceptions import HomeAssistantError
 
 from .const import (
     CONF_BATTERY_ENTITY,
@@ -61,7 +69,8 @@ def _to_float(state: State | None) -> float | None:
     if state is None:
         return None
     try:
-        return float(state.state)
+        value = float(state.state)
+        return value if math.isfinite(value) else None
     except (ValueError, TypeError):
         return None
 
@@ -153,7 +162,9 @@ class PlantData:
         plant added with an older release would otherwise keep that
         release's (English or generic) text forever. Anything the user
         edited themselves is always kept as-is."""
-        value = self.entry.options.get(CONF_CARE_TIP, self.entry.data.get(CONF_CARE_TIP))
+        value = self.entry.options.get(
+            CONF_CARE_TIP, self.entry.data.get(CONF_CARE_TIP)
+        )
         match = find_species(self.entry.data.get(CONF_SPECIES, ""))
         if match and match.get("care_tip") and _is_auto_filled_care_tip(value, match):
             return match["care_tip"]
@@ -174,7 +185,9 @@ class PlantData:
 
     @property
     def photo_path(self) -> str | None:
-        return self.entry.options.get(CONF_PHOTO_PATH, self.entry.data.get(CONF_PHOTO_PATH))
+        return self.entry.options.get(
+            CONF_PHOTO_PATH, self.entry.data.get(CONF_PHOTO_PATH)
+        )
 
     @property
     def photo_url(self) -> str | None:
@@ -216,11 +229,17 @@ class PlantData:
 
     @property
     def notify_enabled(self) -> bool:
-        return bool(self.entry.options.get(CONF_NOTIFY_ENABLED, self.entry.data.get(CONF_NOTIFY_ENABLED, False)))
+        return bool(
+            self.entry.options.get(
+                CONF_NOTIFY_ENABLED, self.entry.data.get(CONF_NOTIFY_ENABLED, False)
+            )
+        )
 
     @property
     def notify_device_id(self) -> str | None:
-        return self.entry.options.get(CONF_NOTIFY_DEVICE_ID, self.entry.data.get(CONF_NOTIFY_DEVICE_ID))
+        return self.entry.options.get(
+            CONF_NOTIFY_DEVICE_ID, self.entry.data.get(CONF_NOTIFY_DEVICE_ID)
+        )
 
     @property
     def notify_daily_summary_enabled(self) -> bool:
@@ -246,7 +265,10 @@ class PlantData:
 
         @callback
         def _handle_event(_event) -> None:
-            self._refresh_from_states()
+            self._refresh_from_states(
+                sample_soil=_event.data["entity_id"]
+                == self._entity(CONF_SOIL_MOISTURE_ENTITY)
+            )
             self._recompute()
             async_dispatcher_send(self.hass, f"{SIGNAL_UPDATE}_{self.entry.entry_id}")
 
@@ -254,6 +276,17 @@ class PlantData:
             self._unsub.append(
                 async_track_state_change_event(self.hass, entities, _handle_event)
             )
+
+        @callback
+        def _check_week(now) -> None:
+            if self._reset_week(now):
+                async_dispatcher_send(
+                    self.hass, f"{SIGNAL_UPDATE}_{self.entry.entry_id}"
+                )
+
+        self._unsub.append(
+            async_track_time_change(self.hass, _check_week, hour=0, minute=0, second=0)
+        )
 
         # Prime initial values so entities aren't "unknown" until the next change.
         self._refresh_from_states()
@@ -272,7 +305,7 @@ class PlantData:
         async_dispatcher_send(self.hass, f"{SIGNAL_UPDATE}_{self.entry.entry_id}")
 
     # ---- internal computation ------------------------------------------------
-    def _refresh_from_states(self) -> None:
+    def _refresh_from_states(self, *, sample_soil: bool = True) -> None:
         hass = self.hass
         previous_soil = self.soil_moisture
 
@@ -281,6 +314,17 @@ class PlantData:
 
         temp_id = self._entity(CONF_TEMPERATURE_ENTITY)
         self.temperature = _to_float(hass.states.get(temp_id)) if temp_id else None
+        if self.temperature is not None:
+            state = hass.states.get(temp_id)
+            unit = getattr(state, "attributes", {}).get(
+                "unit_of_measurement", UnitOfTemperature.CELSIUS
+            )
+            try:
+                self.temperature = TemperatureConverter.convert(
+                    self.temperature, unit, UnitOfTemperature.CELSIUS
+                )
+            except (ValueError, HomeAssistantError):
+                self.temperature = None
 
         hum_id = self.humidity_entity_id
         self.humidity = _to_float(hass.states.get(hum_id)) if hum_id else None
@@ -288,11 +332,13 @@ class PlantData:
         batt_id = self._entity(CONF_BATTERY_ENTITY)
         self.battery = _to_float(hass.states.get(batt_id)) if batt_id else None
 
+        now = dt_util.utcnow()
+        self._reset_week(now)
         if self.soil_moisture is None:
             return
 
-        now = dt_util.utcnow()
-        self._history.append(_Sample(now, self.soil_moisture))
+        if sample_soil:
+            self._history.append(_Sample(now, self.soil_moisture))
         self._trim_history(now)
 
         if (
@@ -307,12 +353,17 @@ class PlantData:
         while self._history and self._history[0].timestamp < cutoff:
             self._history.popleft()
 
-    def _bump_weekly_counter(self, now: datetime) -> None:
+    def _reset_week(self, now: datetime) -> bool:
         local_now = dt_util.as_local(now)
         key = (local_now.isocalendar()[0], local_now.isocalendar()[1])
         if key != self._week_key:
             self._week_key = key
             self.waterings_this_week = 0
+            return True
+        return False
+
+    def _bump_weekly_counter(self, now: datetime) -> None:
+        self._reset_week(now)
         self.waterings_this_week += 1
 
     def _recompute(self) -> None:
@@ -322,7 +373,7 @@ class PlantData:
         self._recompute_water_prediction()
 
     def _recompute_drying_rate(self) -> None:
-        if len(self._history) < 2:
+        if self.soil_moisture is None or len(self._history) < 2:
             self.drying_rate = None
             return
         oldest, newest = self._history[0], self._history[-1]
@@ -337,25 +388,41 @@ class PlantData:
         tips: list[str] = []
         soil = self.soil_moisture
 
+        if soil is None:
+            tips.append("Bodemvochtsensor niet beschikbaar - controleer de sensor.")
+
         if soil is not None and soil < self.dry_threshold:
-            tips.append("\U0001f331 Geef nu water (ongeveer 200 ml, tot het onderin wegloopt).")
+            tips.append(
+                "\U0001f331 Geef nu water (ongeveer 200 ml, tot het onderin wegloopt)."
+            )
         if soil is not None and soil > self.wet_threshold:
-            tips.append("\U0001f4a7 Laat de grond eerst opdrogen voor je weer water geeft.")
+            tips.append(
+                "\U0001f4a7 Laat de grond eerst opdrogen voor je weer water geeft."
+            )
         if self.temperature is not None and self.temperature > self.temp_hot:
-            tips.append("\U0001f321\ufe0f Het is warm - besproei de bladeren of zet de plant op een koelere plek.")
+            tips.append(
+                "\U0001f321\ufe0f Het is warm - besproei de bladeren of zet de plant op een koelere plek."
+            )
         if self.temperature is not None and self.temperature < self.temp_cold:
-            tips.append("\U0001f321\ufe0f Het is te koud - zet de plant op een warmere plek.")
+            tips.append(
+                "\U0001f321\ufe0f Het is te koud - zet de plant op een warmere plek."
+            )
         if self.humidity is not None and self.humidity < self.humidity_low:
-            tips.append("\U0001f4a8 De lucht is droog - besproei de bladeren regelmatig.")
+            tips.append(
+                "\U0001f4a8 De lucht is droog - besproei de bladeren regelmatig."
+            )
         if self.battery is not None and self.battery < self.battery_low:
             tips.append("\U0001f50b Vervang de batterij van de sensor.")
 
-        self.advice = "\n".join(tips) if tips else "\u2705 Alles OK, geen actie nodig. \U0001f33f"
+        self.advice = (
+            "\n".join(tips) if tips else "\u2705 Alles OK, geen actie nodig. \U0001f33f"
+        )
 
     def _recompute_health_score(self) -> None:
         soil = self.soil_moisture
         if soil is None:
-            soil = (self.dry_threshold + self.wet_threshold) / 2
+            self.health_score = None
+            return
         temp = self.temperature
         if temp is None:
             temp = (self.temp_cold + self.temp_hot) / 2
@@ -385,7 +452,7 @@ class PlantData:
         if soil is None:
             self.water_prediction = "Onbekend"
             return
-        if soil <= self.dry_threshold:
+        if soil < self.dry_threshold:
             self.water_prediction = "Nu water nodig"
             return
         rate = self.drying_rate

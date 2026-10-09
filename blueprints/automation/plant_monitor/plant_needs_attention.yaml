@@ -32,7 +32,7 @@ blueprint:
         duration: {}
     notify_action:
       name: Notification
-      description: The notification action to run (pick your phone/device under Devices, or a notify group).
+      description: The notification action to run (pick your phone/device under Devices, or a notify group). Set its message to {{ plant_message }} to use the generated plant alert.
       selector:
         action: {}
 
@@ -51,21 +51,10 @@ triggers:
     id: overwatered
 
 actions:
-  - choose:
-      - conditions:
-          - condition: trigger
-            id: dry
-        sequence:
-          - action: !input notify_action
-            data:
-              message: >-
-                {{ state_attr(trigger.entity_id, 'friendly_name') }} needs water.
-      - conditions:
-          - condition: trigger
-            id: overwatered
-        sequence:
-          - action: !input notify_action
-            data:
-              message: >-
-                {{ state_attr(trigger.entity_id, 'friendly_name') }} has been
-                overwatered for a while - let it dry out before watering again.
+  - variables:
+      plant_message: >-
+        {{ state_attr(trigger.entity_id, 'friendly_name') }}
+        {% if trigger.id == 'dry' %}needs water.
+        {% else %}has been overwatered for a while - let it dry out before watering again.
+        {% endif %}
+  - sequence: !input notify_action

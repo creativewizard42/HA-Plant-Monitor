@@ -9,11 +9,13 @@ They're meant as a sensible starting point; every value stays editable.
 from __future__ import annotations
 
 import json
+import logging
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
 _DATA_FILE = Path(__file__).parent / "species_data.json"
+_LOGGER = logging.getLogger(__name__)
 
 
 @lru_cache(maxsize=1)
@@ -23,7 +25,8 @@ def load_species() -> list[dict[str, Any]]:
         with open(_DATA_FILE, encoding="utf-8") as f:
             return json.load(f)
     except (OSError, json.JSONDecodeError):
-        return []
+        _LOGGER.exception("Could not load the bundled Plant Monitor species database")
+        raise
 
 
 def find_species(name: str) -> dict[str, Any] | None:

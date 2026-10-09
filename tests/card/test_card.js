@@ -116,6 +116,28 @@ async function run() {
   assert.ok(PlantMonitorCardCtor, "custom element did not register");
   console.log("test_custom_element_registers: OK");
 
+  // Cold registry loading, unavailable values and partial overrides.
+  const cold = new PlantMonitorCardCtor();
+  cold.setConfig({ device_id: DEVICE_ID });
+  cold.hass = { ...makeHass(), entities: {} };
+  cold.hass = makeHass();
+  assert.strictEqual(cold._entityIds.soil_moisture, "sensor.pannenkoekenplant_puppy_bodemvocht");
+  const missingHass = makeHass();
+  missingHass.states["sensor.pannenkoekenplant_puppy_bodemvocht"].state = "unavailable";
+  cold.hass = missingHass;
+  assert.strictEqual(cold.querySelector(".pm-status-text").textContent, "Onbekend");
+  assert.strictEqual(cold.querySelector(".pm-hero-moisture").textContent, "—");
+  const partial = new PlantMonitorCardCtor();
+  partial.setConfig({ device_id: DEVICE_ID, entities: { advice: "sensor.custom_advice" } });
+  partial.hass = makeHass();
+  assert.strictEqual(partial._entityIds.soil_moisture, "sensor.pannenkoekenplant_puppy_bodemvocht");
+  assert.strictEqual(partial._entityIds.advice, "sensor.custom_advice");
+  const fahrenheit = makeHass();
+  fahrenheit.states["sensor.zigbee_temp"] = { state: "68", attributes: { unit_of_measurement: "°F" } };
+  cold.hass = fahrenheit;
+  assert.strictEqual(cold.querySelector(".pm-hero-temp").textContent, "20.0°C");
+  console.log("test_registry_loading_unknown_state_overrides_and_units: OK");
+
   // --- Test 1: getStubConfig picks a plant_monitor device ---
   const hass = makeHass();
   const stub = PlantMonitorCardCtor.getStubConfig(hass);

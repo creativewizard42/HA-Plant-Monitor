@@ -3,6 +3,7 @@ name: Tests
 on:
   push:
   pull_request:
+  workflow_call:
 
 jobs:
   logic-tests:
@@ -18,8 +19,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Syntax check
         run: python -m py_compile custom_components/plant_monitor/*.py
-      - name: Install Home Assistant (for helpers used by the integration)
-        run: pip install homeassistant
+      - name: Install tested Home Assistant dependencies
+        run: pip install -r tests/requirements.txt
       - name: Run calculation-engine tests
         run: python tests/test_plant_data.py
       - name: Run species-database tests
@@ -36,19 +37,18 @@ jobs:
   end-to-end-tests:
     name: Config flow & frontend end-to-end tests (pytest)
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
       - name: Install test harness
-        run: pip install pytest pytest-asyncio pytest-homeassistant-custom-component
-      - name: Run end-to-end config flow tests
-        run: pytest tests/test_config_flow.py -v
-      - name: Run notification tests
-        run: pytest tests/test_notifications.py -v
-      - name: Run frontend (card-serving) tests
-        run: pytest tests/test_frontend.py -v
+        run: pip install -r tests/requirements.txt
+      - name: Run integration and regression tests
+        run: pytest tests -v
 
   card-tests:
     name: Lovelace card tests (jsdom)
@@ -62,7 +62,7 @@ jobs:
         run: node --check custom_components/plant_monitor/www/plant-monitor-card.js
       - name: Install test deps
         working-directory: tests/card
-        run: npm install
+        run: npm ci
       - name: Run card tests
         working-directory: tests/card
         run: npm test

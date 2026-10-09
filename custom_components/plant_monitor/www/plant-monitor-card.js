@@ -91,9 +91,7 @@ class PlantMonitorCard extends HTMLElement {
 
   set hass(hass) {
     this._hass = hass;
-    if (!this._entityIds) {
-      this._resolveEntities();
-    }
+    this._resolveEntities();
     this._render();
     this._maybeFetchHistory();
   }
@@ -115,7 +113,22 @@ class PlantMonitorCard extends HTMLElement {
       if (role) found[role] = entry.entity_id;
     }
 
-    this._entityIds = found;
+    this._entityIds = { ...found, ...(this._config.entities || {}) };
+  }
+
+  _numeric(state, fallback = null) {
+    const value = state ? Number.parseFloat(state.state) : NaN;
+    return Number.isFinite(value) ? value : fallback;
+  }
+
+  _temperatureCelsius(state) {
+    const value = this._numeric(state);
+    if (value === null) return null;
+    const unit = state.attributes && state.attributes.unit_of_measurement;
+    if (unit === "°F") return (value - 32) * 5 / 9;
+    if (unit === "K") return value - 273.15;
+    if (!unit || unit === "°C") return value;
+    return null;
   }
 
   _entity(role) {
@@ -169,6 +182,7 @@ class PlantMonitorCard extends HTMLElement {
         significant_changes_only: false,
         no_attributes: true,
       });
+      if (this._historyForEntity !== soilId) return;
       const raw = (result && result[soilId]) || [];
       this._historyPoints = raw
         .map((entry) => {
@@ -180,6 +194,7 @@ class PlantMonitorCard extends HTMLElement {
         })
         .filter(Boolean);
     } catch (err) {
+      if (this._historyForEntity !== soilId) return;
       this._historyPoints = null;
     }
     this._renderGraph();
@@ -359,9 +374,10 @@ class PlantMonitorCard extends HTMLElement {
     const { name } = this._deviceTitleAndModel();
     this.querySelector(".pm-hero-title").textContent = `\ud83c\udf3f ${name}`;
 
-    const soilVal = soil ? parseFloat(soil.state) : null;
-    const dryVal = dryTh ? parseFloat(dryTh.state) : 20;
-    const wetVal = wetTh ? parseFloat(wetTh.state) : 70;
+    const soilVal = this._numeric(soil);
+    const tempVal = this._temperatureCelsius(tempEntity);
+    const dryVal = this._numeric(dryTh, 20);
+    const wetVal = this._numeric(wetTh, 70);
 
     let statusText = "Onbekend";
     let statusColor = "#94a3b8";
@@ -379,7 +395,7 @@ class PlantMonitorCard extends HTMLElement {
     hero.style.backgroundImage = photoUrl ? `url(${photoUrl})` : "none";
 
     this.querySelector(".pm-hero-moisture").textContent = soilVal !== null ? `${soilVal}%` : "\u2014";
-    this.querySelector(".pm-hero-temp").textContent = tempEntity ? `${parseFloat(tempEntity.state).toFixed(1)}\u00b0C` : "\u2014";
+    this.querySelector(".pm-hero-temp").textContent = tempVal !== null ? `${tempVal.toFixed(1)}\u00b0C` : "\u2014";
 
     const L = Math.max(0, Math.min(100, dryVal));
     const H = Math.max(L, Math.min(100, wetVal));
@@ -390,14 +406,15 @@ class PlantMonitorCard extends HTMLElement {
     this.querySelector(".pm-bar-dry").textContent = `droog <${L}%`;
     this.querySelector(".pm-bar-wet").textContent = `nat >${H}%`;
 
-    const battVal = battery ? parseFloat(battery.state) : null;
+    const battVal = this._numeric(battery);
+    const humidityVal = this._numeric(humidity);
     const battIcon = battVal === null ? "mdi:battery-unknown" : battVal < 20 ? "mdi:battery-alert" : "mdi:battery";
     const battColor = battVal === null ? "#94a3b8" : battVal < 20 ? "#ef4444" : battVal < 50 ? "#f59e0b" : "#a3e635";
 
     this.querySelector(".pm-tiles").innerHTML = [
-      this._tile("mdi:water-percent", "#38bdf8", humidity ? `${humidity.state}%` : "\u2014", "Lucht"),
+      this._tile("mdi:water-percent", "#38bdf8", humidityVal !== null ? `${humidityVal}%` : "\u2014", "Lucht"),
       this._tile(battIcon, battColor, battVal !== null ? `${battVal}%` : "\u2014", "Batterij"),
-      this._tile("mdi:thermometer", "#f472b6", tempEntity ? `${parseFloat(tempEntity.state).toFixed(1)}\u00b0` : "\u2014", "Temp"),
+      this._tile("mdi:thermometer", "#f472b6", tempVal !== null ? `${tempVal.toFixed(1)}\u00b0` : "\u2014", "Temp"),
     ].join("");
 
     this.querySelector(".pm-water-need").textContent = prediction ? prediction.state : "Onbekend";
@@ -419,8 +436,8 @@ class PlantMonitorCard extends HTMLElement {
 
     const dryTh = this._entity("dry_threshold");
     const wetTh = this._entity("wet_threshold");
-    const dryVal = dryTh ? parseFloat(dryTh.state) : 20;
-    const wetVal = wetTh ? parseFloat(wetTh.state) : 70;
+    const dryVal = this._numeric(dryTh, 20);
+    const wetVal = this._numeric(wetTh, 70);
     this.querySelector(".pm-graph-optimal").textContent =
       `GRIJS = OPTIMAAL ${dryVal}-${wetVal}%`;
 

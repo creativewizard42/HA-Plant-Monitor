@@ -4,16 +4,19 @@ Changing one of these updates the config entry's options (so the value
 survives restarts) and reloads the entry, the same as changing it via the
 Options flow.
 """
+
 from __future__ import annotations
 
 from homeassistant.components.number import NumberEntity, NumberMode
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import CONF_DRY_THRESHOLD, CONF_WET_THRESHOLD, DOMAIN
 from .plant_data import PlantData
 from .sensor import _device_info
+from .validation import thresholds_valid
 
 
 async def async_setup_entry(
@@ -64,4 +67,11 @@ class PlantThresholdNumber(NumberEntity):
     async def async_set_native_value(self, value: float) -> None:
         new_options = dict(self._entry.options)
         new_options[self._config_key] = value
+        values = {**self._entry.data, **new_options}
+        values.setdefault(CONF_DRY_THRESHOLD, self._plant.dry_threshold)
+        values.setdefault(CONF_WET_THRESHOLD, self._plant.wet_threshold)
+        if not thresholds_valid(values, CONF_DRY_THRESHOLD, CONF_WET_THRESHOLD):
+            raise ServiceValidationError(
+                "Dry threshold must be below wet threshold (0–100%)."
+            )
         self.hass.config_entries.async_update_entry(self._entry, options=new_options)

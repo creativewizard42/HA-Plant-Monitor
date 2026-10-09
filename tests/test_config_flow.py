@@ -154,13 +154,16 @@ async def test_notifications_step_with_and_without_device(hass):
     against the DeviceSelector's validator when the field is left empty)."""
     from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-    owner_entry = MockConfigEntry(domain="mobile_app")
+    owner_entry = MockConfigEntry(domain="test")
     owner_entry.add_to_hass(hass)
     device_registry = dr.async_get(hass)
     phone = device_registry.async_get_or_create(
         config_entry_id=owner_entry.entry_id,
-        identifiers={("mobile_app", "test_phone")},
+        identifiers={("test", "test_notify_device")},
         name="Test Phone",
+    )
+    er.async_get(hass).async_get_or_create(
+        "notify", "test", "test_notify_entity", device_id=phone.id, config_entry=owner_entry
     )
 
     # Case 1: skip notifications entirely (no device, toggles off).

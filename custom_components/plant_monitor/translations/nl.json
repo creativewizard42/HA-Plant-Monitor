@@ -49,8 +49,8 @@
         "title": "Geavanceerde drempels",
         "description": "Verstandige standaardwaarden - alleen aanpassen als je weet dat je dat wilt.",
         "data": {
-          "temp_cold_threshold": "Te koud onder (\u00b0C)",
-          "temp_hot_threshold": "Te warm boven (\u00b0C)",
+          "temp_cold_threshold": "Te koud onder (°C)",
+          "temp_hot_threshold": "Te warm boven (°C)",
           "humidity_low_threshold": "Lucht te droog onder (%)",
           "battery_low_threshold": "Batterij bijna leeg onder (%)",
           "water_jump_threshold": "Vochtstijging die telt als \"water gegeven\" (%)"
@@ -59,6 +59,12 @@
     },
     "abort": {
       "already_configured": "Deze plant (zelfde naam en sensor) is al ingesteld."
+    },
+    "error": {
+      "invalid_thresholds": "De droogtedrempel moet lager zijn dan de overwaterdrempel.",
+      "invalid_temperature_thresholds": "De koudedrempel moet lager zijn dan de warmtedrempel.",
+      "notification_device_required": "Kies een meldingsapparaat of schakel meldingen uit.",
+      "unsupported_notification_device": "Dit apparaat heeft geen ondersteunde meldingsactie of notify-entiteit."
     }
   },
   "options": {
@@ -109,36 +115,68 @@
       "advanced": {
         "title": "Geavanceerde drempels",
         "data": {
-          "temp_cold_threshold": "Te koud onder (\u00b0C)",
-          "temp_hot_threshold": "Te warm boven (\u00b0C)",
+          "temp_cold_threshold": "Te koud onder (°C)",
+          "temp_hot_threshold": "Te warm boven (°C)",
           "humidity_low_threshold": "Lucht te droog onder (%)",
           "battery_low_threshold": "Batterij bijna leeg onder (%)",
           "water_jump_threshold": "Vochtstijging die telt als \"water gegeven\" (%)"
         }
       }
+    },
+    "error": {
+      "invalid_thresholds": "De droogtedrempel moet lager zijn dan de overwaterdrempel.",
+      "invalid_temperature_thresholds": "De koudedrempel moet lager zijn dan de warmtedrempel.",
+      "notification_device_required": "Kies een meldingsapparaat of schakel meldingen uit.",
+      "unsupported_notification_device": "Dit apparaat heeft geen ondersteunde meldingsactie of notify-entiteit."
     }
   },
   "entity": {
     "sensor": {
-      "advice": { "name": "Advies" },
-      "care_tip": { "name": "Verzorgingstip" },
-      "soil_moisture": { "name": "Bodemvocht" },
-      "health_score": { "name": "Gezondheidsscore" },
-      "drying_rate": { "name": "Droogsnelheid" },
-      "water_prediction": { "name": "Waterbehoefte" },
-      "last_watered": { "name": "Laatst water gegeven" },
-      "waterings_this_week": { "name": "Wateringen deze week" }
+      "advice": {
+        "name": "Advies"
+      },
+      "care_tip": {
+        "name": "Verzorgingstip"
+      },
+      "soil_moisture": {
+        "name": "Bodemvocht"
+      },
+      "health_score": {
+        "name": "Gezondheidsscore"
+      },
+      "drying_rate": {
+        "name": "Droogsnelheid"
+      },
+      "water_prediction": {
+        "name": "Waterbehoefte"
+      },
+      "last_watered": {
+        "name": "Laatst water gegeven"
+      },
+      "waterings_this_week": {
+        "name": "Wateringen deze week"
+      }
     },
     "binary_sensor": {
-      "dry": { "name": "Droog" },
-      "overwatered": { "name": "Te nat" }
+      "dry": {
+        "name": "Droog"
+      },
+      "overwatered": {
+        "name": "Te nat"
+      }
     },
     "number": {
-      "dry_threshold": { "name": "Droogte-drempel" },
-      "wet_threshold": { "name": "Overwater-drempel" }
+      "dry_threshold": {
+        "name": "Droogte-drempel"
+      },
+      "wet_threshold": {
+        "name": "Overwater-drempel"
+      }
     },
     "image": {
-      "photo": { "name": "Foto" }
+      "photo": {
+        "name": "Foto"
+      }
     }
   },
   "services": {
@@ -150,7 +188,7 @@
   "issues": {
     "add_lovelace_resource_manually": {
       "title": "Voeg de Plant Monitor-kaart toe als dashboard-resource",
-      "description": "Plant Monitor kon de dashboardkaart niet automatisch toevoegen (dit gebeurt bij YAML-dashboards). Voeg 'm eenmalig zelf toe: **Instellingen -> Dashboards -> \u22ee -> Resources -> Resource toevoegen**, URL `{url}`, resource-type **JavaScript-module**. Daarna is de kaart `plant-monitor-card` op elk dashboard te gebruiken."
+      "description": "Plant Monitor kon de dashboardkaart niet automatisch toevoegen (dit gebeurt bij YAML-dashboards). Voeg 'm eenmalig zelf toe: **Instellingen -> Dashboards -> ⋮ -> Resources -> Resource toevoegen**, URL `{url}`, resource-type **JavaScript-module**. Daarna is de kaart `plant-monitor-card` op elk dashboard te gebruiken."
     }
   }
 }
