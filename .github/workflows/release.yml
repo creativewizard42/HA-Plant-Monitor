@@ -4,36 +4,20 @@ on:
   push:
     tags:
       - "v*"
+  workflow_run:
+    workflows: ["Validate"]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
-  repository_metadata:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Preserve repository topics and add Home Assistant topic
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_REPO: ${{ github.repository }}
-        run: |
-          gh api "repos/$GH_REPO/topics" > /tmp/topics.json
-          python - <<'PY'
-          import json
-          with open('/tmp/topics.json') as source:
-              topics = json.load(source)['names']
-          if 'home-assistant' not in topics:
-              topics.append('home-assistant')
-          with open('/tmp/topics-update.json', 'w') as destination:
-              json.dump({'names': topics}, destination)
-          PY
-          gh api --method PUT "repos/$GH_REPO/topics" --input /tmp/topics-update.json
   tests:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository)
     uses: ./.github/workflows/test.yml
   metadata:
-    needs: repository_metadata
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository)
     uses: ./.github/workflows/validate.yml
   publish:
     needs: [tests, metadata]
@@ -42,19 +26,40 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Verify release version
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
+      - name: Verify the tagged release matches the validated source
+        id: release
         env:
-          RELEASE_TAG: ${{ github.ref_name }}
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_REF: ${{ github.ref_name }}
         run: |
           python - <<'PY'
-          import json, os
+          import json, os, re, subprocess
           with open('custom_components/plant_monitor/manifest.json') as manifest:
               version = json.load(manifest)['version']
-          assert os.environ['RELEASE_TAG'] == f'v{version}', 'Tag must match manifest version'
+          assert re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+', version)
+          tag = f'v{version}'
+          if os.environ['EVENT_NAME'] == 'push':
+              assert os.environ['EVENT_REF'] == tag, 'Tag must match manifest version'
+          exists = subprocess.run(['git', 'rev-parse', '--verify', f'refs/tags/{tag}^{{commit}}'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+          # A retry may fix the release workflow without moving the existing tag.
+          matches = exists and subprocess.run(['git', 'diff', '--exit-code', tag, 'HEAD', '--', '.', ':!.github/workflows/release.yml']).returncode == 0
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'tag={tag}\nready={str(matches).lower()}\n')
+          if not matches:
+              print('No matching tagged release to publish; skipping publication.')
           PY
       - name: Publish GitHub release
+        if: steps.release.outputs.ready == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
-          RELEASE_TAG: ${{ github.ref_name }}
-        run: gh release create "$RELEASE_TAG" --verify-tag --title "$RELEASE_TAG" --notes-file RELEASE_NOTES.md
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          if gh release view "$RELEASE_TAG" --json tagName > /dev/null 2>&1; then
+            echo "Release $RELEASE_TAG is already published."
+          else
+            gh release create "$RELEASE_TAG" --verify-tag --title "$RELEASE_TAG" --notes-file RELEASE_NOTES.md
+          fi
