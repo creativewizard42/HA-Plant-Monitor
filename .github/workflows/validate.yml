@@ -7,6 +7,11 @@ on:
     - cron: "0 3 * * *" # catch breakage from upstream HA/HACS changes
   workflow_dispatch:
   workflow_call:
+    inputs:
+      ref:
+        type: string
+        required: false
+        default: ""
 
 jobs:
   hassfest:
@@ -14,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
       - uses: home-assistant/actions/hassfest@master
 
   hacs:
@@ -21,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
       - uses: hacs/action@main
         with:
           category: integration
