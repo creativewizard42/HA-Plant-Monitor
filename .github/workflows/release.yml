@@ -9,9 +9,31 @@ permissions:
   contents: read
 
 jobs:
+  repository_metadata:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Preserve repository topics and add Home Assistant topic
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh api "repos/$GH_REPO/topics" > /tmp/topics.json
+          python - <<'PY'
+          import json
+          with open('/tmp/topics.json') as source:
+              topics = json.load(source)['names']
+          if 'home-assistant' not in topics:
+              topics.append('home-assistant')
+          with open('/tmp/topics-update.json', 'w') as destination:
+              json.dump({'names': topics}, destination)
+          PY
+          gh api --method PUT "repos/$GH_REPO/topics" --input /tmp/topics-update.json
   tests:
     uses: ./.github/workflows/test.yml
   metadata:
+    needs: repository_metadata
     uses: ./.github/workflows/validate.yml
   publish:
     needs: [tests, metadata]

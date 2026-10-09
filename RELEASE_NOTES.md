@@ -1,4 +1,4 @@
-# Plant Monitor v0.9.2
+# Plant Monitor v0.9.3
 
 This bugfix release removes blocking species-database reads from Home Assistant's event loop and fixes the configuration, notification and dashboard edge cases found during review.
 
@@ -11,6 +11,7 @@ This bugfix release removes blocking species-database reads from Home Assistant'
 - Reset weekly watering counts at the local day boundary when the week changes; prevent unrelated sensor updates from evicting soil samples.
 - Recover dashboard discovery after delayed registry loading, merge partial entity overrides, and ignore stale history responses when changing plants.
 - Update the vulnerable test-only source-map dependency; npm audit reports zero vulnerabilities for the installed card test dependency tree.
+- Correct the config-only schema, service selector metadata and manifest ordering; bundle original HACS brand icons and preserve/add the Home Assistant repository topic.
 - Add regression tests, tested Python 3.12/3.13 dependency versions, frozen npm installation, and a release workflow gated on tests plus HACS/Hassfest validation.
 
 Validation: 59 Python tests pass on each of Home Assistant 2025.1.4 / Python 3.12 and Home Assistant 2026.2.3 / Python 3.13; all 14 jsdom card checks pass. Syntax, JSON/translation checks and actionlint pass; npm audit reports zero vulnerabilities. Physical sensor hardware, external stock-photo fetching and real phone push delivery were not tested.

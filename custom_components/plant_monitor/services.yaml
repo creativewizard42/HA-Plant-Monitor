@@ -4,6 +4,12 @@ log_watering:
     Manually record that a plant was watered right now (updates "last
     watered" and the weekly count). Useful when automatic jump-detection
     misses a slow watering.
-  target:
-    device:
-      integration: plant_monitor
+  fields:
+    device_id:
+      name: Plants
+      description: The Plant Monitor devices that were watered.
+      required: true
+      selector:
+        device:
+          integration: plant_monitor
+          multiple: true

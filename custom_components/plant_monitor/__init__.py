@@ -16,6 +16,7 @@ from .plant_data import PlantData
 from .species import load_species
 
 NOTIFIERS_KEY = f"{DOMAIN}_notifiers"
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 LOG_WATERING_SCHEMA = vol.Schema(
     {vol.Required("device_id"): vol.All(cv.ensure_list, [cv.string])}

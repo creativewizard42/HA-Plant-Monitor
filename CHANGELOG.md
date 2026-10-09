@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.3
+
+- Fix the config-only schema, service selector metadata and manifest ordering discovered by release validation.
+- Bundle original HACS brand icons and ensure the repository has the Home Assistant topic.
+- Includes the v0.9.2 fixes below; v0.9.2 was tagged but release publication was withheld because metadata checks failed.
+
 ## 0.9.2
 
 This bugfix release removes blocking species-database reads from Home Assistant's event loop and fixes the configuration, notification and dashboard edge cases found during review.
