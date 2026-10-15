@@ -116,7 +116,8 @@ def test_temp_and_battery_and_humidity_advice():
     plant._refresh_from_states()
     plant._recompute()
     assert "warm" in plant.advice
-    assert "droog - besproei" in plant.advice
+    assert "luchtbevochtiger" in plant.advice
+    assert "besproei" not in plant.advice
     assert "batterij" in plant.advice
     print("test_temp_and_battery_and_humidity_advice: OK ->", repr(plant.advice))
 
@@ -246,7 +247,7 @@ def test_photo_url_fallback_chain():
     # No upload, but species matched and has a stock photo -> use it.
     hass, plant = make_plant({"soil_moisture_entity": "sensor.soil", "species": "Monstera"})
     assert plant.photo_url is not None
-    assert plant.photo_url.startswith("https://")
+    assert plant.photo_url == "/plant_monitor_bundled/monstera.webp"
 
     # No upload, species matched but that species has NO stock photo -> None.
     hass, plant = make_plant({"soil_moisture_entity": "sensor.soil", "species": "Fatsia"})

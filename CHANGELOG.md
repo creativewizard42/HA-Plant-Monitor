@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.9.4
+
+- Review all 203 catalogue records; correct 37 moisture profiles/ranges, several botanical labels, light/humidity/drainage guidance and unsupported toxicity claims. Add a complete per-plant review table and explicit limits of source verification.
+- Apply temperature/humidity starting thresholds to new plants; preserve existing thresholds, IDs, old selections, custom notes and care-tip upgrade history.
+- Keep wet-root-tolerant bog plants out of overwatering alerts and moisture score penalties. Distinguish Nepenthes, warn about dormancy-sensitive watering and remove fixed 200 ml and misting advice.
+- Bundle eight original generated plant illustrations as 1.1 MB of WebP files, serve them off the event loop and label their origin. Uploaded photos retain priority.
+- Add an original transparent plant/pot/water-drop logo at the required 256/512 px brand sizes, and display it in the README. Document Home Assistant 2026.3+ local-brand support and HACS preview limitations.
+- Add catalogue, offline photo, advice, brand-format and card attribution regression coverage.
+
 ## 0.9.3
 
 - Fix the config-only schema, service selector metadata and manifest ordering discovered by release validation.

@@ -35,9 +35,17 @@ def find_species(name: str) -> dict[str, Any] | None:
     if not name:
         return None
     needle = name.strip().casefold()
-    for entry in load_species():
+    entries = load_species()
+    for entry in entries:
         if entry["display_name"].casefold() == needle:
             return entry
+    # Correct botanical identities take priority over older search terms.
+    # For example S. truncata belongs to Thanksgiving Cactus, even though
+    # older catalogues also put that name on the Christmas Cactus entry.
+    for entry in entries:
+        if entry["scientific_name"].casefold() == needle:
+            return entry
+    for entry in entries:
         if any(alias.casefold() == needle for alias in entry.get("aliases", [])):
             return entry
     return None

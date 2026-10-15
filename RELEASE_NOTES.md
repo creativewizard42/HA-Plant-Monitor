@@ -1,17 +1,14 @@
-# Plant Monitor v0.9.3
+# Plant Monitor v0.9.4
 
-This bugfix release removes blocking species-database reads from Home Assistant's event loop and fixes the configuration, notification and dashboard edge cases found during review.
+This release reviews the 203-entry plant catalogue, bundles eight original generated plant illustrations, and adds a new Plant Monitor logo.
 
-- Load the species database in an executor during cold startup and configuration; report read failures without caching an empty database.
-- Migrate version-1 plant entries while preserving custom thresholds, sensors and options.
-- Show unknown health/status when the required soil sensor is unavailable; reject non-finite readings and convert Fahrenheit/Kelvin readings to Celsius.
-- Validate dry/wet and cold/hot threshold ordering, including live threshold number updates.
-- Route Mobile App notifications through the real device action and other supported devices through notify entities; validate recipients, allow clearing them and fix daily-summary Unicode.
-- Fix the notification blueprint's action list. When configuring it, set your notification action's message to `{{ plant_message }}`.
-- Reset weekly watering counts at the local day boundary when the week changes; prevent unrelated sensor updates from evicting soil samples.
-- Recover dashboard discovery after delayed registry loading, merge partial entity overrides, and ignore stale history responses when changing plants.
-- Update the vulnerable test-only source-map dependency; npm audit reports zero vulnerabilities for the installed card test dependency tree.
-- Correct the config-only schema, service selector metadata and manifest ordering; bundle original HACS brand icons and preserve/add the Home Assistant repository topic.
-- Add regression tests, tested Python 3.12/3.13 dependency versions, frozen npm installation, and a release workflow gated on tests plus HACS/Hassfest validation.
+- Correct 37 moisture profiles/ranges, several botanical labels, and care guidance for light, drainage, humidity, dormancy and toxicity. A complete table for all 203 entries is in `docs/PLANT_PROFILE_REVIEW.md`.
+- Add profile-based temperature/humidity alert defaults for newly configured plants. Keep existing thresholds and custom notes; retain all IDs, legacy names and previous auto-filled care-tip hashes.
+- Stop interpreting wet roots alone as overwatering for papyrus, Sarracenia, Venus flytrap and Cape sundew, including existing entries. Keep Nepenthes separate. Dormancy-sensitive plants ask you to check the growth phase; there is no automatic season detection.
+- Remove blanket 200 ml watering quantities and misting recommendations. All advice still fits Home Assistant's 255-character state limit.
+- Add eight locally served, labelled AI-generated plant illustrations, approximately 1.1 MB in total. An uploaded photo always takes priority. The other 195 entries still need an uploaded photo.
+- Bundle a new transparent plant/pot/water-drop icon in 256 and 512 px sizes and show it in the HACS-readable README. Home Assistant 2026.3+ supports local custom brand assets; older versions and HACS previews before installation may still use legacy central branding. A live HACS download-list preview has not been verified.
 
-Validation: 59 Python tests pass on each of Home Assistant 2025.1.4 / Python 3.12 and Home Assistant 2026.2.3 / Python 3.13; all 14 jsdom card checks pass. Syntax, JSON/translation checks and actionlint pass; npm audit reports zero vulnerabilities. Physical sensor hardware, external stock-photo fetching and real phone push delivery were not tested.
+Validation: 77 Python tests pass on each of Home Assistant 2025.1.4 / Python 3.12 and Home Assistant 2026.2.3 / Python 3.13; 15 card checks pass. Generated photo file reads are verified to run off the event loop; all 203 IDs and previous care-tip hashes are retained.
+
+Care percentages are calibration starting points, not universal botanical measurements. Live RHS, NC State and ASPCA pages were blocked by the execution environment, so this is not a claim of 203 independently source-verified profiles. New thresholds do not overwrite existing user settings. Physical sensor behaviour, plant growth outcomes and live HACS rendering have not been tested.

@@ -136,6 +136,19 @@ class PlantData:
         return self._conf(CONF_WET_THRESHOLD, DEFAULT_WET_THRESHOLD)
 
     @property
+    def species_profile(self) -> dict:
+        return find_species(self.entry.data.get(CONF_SPECIES, "")) or {}
+
+    @property
+    def overwatered(self) -> bool | None:
+        """Bog plants tolerate wet roots; high readings alone are not overwatering."""
+        if self.soil_moisture is None:
+            return None
+        if self.species_profile.get("waterlogging_tolerant"):
+            return False
+        return self.soil_moisture > self.wet_threshold
+
+    @property
     def temp_hot(self) -> float:
         return self._conf(CONF_TEMP_HOT, DEFAULT_TEMP_HOT)
 
@@ -192,7 +205,7 @@ class PlantData:
     @property
     def photo_url(self) -> str | None:
         """The user's own uploaded photo takes priority; falls back to the
-        matched species' bundled stock photo (an external, verified URL)
+        matched species' bundled generated illustration
         if the plant has none of its own yet."""
         uploaded = self.photo_path
         if uploaded:
@@ -201,6 +214,21 @@ class PlantData:
         if match and match.get("stock_photo_url"):
             return match["stock_photo_url"]
         return None
+
+    @property
+    def photo_metadata(self) -> dict:
+        """Only attribute the fallback illustration, never the user's upload."""
+        if self.photo_path:
+            return {"photo_source": "user_upload", "photo_generated": False}
+        match = self.species_profile
+        if match.get("stock_photo_url"):
+            generated = bool(match.get("stock_photo_generated"))
+            return {
+                "photo_source": "generated" if generated else "external",
+                "photo_generated": generated,
+                "photo_credit": match.get("stock_photo_credit"),
+            }
+        return {}
 
     def _entity(self, key: str) -> str | None:
         # Options (set via "Configure" after setup) override the initial
@@ -392,24 +420,26 @@ class PlantData:
             tips.append("Bodemvochtsensor niet beschikbaar - controleer de sensor.")
 
         if soil is not None and soil < self.dry_threshold:
-            tips.append(
-                "\U0001f331 Geef nu water (ongeveer 200 ml, tot het onderin wegloopt)."
-            )
-        if soil is not None and soil > self.wet_threshold:
+            caution = self.species_profile.get("watering_caution")
+            if caution:
+                tips.append("\U0001f331 Controleer soort en groeifase vóór water geven; volg de verzorgingsgids.")
+            else:
+                tips.append("\U0001f331 Geef nu water als de grond droog is en de plant groeit; laat uitlekken.")
+        if self.overwatered:
             tips.append(
                 "\U0001f4a7 Laat de grond eerst opdrogen voor je weer water geeft."
             )
         if self.temperature is not None and self.temperature > self.temp_hot:
             tips.append(
-                "\U0001f321\ufe0f Het is warm - besproei de bladeren of zet de plant op een koelere plek."
+                "\U0001f321\ufe0f Te warm: controleer ventilatie en standplaats."
             )
         if self.temperature is not None and self.temperature < self.temp_cold:
             tips.append(
-                "\U0001f321\ufe0f Het is te koud - zet de plant op een warmere plek."
+                "\U0001f321\ufe0f Het is te koud - kies een warmere plek."
             )
         if self.humidity is not None and self.humidity < self.humidity_low:
             tips.append(
-                "\U0001f4a8 De lucht is droog - besproei de bladeren regelmatig."
+                "\U0001f4a8 Lucht droog: gebruik zo nodig een luchtbevochtiger."
             )
         if self.battery is not None and self.battery < self.battery_low:
             tips.append("\U0001f50b Vervang de batterij van de sensor.")
@@ -428,7 +458,7 @@ class PlantData:
             temp = (self.temp_cold + self.temp_hot) / 2
         battery = self.battery if self.battery is not None else 100.0
 
-        if self.dry_threshold <= soil <= self.wet_threshold:
+        if soil >= self.dry_threshold and not self.overwatered:
             moisture_score = 100.0
         elif soil < self.dry_threshold:
             moisture_score = max(0.0, 100 - (self.dry_threshold - soil) * 5)
@@ -453,7 +483,7 @@ class PlantData:
             self.water_prediction = "Onbekend"
             return
         if soil < self.dry_threshold:
-            self.water_prediction = "Nu water nodig"
+            self.water_prediction = "Controleer groeifase" if self.species_profile.get("watering_caution") else "Nu water nodig"
             return
         rate = self.drying_rate
         if rate is None or rate <= 0.05:

@@ -239,6 +239,7 @@ class PlantMonitorCard extends HTMLElement {
           </div>
         </div>
 
+        <div class="pm-photo-credit" hidden></div>
         <div class="pm-graph-panel">
           <div class="pm-graph-header">
             <span class="pm-graph-title">BODEMVOCHT</span>
@@ -338,6 +339,7 @@ class PlantMonitorCard extends HTMLElement {
       .pm-graph-empty { font-size: 11px; color: #9ca3af; text-align: center; padding: 24px 0; }
 
       .pm-care { padding: 4px 14px 14px; }
+      .pm-photo-credit { padding: 4px 14px; font-size: 10px; color: var(--secondary-text-color); }
       .pm-care-summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--primary-text-color); padding: 8px 0; list-style: none; display: flex; align-items: center; gap: 6px; }
       .pm-care-summary::-webkit-details-marker { display: none; }
       .pm-care-chevron { display: inline-block; font-size: 10px; transition: transform 0.15s ease; }
@@ -393,6 +395,10 @@ class PlantMonitorCard extends HTMLElement {
 
     const photoUrl = photo && photo.attributes && photo.attributes.entity_picture;
     hero.style.backgroundImage = photoUrl ? `url(${photoUrl})` : "none";
+    const photoCredit = this.querySelector(".pm-photo-credit");
+    const credit = photoUrl && photo && photo.attributes && photo.attributes.photo_credit;
+    photoCredit.hidden = !credit;
+    photoCredit.textContent = credit || "";
 
     this.querySelector(".pm-hero-moisture").textContent = soilVal !== null ? `${soilVal}%` : "\u2014";
     this.querySelector(".pm-hero-temp").textContent = tempVal !== null ? `${tempVal.toFixed(1)}\u00b0C` : "\u2014";

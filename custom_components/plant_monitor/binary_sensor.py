@@ -76,6 +76,4 @@ class PlantOverwateredBinarySensor(_PlantBinarySensorBase):
 
     @property
     def is_on(self) -> bool | None:
-        if self._plant.soil_moisture is None:
-            return None
-        return self._plant.soil_moisture > self._plant.wet_threshold
+        return self._plant.overwatered

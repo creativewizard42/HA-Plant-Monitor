@@ -100,8 +100,7 @@ class PlantNotifier:
         return soil is not None and soil < self.plant.dry_threshold
 
     def _is_overwatered(self) -> bool:
-        soil = self.plant.soil_moisture
-        return soil is not None and soil > self.plant.wet_threshold
+        return bool(self.plant.overwatered)
 
     def _plant_name(self) -> str:
         return self.entry.data.get(CONF_NAME, "Je plant")

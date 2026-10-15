@@ -1,48 +1,38 @@
-# Stock photo credits
+# Plant illustrations
 
-Stock photos referenced from `species_data.json` (`stock_photo_url`) are
-**not stored as files in this repo** - they're loaded live from Wikimedia
-Commons via each photo's stable `Special:FilePath` link, and the
-integration fetches them at runtime (falling back to nothing shown if a
-plant has no upload of its own and no stock photo is available, which is
-most plants right now - see "Coverage" below).
+Eight original, AI-generated, photo-style illustrations are bundled in
+`custom_components/plant_monitor/photos/`. They were exported as compressed WebP assets. They were generated for this
+project with OpenAI image generation in October 2026 and visually checked
+for the intended plant's broad leaf shape. They are illustrative, not
+photographs of verified specimens and not a plant-identification tool.
 
-Every photo listed here is Creative Commons licensed and requires
-attribution, reproduced below per Commons' own attribution guidance.
+| Plant | File | Depicted form |
+| --- | --- | --- |
+| Monstera | `monstera.webp` | Monstera deliciosa, mature fenestrated leaves |
+| Snake Plant | `snake-plant.webp` | Dracaena trifasciata, yellow-edged form |
+| Chinese Money Plant | `chinese-money-plant.webp` | Pilea peperomioides |
+| Bird of Paradise | `bird-of-paradise.webp` | Strelitzia reginae, foliage |
+| Golden Pothos | `golden-pothos.webp` | Epipremnum aureum, golden variegation |
+| ZZ Plant | `zz-plant.webp` | Zamioculcas zamiifolia |
+| Peace Lily | `peace-lily.webp` | Spathiphyllum wallisii |
+| Bird's Nest Fern | `bird-nest-fern.webp` | Asplenium nidus |
 
-| Plant | File | Credit |
-|---|---|---|
-| Bird of Paradise (*Strelitzia reginae*) | [Bird of paradise (Strelitzia) leaf, Estufa Fria, Lisbon, Portugal](https://commons.wikimedia.org/wiki/Special:FilePath/Bird%20of%20paradise%20(Strelitzia)%20leaf%2C%20Estufa%20Fria%2C%20Lisbon%2C%20Portugal%20julesvernex2.jpg) | julesvernex2, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), via Wikimedia Commons |
-| Wijze Varen / Bird's Nest Fern (*Asplenium antiquum*) | [Asplenium antiquum - Botanischer Garten Freiburg](https://commons.wikimedia.org/wiki/Special:FilePath/Asplenium%20antiquum%20-%20Botanischer%20Garten%20Freiburg%20-%20DSC06284.jpg) | Photo via Wikimedia Commons, Botanischer Garten Freiburg |
-| Monstera (*Monstera deliciosa*) | [Monstera deliciosa Leaf 2700px](https://commons.wikimedia.org/wiki/Special:FilePath/Monstera%20deliciosa%20Leaf%202700px.jpg) | Photo via Wikimedia Commons |
-| Snake Plant (*Dracaena trifasciata*) | [Sansevieria trifasciata Plant 3264px](https://commons.wikimedia.org/wiki/Special:FilePath/Sansevieria%20trifasciata%20Plant%203264px.jpg) | Derek Ramsey, GFDL / CC BY-SA, via Wikimedia Commons |
+The illustrations are provided with the project under its MIT licence to
+the extent applicable. No third-party photo licence or attribution is
+asserted. The image entities expose their generated origin and the card
+displays “AI-gegenereerde plantenillustratie voor Plant Monitor”. An uploaded
+photo takes priority and never inherits the generated image's credit.
 
-## Coverage
+These eight illustrations are served from local integration files through
+Home Assistant's image entities, with file reads in the executor. They
+need no external photo service, API key, account, or startup download.
+The remaining 195 entries have no fallback illustration; upload your own.
+The older Asplenium antiquum entry is deliberately not given an A. nidus
+illustration as if it were an exact photograph of that species.
 
-**4 of 201 plants** in the database have a verified stock photo. This is a
-deliberate starting point, not full coverage - sourcing, verifying the
-license of, and correctly attributing an image for all 201 plants is real
-work that hasn't been done yet, and the maintainer's own environment
-can't fetch Wikimedia Commons directly to batch-process this.
-
-Every other plant simply shows no photo until the user uploads their own
-(which always takes priority over a stock photo anyway).
-
-## Contributing a photo
-
-1. Find a Creative Commons or public-domain photo on
-   [Wikimedia Commons](https://commons.wikimedia.org) of the plant -
-   prefer a plain, well-lit photo of the whole plant or a clear leaf
-   close-up, similar in style to the four above.
-2. Get its `Special:FilePath` URL: on the file's Commons page, the pattern
-   is `https://commons.wikimedia.org/wiki/Special:FilePath/<file name,
-   URL-encoded>`.
-3. Add an entry to `STOCK_PHOTOS` in `scripts/generate_species_data.py`,
-   keyed by the plant's exact `display_name`, with `(url, credit_string)`.
-4. Add a matching row to the table above.
-5. Run `python scripts/generate_species_data.py` to regenerate
-   `species_data.json`, and open a PR.
-
-Photos that require attribution beyond a simple "Name, License, via
-Wikimedia Commons" (e.g. specific wording requested by the photographer)
-should preserve that exact wording in both places.
+The previous four Wikimedia URL references have been removed. Their live
+licences and original authors could not be verified from this environment
+because access to Commons is blocked; two credits were incomplete. This
+does not assert that those images were unlicensed. Future contributions of
+real photographs should record the exact file page, author, licence name
+and licence URL, and any modifications, after checking the original source.

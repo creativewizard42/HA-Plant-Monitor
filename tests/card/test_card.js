@@ -274,6 +274,22 @@ async function run() {
   assert.strictEqual(tooltip.style.display, "none", "expected the tooltip to hide again");
   console.log("test_graph_hover_tooltip: OK");
 
+  // Generated photos carry visible provenance; user uploads must not inherit it.
+  const hassCredit = makeHass();
+  const photoId = "image.pannenkoekenplant_puppy_foto";
+  hassCredit.states[photoId].attributes.photo_credit = "AI-gegenereerde plantenillustratie voor Plant Monitor";
+  const creditCard = document.createElement("plant-monitor-card");
+  creditCard.setConfig({ device_id: DEVICE_ID });
+  creditCard.hass = hassCredit;
+  const credit = creditCard.querySelector(".pm-photo-credit");
+  assert.strictEqual(credit.hidden, false);
+  assert.ok(credit.textContent.includes("AI-gegenereerde"));
+  const hassUpload = makeHass();
+  creditCard.hass = hassUpload;
+  assert.strictEqual(credit.hidden, true);
+  assert.strictEqual(credit.textContent, "");
+  console.log("test_generated_photo_provenance: OK");
+
   console.log("\nAll card tests passed.");
 }
 

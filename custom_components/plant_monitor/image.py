@@ -1,9 +1,8 @@
 """Image platform for Plant Monitor.
 
 Serves the user's own uploaded photo if they added one; otherwise falls
-back to the matched species' bundled stock photo (fetched from its
-verified external URL - see species_data.json's stock_photo_url / the
-generator script's STOCK_PHOTOS for credits). Only a curated subset of
+back to the matched species' bundled generated illustration (see
+PHOTO_CREDITS.md for provenance). Only a curated subset of
 species have a stock photo; most plants show no photo until the user
 uploads their own, which always takes priority anyway.
 """
@@ -76,11 +75,31 @@ class PlantPhotoImage(ImageEntity):
         photo_url = self._plant.photo_url
         if not photo_url:
             return None
+        if photo_url.startswith("/plant_monitor_bundled/"):
+            return await self.hass.async_add_executor_job(self._read_bundled_file, photo_url)
         if photo_url.startswith("/local/"):
             return await self.hass.async_add_executor_job(self._read_local_file, photo_url)
         if photo_url.startswith("http://") or photo_url.startswith("https://"):
             return await self._fetch_remote(photo_url)
         return None
+
+    @property
+    def extra_state_attributes(self) -> dict:
+        return self._plant.photo_metadata
+
+    def _read_bundled_file(self, photo_url: str) -> bytes | None:
+        """Read only a direct child of the shipped photo directory, off-loop."""
+        filename = photo_url.removeprefix("/plant_monitor_bundled/")
+        if Path(filename).name != filename or "\\" in filename:
+            return None
+        path = Path(__file__).parent / "photos" / filename
+        try:
+            content = path.read_bytes()
+        except OSError:
+            _LOGGER.debug("Could not read bundled plant illustration %s", filename, exc_info=True)
+            return None
+        self._note_content_type(path.suffix.lower(), photo_url)
+        return content
 
     def _read_local_file(self, photo_url: str) -> bytes | None:
         relative = photo_url[len("/local/"):]

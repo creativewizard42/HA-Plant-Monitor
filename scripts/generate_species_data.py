@@ -5,7 +5,7 @@ Usage (from the repo root):
 
 Regenerates custom_components/plant_monitor/species_data.json in place.
 Adding a plant: add a tuple to PLANTS (display_name, scientific_name,
-profile, one-line extra note). Adding a Dutch common name: add/extend its
+profile, historical note). Adding a Dutch common name: add/extend its
 entry in DUTCH_NAMES, keyed by that same display_name.
 
 Thresholds are NOT lab-measured values (no such universal standard exists -
@@ -23,6 +23,11 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "custom_components", "plant_monitor"))
 from care_tip_hash import care_tip_hash  # noqa: E402
+from species_review import (  # noqa: E402
+    DISPLAY_NAMES, ENVIRONMENT_BY_PROFILE, ENVIRONMENT_OVERRIDES,
+    PROFILE_OVERRIDES, SCIENTIFIC_NAMES, TOXICITY_OVERRIDES,
+    WATERING_CAUTIONS, WATERLOGGING_TOLERANT, reviewed_guide,
+)
 
 _LEGACY_HASHES_PATH = os.path.join(os.path.dirname(__file__), "legacy_care_tip_hashes.json")
 try:
@@ -31,85 +36,20 @@ try:
 except FileNotFoundError:
     LEGACY_CARE_TIP_HASHES = {}
 
+# Approximate sensor start values; species-specific guides are mandatory.
 PROFILES = {
-    # key: (dry_threshold, wet_threshold, generic_note)
-    "desert_cactus": (5, 30, "Echte woestijncactus: geef zelden maar rijkelijk water en laat daarna helemaal opdrogen. Fel, direct zonlicht."),
-    "succulent": (10, 40, "Vetplant: laat de grond bijna helemaal opdrogen tussen de beurten door. Veel licht."),
-    "drought_tolerant": (12, 50, "Zeer vergevingsgezind: laat de grond goed opdrogen tussen de beurten door. Verdraagt weinig licht."),
-    "standard": (15, 55, "Laat de bovenste laag van de grond opdrogen voor je opnieuw water geeft. Helder, indirect licht."),
-    "epiphytic": (15, 45, "Groeit in schors-/orchideeënmengsel, dat weinig water vasthoudt: geef grondig water en laat daarna opdrogen. Laat de wortels nooit in water staan."),
-    "moisture_loving": (30, 70, "Houd de grond gelijkmatig en constant vochtig - laat 'm niet helemaal opdrogen. Houdt van hogere luchtvochtigheid."),
-    "high_moisture": (40, 80, "Houd de grond constant nat. Houdt van hoge luchtvochtigheid en, voor sommige van deze planten, gedistilleerd/regenwater."),
+    'desert_cactus': (5, 30),
+    'succulent': (10, 40),
+    'drought_tolerant': (12, 50),
+    'standard': (15, 55),
+    'epiphytic': (15, 45),
+    'moisture_loving': (30, 70),
+    'high_moisture': (40, 80),
+    'moist_airy': (25, 60),
 }
 
-# Multi-section care guide content, shared by every plant on a given
-# profile for everything EXCEPT watering (species-specific, built from its
-# own thresholds) and toxicity (species/genus-specific, see TOXICITY below).
-# This is deliberately templated rather than hand-written per species (202
-# bespoke essays isn't tractable to do well) - still genuinely useful,
-# accurate general guidance, just shared within a watering-need category.
-CARE_GUIDE_SECTIONS = {
-    "desert_cactus": {
-        "light": "Heeft zoveel mogelijk direct zonlicht nodig - een zuidraam is ideaal. Te weinig licht geeft een bleke, uitgerekte (vergeilde) groei.",
-        "humidity": "Lage luchtvochtigheid is prima en zelfs gewenst; gemiddelde kamervochtigheid (30-40%) is meer dan genoeg. Hoge luchtvochtigheid samen met natte grond nodigt uit tot rot.",
-        "temperature": "Voelt zich prettig bij normale kamertemperatuur (18-27\u00b0C). Een koelere winterrust (10-15\u00b0C) met veel minder water bevordert de bloei het volgende seizoen.",
-        "fertilizing": "Bemest spaarzaam met cactus-/vetplantenvoeding, één keer per maand en alleen in voorjaar en zomer; in herfst en winter helemaal niet bemesten.",
-        "repotting": "Verpot elke 2-4 jaar, alleen als de plant duidelijk potgebonden is, in snel drainerende cactusgrond (extra zand/perliet/puimsteen). Gebruik gevouwen papier of een tang om de stekels te vermijden.",
-        "common_problems": "Zachte, verkleurde of papperige plekken wijzen vrijwel altijd op te veel water of rot - de meest voorkomende manier om een cactus te verliezen. Uitgerekte, bleke groei betekent te weinig licht.",
-    },
-    "succulent": {
-        "light": "Houdt van veel licht, het liefst een paar uur direct zonlicht - een zuid- of westraam werkt goed. Te weinig licht geeft uitgerekte, slappe groei en verbleekte kleur.",
-        "humidity": "Gemiddelde kamervochtigheid is prima; deze planten geven de voorkeur aan drogere lucht en goede luchtcirculatie boven een vochtige omgeving.",
-        "temperature": "Voelt zich het prettigst bij 18-26\u00b0C. Houd boven de 10\u00b0C - de meeste vetplanten hebben veel meer moeite met koude, natte omstandigheden dan met warmte.",
-        "fertilizing": "Een lichte voeding met verdunde cactus-/vetplantenmeststof, één keer per maand in voorjaar en zomer, is voldoende; te veel bemesten geeft zwakke, slappe groei.",
-        "repotting": "Verpot elke 1-2 jaar in het voorjaar, in een grove, snel drainerende vetplantengrond. Laat gesneden of afgebroken stekken na vermeerdering eerst een dag of twee eeltvorming laten ontwikkelen voor je ze verpot.",
-        "common_problems": "Papperige, doorschijnende of verkleurde (zwarte) bladeren wijzen op te veel water of rot. Uitrekken richting het licht met grote afstand tussen de bladeren betekent dat de plant meer zon nodig heeft.",
-    },
-    "drought_tolerant": {
-        "light": "Verdraagt weinig licht goed en doet het ook prima in helder, indirect licht - een van de meest vergevingsgezinde planten qua lichtbehoefte.",
-        "humidity": "Niet kieskeurig; normale binnenluchtvochtigheid is prima, geen besproeien of luchtbevochtiger nodig.",
-        "temperature": "Voelt zich prettig binnen een breed bereik, ruwweg 15-27\u00b0C. Vermijd koude tocht en vorst.",
-        "fertilizing": "Bemest licht met een evenwichtige kamerplantenvoeding, één keer per maand van voorjaar tot vroege herfst; groeit langzaam en heeft niet veel nodig.",
-        "repotting": "Verpot elke 2-3 jaar, of zodra de plant duidelijk potgebonden is, in een goed drainerende algemene kamerplantengrond.",
-        "common_problems": "Vergelende onderste bladeren wijzen meestal op te veel water (de meest voorkomende fout bij deze verder erg tolerante planten). Trage groei bij weinig licht is normaal, geen probleem.",
-    },
-    "standard": {
-        "light": "Helder, indirect licht geeft de beste groei en bladkleur; verdraagt matig licht, maar de groei vertraagt dan en bontheid kan vervagen. Vermijd felle, directe middagzon, die de bladeren kan verbranden.",
-        "humidity": "Gemiddelde kamervochtigheid (40-50%) is over het algemeen prima; hogere luchtvochtigheid (via een schaaltje water of luchtbevochtiger) bevordert snellere, weelderigere groei, vooral 's winters bij droge verwarmingslucht.",
-        "temperature": "Houdt van 18-27\u00b0C en niet van koude tocht, plotselinge temperatuurschommelingen, of een plek vlak bij een koud raam of airco.",
-        "fertilizing": "Bemest met vloeibare, evenwichtige kamerplantenvoeding elke 2-4 weken in voorjaar en zomer; verminder in herfst en winter tot eens per maand of stop helemaal.",
-        "repotting": "Verpot elke 1-2 jaar in het voorjaar zodra de wortels rond de pot beginnen te groeien of uit de drainagegaten komen, in een pot die ongeveer 2-5 cm groter is.",
-        "common_problems": "Gele bladeren wijzen meestal op te veel water; knapperige bruine bladpunten komen vaak door te droge lucht of te geconcentreerd water/voeding. Lange, kale groei met grote afstand tussen de bladeren betekent dat er meer licht nodig is.",
-    },
-    "epiphytic": {
-        "light": "Helder, indirect licht is het beste; vermijd direct zonlicht, dat bij de meeste van deze planten het blad of de bloemen kan verbranden.",
-        "humidity": "Waardeert hogere luchtvochtigheid (50%+), omdat de plant van nature tegen bomen aan groeit in vochtige lucht, niet in de grond; een schaaltje water of luchtbevochtiger helpt, zeker binnenshuis in de winter.",
-        "temperature": "Houdt van stabiele warmte, ruwweg 18-27\u00b0C, en niet van koude tocht of een plek vlak tegen koud glas.",
-        "fertilizing": "Gebruik een verdunde orchideeën-/epifytenvoeding ongeveer elke 2-4 weken tijdens actieve groei; dit zijn doorgaans lichte eters vergeleken met kamerplanten die in grond groeien.",
-        "repotting": "Verpot slechts elke 1-3 jaar, of zodra het groeimedium is afgebroken en niet meer goed draineert - niet zomaar omdat er wortels zichtbaar zijn, want dat is normaal bij deze planten.",
-        "common_problems": "Verschrompelde, gerimpelde groei betekent meestal dat de plant te lang te weinig water heeft gehad; zwarte of papperige wortels betekenen dat het medium te lang te nat is gebleven."
-    },
-    "moisture_loving": {
-        "light": "Houdt van helder, indirect licht en over het algemeen niet van direct zonlicht, dat de bladeren kan verbleken of verbranden. Verdraagt wat minder licht beter dan uitdroging.",
-        "humidity": "Wil graag een hogere luchtvochtigheid (50%+); droge binnenlucht (zeker bij winterverwarming) is vaak als eerste te zien aan knapperige, bruine bladranden.",
-        "temperature": "Houdt van een stabiele 18-26\u00b0C en niet van koude tocht, koude vensterbanken of plotselinge temperatuurdalingen.",
-        "fertilizing": "Bemest met vloeibare, evenwichtige voeding op halve sterkte elke 2-4 weken in voorjaar en zomer; bouw dit af in herfst en winter.",
-        "repotting": "Verpot elke 1-2 jaar in het voorjaar, geleidelijk opschalend, met een vochtvasthoudende maar toch goed doorluchte potgrond (extra kokosvezel of een turfvrije vochtvasthoudende toevoeging helpt).",
-        "common_problems": "Knapperige, bruin wordende bladranden wijzen meestal op te droge lucht in plaats van te droge grond - check eerst de luchtvochtigheid voordat je meer water geeft. Slap hangen ondanks vochtige grond kan wijzen op wortelrot door te lang te nat staan.",
-    },
-    "high_moisture": {
-        "light": "Helder, indirect licht past bij de meeste van deze planten goed; een paar (zoals zonnedauw en trompetbekers) willen zoveel mogelijk licht, het liefst met wat directe zon.",
-        "humidity": "Houdt van vochtige lucht bovenop constant natte grond; een schaaltje water, luchtbevochtiger, of een van nature vochtige ruimte (zoals een lichte badkamer) helpt de plant goed groeien.",
-        "temperature": "Voelt zich prettig bij normale kamertemperatuur, ruwweg 18-26\u00b0C; vermijd koude tocht.",
-        "fertilizing": "De meeste planten in deze groep zijn lichte eters - een verdunde, evenwichtige voeding eens per maand tijdens het groeiseizoen is voldoende. Vleesetende planten mogen nooit via de grond bemest worden; zij halen hun voeding uit prooien.",
-        "repotting": "Verpot elke 1-2 jaar in het voorjaar in een vochtvasthoudend mengsel; vleesetende planten hebben specifiek een voedselarm mengsel nodig, zoals veenmos of een turf-/perlietmix, nooit gewone potgrond of meststof.",
-        "common_problems": "Bruine, knapperige plekken wijzen meestal erop dat de grond even is opgedroogd - deze planten zijn daar veel gevoeliger voor dan de meeste kamerplanten. Kraanwater kan mineraalafzetting of verbrande bladpunten veroorzaken; regenwater of gedistilleerd water is veiliger voor de gevoelige soorten.",
-    },
-}
-
-# Toxicity to cats/dogs, keyed by display_name. Grounded in the ASPCA Animal
-# Poison Control Center's toxic/non-toxic plant lists (the standard
-# reference for this). "toxic" / "mildly_toxic" / "non_toxic" - if a plant
+# Historical pet-toxicity categories; corrections in species_review.py apply
+# before rendering. Live ASPCA verification was not available in this review. "toxic" / "mildly_toxic" / "non_toxic" - if a plant
 # isn't listed here, the generator falls back to a cautious "unknown" note
 # rather than asserting safety it can't back up. This is general awareness
 # information, not a substitute for veterinary advice.
@@ -200,17 +140,17 @@ TOXICITY = {
     "Calathea Rufibarba": "non_toxic", "Blue Star Fern": "non_toxic",
 }
 DEFAULT_TOXICITY_NOTE = (
-    "Geen bevestigde ASPCA-vermelding gevonden voor deze specifieke plant - wees "
+    "Giftigheid voor deze specifieke plant is in deze catalogus onvoldoende onderbouwd - wees "
     "voorzichtig met huisdieren en kinderen, en neem bij vermoeden van inname "
     "contact op met een dierenarts of het vergiftigingeninformatiecentrum."
 )
 TOXICITY_TEXT = {
-    "toxic": "Giftig voor katten en honden (en houd 'm ook uit de buurt van kleine kinderen) bij inname - neem bij inname contact op met een dierenarts of het vergiftigingeninformatiecentrum.",
-    "mildly_toxic": "Licht giftig / kan maagklachten veroorzaken bij inname door huisdieren of kinderen - meestal niet levensbedreigend, maar toch buiten bereik houden.",
-    "non_toxic": "Wordt door de ASPCA beschouwd als niet giftig voor katten en honden - een van de veiligere keuzes als je huisdieren hebt.",
+    "toxic": "Giftig of irriterend voor katten en honden; houd buiten bereik. Neem bij inname contact op met een dierenarts. Sap kan ook huid en ogen irriteren.",
+    "mildly_toxic": "Kan bij katten en honden vergiftigingsverschijnselen of irritatie veroorzaken. Houd buiten bereik en raadpleeg bij inname een dierenarts; de ernst hangt af van soort, hoeveelheid en dier.",
+    "non_toxic": "Algemeen als niet giftig voor katten en honden beschreven. Dit betekent niet eetbaar: ook niet-giftige planten kunnen na inname maagklachten geven. Deze beoordeling is geen uitspraak over veiligheid voor kinderen.",
 }
 
-# In-depth, individually researched Dutch care guides for specific plants -
+# Species-specific Dutch care guides; reviewed corrections are applied below -
 # overrides the shorter profile-templated sections above (light, watering,
 # humidity, temperature, fertilizing, repotting, common_problems). The ones
 # below are the most detailed; every other plant gets its species-specific
@@ -321,36 +261,22 @@ for _name, _texts in all_guides().items():
 for _alias, _target in GUIDE_ALIASES.items():
     DETAILED_CARE_GUIDES.setdefault(_alias, DETAILED_CARE_GUIDES[_target])
 
-# Starter set of stock photos, keyed by display_name - a curated, verified
-# subset (NOT all 201 plants). Each points at a specific Wikimedia Commons
-# file via its stable Special:FilePath redirect, which resolves to whatever
-# the current file revision is; the license/attribution for each is in
-# PHOTO_CREDITS below and duplicated into custom_components/plant_monitor/
-# PHOTO_CREDITS.md. Community PRs adding more are very welcome - see
-# scripts/generate_species_data.py's module docstring for how.
+# Original generated illustrations bundled with the integration. No external
+# photo is shipped without verified licence metadata. See PHOTO_CREDITS.md.
 STOCK_PHOTOS = {
-    "Bird of Paradise": (
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Bird%20of%20paradise%20(Strelitzia)%20leaf%2C%20Estufa%20Fria%2C%20Lisbon%2C%20Portugal%20julesvernex2.jpg",
-        "julesvernex2, CC BY-SA 4.0, via Wikimedia Commons",
-    ),
-    "Wijze Varen (Bird's Nest Fern)": (
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Asplenium%20antiquum%20-%20Botanischer%20Garten%20Freiburg%20-%20DSC06284.jpg",
-        "Photo via Wikimedia Commons, Botanischer Garten Freiburg",
-    ),
-    "Monstera": (
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Monstera%20deliciosa%20Leaf%202700px.jpg",
-        "Photo via Wikimedia Commons",
-    ),
-    "Snake Plant": (
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Sansevieria%20trifasciata%20Plant%203264px.jpg",
-        "Derek Ramsey, GFDL/CC-BY-SA, via Wikimedia Commons",
-    ),
+    name: (f"/plant_monitor_bundled/{filename}.webp", "AI-gegenereerde plantenillustratie voor Plant Monitor")
+    for name, filename in {
+        "Monstera": "monstera", "Snake Plant": "snake-plant",
+        "Chinese Money Plant": "chinese-money-plant", "Bird of Paradise": "bird-of-paradise",
+        "Golden Pothos": "golden-pothos", "ZZ Plant": "zz-plant",
+        "Peace Lily": "peace-lily", "Bird's Nest Fern": "bird-nest-fern",
+    }.items()
 }
 
 
 
 # (display_name, scientific_name, profile, extra_note)
-# extra_note is appended to the profile's generic note as a short species-specific tip.
+# Historical notes are retained for context; the species-specific guide is authoritative.
 PLANTS = [
     # --- Vetplanten ---
     ("Jade Plant", "Crassula ovata", "succulent", "Houtachtige stengels; makkelijk te vermeerderen uit stekjes."),
@@ -691,7 +617,6 @@ DUTCH_NAMES = {
 # (already-known-good values from real-world use), so upgrading doesn't
 # shift anyone's existing values.
 LEGACY_OVERRIDES = {
-    "Bird of Paradise": (15.0, 65.0),
     "Monstera": (15.0, 55.0),
     "Wijze Varen (Bird's Nest Fern)": (30.0, 75.0),
 }
@@ -710,10 +635,15 @@ def slugify(name: str) -> str:
 def build() -> list[dict]:
     seen_ids: set[str] = set()
     species = []
-    for display_name, scientific_name, profile, extra_note in PLANTS:
-        dry, wet, generic_note = PROFILES[profile]
+    for display_name, scientific_name, profile, _legacy_note in PLANTS:
+        original_name, original_scientific_name = display_name, scientific_name
+        profile = PROFILE_OVERRIDES.get(original_name, profile)
+        dry, wet = PROFILES[profile]
         if display_name in LEGACY_OVERRIDES:
             dry, wet = LEGACY_OVERRIDES[display_name]
+        if display_name in WATERLOGGING_TOLERANT:
+            wet = 100
+        # Stable IDs survive corrected taxonomy and labels.
         species_id = slugify(f"{display_name}-{scientific_name}")
         base_id = species_id
         i = 2
@@ -723,12 +653,15 @@ def build() -> list[dict]:
         seen_ids.add(species_id)
 
         dutch_names = DUTCH_NAMES.get(display_name, [])
-        aliases = sorted({display_name, scientific_name, *dutch_names})
+        display_name = DISPLAY_NAMES.get(original_name, original_name)
+        scientific_name = SCIENTIFIC_NAMES.get(original_name, original_scientific_name)
+        aliases = sorted({display_name, scientific_name, original_name, original_scientific_name, *dutch_names})
 
-        sections = CARE_GUIDE_SECTIONS[profile]
-        detailed = DETAILED_CARE_GUIDES.get(display_name)
-        toxicity_level = TOXICITY.get(display_name)
+        detailed = DETAILED_CARE_GUIDES.get(original_name)
+        toxicity_level = TOXICITY_OVERRIDES.get(original_name, TOXICITY.get(original_name))
         toxicity_text = TOXICITY_TEXT.get(toxicity_level, DEFAULT_TOXICITY_NOTE)
+        if original_name in {"Sago Palm", "Desert Rose", "Mother of Thousands", "Panda Plant", "Flaming Katy", "Christmas Kalanchoe"}:
+            toxicity_text = "Sterk giftig voor huisdieren; inname kan ernstige, levensbedreigende vergiftiging veroorzaken. Neem bij mogelijke inname direct contact op met een dierenarts, ook als er nog geen klachten zijn."
         if detailed:
             care_guide = {
                 "light": detailed["light"],
@@ -741,16 +674,8 @@ def build() -> list[dict]:
                 "toxicity": toxicity_text,
             }
         else:
-            care_guide = {
-                "light": sections["light"],
-                "watering": f"{generic_note} {extra_note}".strip(),
-                "humidity": sections["humidity"],
-                "temperature": sections["temperature"],
-                "fertilizing": sections["fertilizing"],
-                "repotting": sections["repotting"],
-                "common_problems": sections["common_problems"],
-                "toxicity": toxicity_text,
-            }
+            raise ValueError(f"Missing species-specific guide: {original_name}")
+        care_guide = reviewed_guide(original_name, care_guide)
         # A single flattened string for simple display (e.g. the sensor's
         # state) - the structured `care_guide` above is what the dashboard
         # card's expandable section actually renders from.
@@ -762,14 +687,15 @@ def build() -> list[dict]:
         ]
         care_tip = "\n".join(f"{label}: {care_guide[key]}" for label, key in section_labels)
 
-        stock_photo = STOCK_PHOTOS.get(display_name)
+        stock_photo = STOCK_PHOTOS.get(original_name)
 
         # Every care_tip text this plant has ever shipped with (plus this
         # one), so the integration can tell an untouched auto-filled tip in
         # an older config entry apart from one the user edited.
-        tip_hashes = set(LEGACY_CARE_TIP_HASHES.get(display_name, []))
+        tip_hashes = set(LEGACY_CARE_TIP_HASHES.get(original_name, []))
         tip_hashes.add(care_tip_hash(care_tip))
-        LEGACY_CARE_TIP_HASHES[display_name] = sorted(tip_hashes)
+        LEGACY_CARE_TIP_HASHES[original_name] = sorted(tip_hashes)
+        cold, hot, humidity = ENVIRONMENT_OVERRIDES.get(original_name, ENVIRONMENT_BY_PROFILE[profile])
 
         # Dutch-first label for the device model / card header: the Dutch
         # common name when there is one, otherwise the Latin name (which is
@@ -791,10 +717,16 @@ def build() -> list[dict]:
                 "profile": profile,
                 "dry_threshold": dry,
                 "wet_threshold": wet,
+                "temp_cold_threshold": cold,
+                "temp_hot_threshold": hot,
+                "humidity_low_threshold": humidity,
+                "waterlogging_tolerant": original_name in WATERLOGGING_TOLERANT,
+                "watering_caution": WATERING_CAUTIONS.get(original_name),
                 "care_guide": care_guide,
                 "care_tip": care_tip,
                 "stock_photo_url": stock_photo[0] if stock_photo else None,
                 "stock_photo_credit": stock_photo[1] if stock_photo else None,
+                "stock_photo_generated": bool(stock_photo),
                 "care_tip_hashes": sorted(tip_hashes),
             }
         )
@@ -821,15 +753,12 @@ if __name__ == "__main__":
 
     data = build()
     with_dutch = sum(1 for e in data if e["dutch_names"])
-    with_known_toxicity = sum(1 for e in data if e["display_name"] in TOXICITY)
     with_stock_photo = sum(1 for e in data if e["stock_photo_url"])
-    with_detailed_guide = sum(1 for e in data if e["display_name"] in DETAILED_CARE_GUIDES)
     print(
         f"Generated {len(data)} species entries "
         f"({with_dutch} with a distinct Dutch name, "
-        f"{with_known_toxicity} with a confirmed ASPCA toxicity listing, "
-        f"{with_stock_photo} with a verified stock photo, "
-        f"{with_detailed_guide} with an in-depth researched care guide)."
+        f"{with_stock_photo} with a bundled generated illustration, "
+        f"{len(data)} with a species-specific care guide)."
     )
     out_path = os.path.join(
         os.path.dirname(__file__), "..", "custom_components", "plant_monitor", "species_data.json"

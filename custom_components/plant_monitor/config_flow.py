@@ -342,7 +342,8 @@ class PlantMonitorConfigFlow(ConfigFlow, domain=DOMAIN):
             self._data.update(user_input)
             return await self.async_step_notifications()
         return self.async_show_form(
-            step_id="advanced", data_schema=_advanced_schema({})
+            step_id="advanced",
+            data_schema=_advanced_schema(find_species(self._data.get(CONF_SPECIES, "")) or {}),
         )
 
     async def async_step_notifications(
